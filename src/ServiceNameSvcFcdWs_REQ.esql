@@ -1,0 +1,129 @@
+BROKER SCHEMA com.ath.services.${domain}
+
+--->> Declaracion de namespaces
+DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';
+
+${otherNamespaces}
+
+--->> Declaracion de variables promovidas
+DECLARE UDP_Application EXTERNAL CHARACTER NULL;
+DECLARE UDP_BankId EXTERNAL CHARACTER NULL;
+DECLARE UDP_Channel EXTERNAL CHARACTER NULL;
+
+CREATE COMPUTE MODULE ${ServiceName}SvcFcdWs_REQ_CmpRouteMsg
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--> Cabeceras del mensaje
+		CREATE FIELD OutputRoot.Properties;
+		CREATE FIELD OutputRoot.MQMD;
+		CREATE FIELD OutputRoot.MQRFH2;
+		
+		DECLARE refMQRFH2 REFERENCE TO OutputRoot.MQRFH2;
+		DECLARE valData ROW;
+		DECLARE value REFERENCE TO valData;
+		
+		SET refMQRFH2.usr.log.transactionDate = CURRENT_TIMESTAMP;
+		SET refMQRFH2.usr.infoConfig = TRIM(REPLACE(InputLocalEnvironment.ServiceRegistry.Entity.content, '\r\n',''));
+
+		--> Validar información de la configuración del servicio, tomada desde WSRR
+		CALL common.procedures.fcd.getValuesConfigService(refMQRFH2, 'serviceStatus', value);
+		
+		IF value = '1' THEN
+			DECLARE inMsg REFERENCE TO InputRoot.XMLNSC.${prefixns}:modCardPswdRequest.${prefixns}:${ServiceName}Rq;
+			DECLARE bankId CHARACTER inMsg.${prefixauxns}:MsgRqHdr.${prefixauxns}:BankInfo.${prefixauxns}:BankId;
+			DECLARE channel CHARACTER inMsg.${prefixauxns}:MsgRqHdr.v2:Channel;
+			DECLARE rqUID CHARACTER inMsg.${prefixauxns}:RqUID;
+			DECLARE custIdNum CHARACTER inMsg.${prefixauxns}:CustId.${prefixauxns}:GovIssueIdent.${prefixauxns}:IdentSerialNum;
+			DECLARE accType CHARACTER inMsg.${prefixauxns}:DepAcctId.${prefixauxns}:AcctType;
+			
+			--> Tomar el nombre del servicio desde el archivo xml de configuración
+			CALL common.procedures.fcd.getValuesConfigService(refMQRFH2, 'name', value);
+			
+			--> Guardar datos en cabecera para auditoría
+			SET OutputRoot.MQRFH2.usr.log.transactionDate = CURRENT_TIMESTAMP;
+			SET OutputRoot.MQRFH2.usr.log.nameApplication = UDP_Application;
+			SET OutputRoot.MQRFH2.usr.log.nameSrv = UDP_Application;
+			SET OutputRoot.MQRFH2.usr.log.nameUser = '';
+			SET OutputRoot.MQRFH2.usr.log.consumerName = COALESCE(channel, UDP_Channel);
+			SET OutputRoot.MQRFH2.usr.log.idLog = '1';
+			SET OutputRoot.MQRFH2.usr.log.ipClient = COALESCE(InputRoot.HTTPInputHeader."X-Remote-Addr",'');
+			SET OutputRoot.MQRFH2.usr.log.callType = 'WS';
+			SET OutputRoot.MQRFH2.usr.log.BANK_ID = COALESCE(bankId, UDP_BankId);
+			SET OutputRoot.MQRFH2.usr.transactionInfoRq.transactionId = rqUID;
+			SET OutputRoot.MQRFH2.usr.log.reference1 = custIdNum;
+			SET OutputRoot.MQRFH2.usr.log.reference2 = accType;
+			
+			--> Tomar identificador de cliente WS.
+			SET refMQRFH2.usr.response.WS.replyIdentifier = InputLocalEnvironment.Destination.SOAP.Reply.ReplyIdentifier;
+			
+			--> Prioridad de mensajeria de servicio
+			CALL common.procedures.fcd.getValuesConfigService(refMQRFH2, 'priority', value);
+			IF value <> 'NA' THEN
+				SET OutputRoot.MQMD.Priority = CAST(value AS INTEGER);
+			END IF;
+			
+			--> Envio a servicio específico basado en xml de configuración
+			CALL common.procedures.fcd.getValuesConfigService(refMQRFH2, 'serviceListATM', value);
+			DECLARE service REFERENCE TO value.service;
+			SET OutputLocalEnvironment.Destination.MQ.DestinationData[1].queueName = service.queueName;
+			SET refMQRFH2.usr.log.nameSrvRBM = service.name;
+			SET refMQRFH2.usr.log.nameSrv = service.name;
+			SET refMQRFH2.usr.log.nmProvider = service.nameProvider;
+			
+			SET OutputRoot.MQMD.Expiry = -1;
+			SET OutputRoot.XMLNSC = InputRoot.XMLNSC;
+			
+			SET Environment.Variables.usr = refMQRFH2.usr;
+			PROPAGATE TO TERMINAL 'out1' DELETE NONE;
+			
+			RETURN TRUE;
+		ELSE
+			THROW USER EXCEPTION CATALOG 'FCD' MESSAGE 004 VALUES ('Servicio Inactivo.', 'Configuración de archivo.');
+			RETURN FALSE;
+		END IF;
+	END;
+END MODULE;
+
+CREATE COMPUTE MODULE ${ServiceName}SvcFcdWs_REQ_CreateErrorRespWS
+	CREATE FUNCTION main() RETURNS BOOLEAN
+	BEGIN
+		CALL copyMessageHeaders();
+		
+		CREATE FIELD OutputRoot.XMLNSC.${prefixns}:modCardPswdResponse.${prefixns}:${ServiceName}Rs;
+		SET OutputRoot.XMLNSC.${prefixns}:modCardPswdResponse.(XMLNSC.NamespaceDecl)xmlns:${prefixns} = ${prefixns};
+		SET OutputRoot.XMLNSC.${prefixns}:modCardPswdResponse.(XMLNSC.NamespaceDecl)xmlns:${prefixauxns} = ${prefixauxns};
+		
+		DECLARE outMsg REFERENCE TO OutputRoot.XMLNSC.${prefixns}:modCardPswdResponse.${prefixns}:${ServiceName}Rs;
+		DECLARE data ROW;
+		DECLARE value REFERENCE TO data.value;
+
+		CALL common.procedures.global.cache.getDataErrorCache(
+			COALESCE(Environment.Variables.usr.log.BANK_ID, UDP_BankId),
+			InputRoot.XMLNSC.exceptionReq.exception.code,
+			Environment.Variables.usr.log.nameApplication,
+			'ERRORS',
+			'IFX',
+			value
+		);
+		
+		SET outMsg.${prefixauxns}:Status.${prefixauxns}:StatusCode = COALESCE(value.codeError, '700');
+		SET outMsg.${prefixauxns}:Status.${prefixauxns}:ServerStatusCode = InputRoot.XMLNSC.exceptionReq.exception.code;
+		SET outMsg.${prefixauxns}:Status.${prefixauxns}:Severity = COALESCE(value.severity, 'Error');
+		SET outMsg.${prefixauxns}:Status.${prefixauxns}:StatusDesc = COALESCE(value.descError, 'Error Interno IIB');
+		SET outMsg.${prefixauxns}:Status.${prefixauxns}:ServerStatusDesc = LEFT(InputRoot.XMLNSC.exceptionReq.exception.desc, 255);
+		
+		SET outMsg.${prefixauxns}:RqUID = COALESCE(Environment.Variables.usr.transactionInfoRq.transactionId, 0);
+
+		RETURN TRUE;
+	END;
+	
+	CREATE PROCEDURE copyMessageHeaders() BEGIN
+	DECLARE i INTEGER 1;
+	DECLARE j INTEGER;
+	SET j = CARDINALITY(InputRoot.*[]);
+	WHILE i < j DO
+		SET OutputRoot.*[i] = InputRoot.*[i];
+		SET i = i + 1;
+	END WHILE;
+END;
+END MODULE;

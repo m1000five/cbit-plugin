@@ -1,0 +1,1086 @@
+<?xml version="1.0"?>
+<project name="${ServiceName}SvcFcdWs" default="run">
+	<!-- generated with FWK2 Toolkit Plugin -->
+	<!-- ====== ANT Build File ======= -->
+	<!-- Se requiere un directorio workspace en el que esten directamente los distintos proyectos -->
+
+	<!-- Ruta del broker, directorio classes -->
+	<property name="MQSI_JARPATH" value="C:/Program Files/IBM/IIB/10.0.0.3/server/classes" />
+	<property name="mqsi.home" value="C:/Program Files/IBM/IIB/10.0.0.3/server/bin" />
+	<property name="requirement" value="28496" />
+	<property name="model.requirement" value="REQCVAPD00000000" />
+
+	<property name="docrelease" value="GDS.FO.08.Entrega%20de%20Software_${ServiceName}Svc_RQ28496.doc" />
+	<property name="platform" value="IIB" />
+	<property name="developer" value="MILTON VEGA" />
+
+	<property name="srv1" value="${ServiceName}SvcFcdWs" />
+	<property name="srvname" value="${ServiceName}SvcFcdWs" />
+	<property name="OperationName" value="${OperationName}" />
+
+	<property name="barname" value="${ServiceName}SvcFcdWs.bar" />
+	
+	
+
+
+	<property name="wsdl" value="SendOTP.wsdl" />
+
+	<property name="workspace.dir" value="C:\workspace_ath\work108" />
+
+	<property name="mqtool.dir" value="C:/MsgTest" />
+	<property name="mqtool.dir.bin" value="C:/MsgTest/bin" />
+
+
+	<property name="svnant.req" value="https://10.140.0.22/svn/GDT/Plataformas/INTEGRACION/Aplicaciones/IIB/Requerimientos/A%C3%B1o2017/28496_Req_BAVV_Ban.co_AsignacionDeClaveTDyTC" />
+
+	<property name="svnant.repository.user" value="Proveedor_idmesa" />
+	<property name="svnant.repository.passwd" value="RyX,863bg" />
+
+	<property name="deploytool.arg.broker" value="IIB10" />
+	<property name="deploytool.arg.group" value="GE_BAN.CO" />
+
+	<property name="mqtool.arg.qmname" value="MB7QMGR" />
+
+	<property name="mqtool.arg.port" value="1414" />
+	<property name="mqtool.arg.queuetest" value="CNTL.700174.OUT" />
+
+	<property name="mqtool.arg.qmname.dev" value="ESBBRK.DEV.QM" />
+	<property name="mqtool.arg.ip.dev" value="10.85.68.79" />
+	<property name="mqtool.arg.port.dev" value="1414" />
+	<property name="mqtool.arg.channel.dev" value="ESBBRK.DEV.SVRCONN" />
+	<property name="mqtool.arg.queuetest.dev" value="PRUEBA" />
+	<property name="mqtool.arg.ip.qa" value="10.85.68.98" />
+
+	<property name="xmltest.response.op" value="getCustDataByProductRqRequest" />
+	<property name="xmltest.response.msg" value="getCustDataByProductRqResponse" />
+
+
+	<tstamp>
+		<format property="TODAY_MY" pattern="yyyyMMddHH" locale="en,UK" />
+	</tstamp>
+
+
+	<taskdef name="xmltask" classname="com.oopsconsultancy.xmltask.ant.XmlTask" classpath="${workspace.dir}/lib/xmltask.jar" />
+
+	<taskdef resource="net/sf/antcontrib/antlib.xml" classpath="${workspace.dir}/lib/ant-contrib-1.0b3.jar" />
+
+	<target name="run" description="Create folders and build artifacts">
+		<antcall target="clean" />
+		<antcall target="checkout-model-req" />
+		<antcall target="prepare-folders" />
+		<!--antcall target="build-fmgs"/-->
+		<antcall target="artifacts-cntl-1" />
+	</target>
+
+	<target name="clean-model-req">
+		<delete dir="${workspace.dir}/${model.requirement}" />
+	</target>
+
+	<target name="checkout-model-req">
+		<exec executable="svn" dir="${workspace.dir}">
+			<arg line=" co ${svnant.this.url} --username=${svnant.repository.user} --password=${svnant.repository.passwd}" />
+		</exec>
+	</target>
+
+	<target name="run-without-prepare" description="build artifacts">
+		<!--antcall target="build-fmgs"/-->
+		<antcall target="artifacts-cntl-1" />
+	</target>
+
+
+
+	<target name="clean" description="Clean up">
+		<echo>Cleaning up...</echo>
+		<delete dir="${workspace.dir}/${requirement}" />
+	</target>
+
+	<target name="prepare-folders" description="--> prepare folders for requirement">
+		<echo>Creating req folders...</echo>
+		<mkdir dir="${workspace.dir}/${requirement}/db/db_scripts" />
+		<mkdir dir="${workspace.dir}/${requirement}/wmb/wmb_bars" />
+		<mkdir dir="${workspace.dir}/${requirement}/wmb/wmq_scripts" />
+		<mkdir dir="${workspace.dir}/${requirement}/wmb/wmb_bars/ESBBRK.PRD" />
+		<mkdir dir="${workspace.dir}/${requirement}/wmb/wmb_bars/ESBBRK.PRD/${execution.group.fmg}" />
+		<mkdir dir="${workspace.dir}/${requirement}/wmb/wmq_scripts/ESBBRK.PRD.QM" />
+
+
+		<echo>Copying files to build folder...</echo>
+		<copy todir="${workspace.dir}/${requirement}/db">
+			<fileset dir="${workspace.dir}/${model.requirement}/db">
+				<include name="*.*" />
+			</fileset>
+		</copy>
+		<copy todir="${workspace.dir}/${requirement}/wmb">
+			<fileset dir="${workspace.dir}/${model.requirement}/wmb">
+				<include name="*.*" />
+			</fileset>
+		</copy>
+
+	</target>
+
+	<target name="build-fmgs">
+		<subant>
+			<filelist dir=".">
+				<file name="../${fmg1}/build.xml" />
+			</filelist>
+			<target name="run-without-prepare" />
+
+		</subant>
+	</target>
+
+
+	<target name="artifacts-cntl-1" description="--> runs mqsipackagebar from an ant task">
+
+
+		<copy todir="${workspace.dir}/${requirement}/wmb/wmq_scripts/ESBBRK.PRD.QM">
+			<fileset dir="${workspace.dir}/${srv1}">
+				<include name="*.txt" />
+			</fileset>
+		</copy>
+
+		<copy todir="${workspace.dir}/${requirement}/db/db_scripts">
+			<fileset dir="${workspace.dir}/${srv1}">
+				<include name="*.sql" />
+			</fileset>
+		</copy>
+
+
+		<java classname="com.ibm.broker.config.appdev.FlowRendererBAR" failonerror="true" fork="true">
+			<arg line="-w ${workspace.dir}/" />
+			<arg line="-a ${workspace.dir}/${requirement}/wmb/wmb_bars/ESBBRK.PRD/${execution.group.cntl}/${srv1}.bar" />
+			<arg line="-k ${srv1}" />
+			<classpath>
+				<fileset dir="${MQSI_JARPATH}">
+					<include name="*.jar" />
+				</fileset>
+			</classpath>
+		</java>
+	</target>
+
+
+	<!-- Target to deploy using mqsideploy  -->
+
+	<target name="deploy-bar">
+		<echo message="Deploying  - ${barname} " />
+
+
+		<exec executable="cmd" dir="C:\IBM\MQSI\7.0\bin">
+			<arg value="/c mqsiprofile.cmd &amp; C:\IBM\MQSI\7.0\bin\mqsideploy.bat IIB10 -e GE_BAN.CO -a C:\workspace_ath\work10\${ServiceName}SvcFcdWs\${ServiceName}SvcFcdWs.bar -w 600" />
+			<!--arg value="IIB10" />
+			<arg value="-e" />
+			<arg value="GE_BAN.CO" />
+			<arg value="-a" />
+			<arg value="C:\workspace_ath\work10\${ServiceName}SvcFcdWs\${ServiceName}SvcFcdWs.bar" />
+			<arg value="-w" />
+			<arg value="600" /-->
+		</exec>
+
+		<!--exec executable="${mqsi.home}/mqsiprofile.cmd">
+			<arg value="/C" />
+			<arg value="mqsideploy.exe" />
+			<arg value="${deploytool.arg.broker}" />
+			<arg value="-e" />
+			<arg value="${deploytool.arg.group}" />
+			<arg value="-a" />
+			<arg value="${workspace.dir}/${ServiceName}SvcFcdWs/${barname}" />
+			<arg value="-w" />
+			<arg value="600" />
+		</exec-->
+
+		<!--exec executable="${mqsi.home}/mqsideploy.exe" spawn="false">
+			<arg value="${deploytool.arg.broker}" />
+			<arg value="-e" />
+			<arg value="${deploytool.arg.group}" />
+			<arg value="-a" />
+			<arg value="${workspace.dir}/${ServiceName}SvcFcdWs/${barname}" />
+			<arg value="-w" />
+			<arg value="600" />
+		</exec-->
+
+	</target>
+
+	<target name="run-mockup" description="Execute MOCKUP">
+
+		<echo message="RUN MOCKUP" />
+
+		<parallel timeout="35000">
+
+			<sequential>
+				<echo message="RUN parallel" />
+
+				<exec executable="C:\All\SmartBear\SoapUI-5.3.0\bin\mockservicerunner.bat" dir="." timeout="35000">
+					<arg value="-m" />
+					<arg value="MockService 1" />
+					<arg value="C:\All\Srv-AvalPay\SendOTP-soapui-project.xml" />
+				</exec>
+
+				<sleep seconds="30" />
+
+				<echo message="RUN parallel 2" />
+			</sequential>
+		</parallel>
+
+	</target>
+
+
+
+	<target name="run-request-local" description="Execute new request in LOCAL">
+
+		<echo message="RUN IN LOCAL" />
+
+		<delete file="request1.xml" />
+		<tstamp>
+			<format property="rquid" pattern="ddHHmms" locale="en,UK" />
+		</tstamp>
+
+		<echo message="RQUID ---> ${rquid}" />
+
+		<copy file="request.xml" tofile="request1.xml" />
+
+		<exec executable="fart" dir=".">
+			<arg value="--" />
+			<arg value="request1.xml" />
+			<arg value="@@RQUID@@" />
+			<arg value="${rquid}" />
+		</exec>
+
+		<property name="port" value="7801" />
+
+		<echo>This port ${port}</echo>
+
+		<loadfile property="file.request.xml" srcFile="request1.xml" />
+		<echo message="${file.request.xml}" />
+
+		<exec executable="C:\All\curl\I386\curl" dir=".">
+			<arg value="-X" />
+			<arg value="POST" />
+			<arg value="-H" />
+			<arg value="Content-Type: text/xml" />
+			<arg value="-H" />
+			<arg value="SOAPAction:urn://grupoaval.com/${domain}/v1/${OperationName}Request" />
+			<arg value="--data-binary" />
+			<arg value="@request1.xml" />
+			<arg value="http://127.0.0.1:${port}/${domain}/Services/${ServiceName}Svc" />
+		</exec>
+
+		<delete file="results.txt" />
+
+		<exec executable="sqlplus" dir=".">
+			<arg value="-s" />
+			<arg value="USRATH10/USRATH10@'(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=127.0.0.1)(PORT=1521))(CONNECT_DATA=(SID=XE)))'" />
+			<arg value="@query-dev.sql" />
+			<arg value="${rquid}" />
+		</exec>
+
+	</target>
+
+	<target name="run-request-local-mockup" description="Execute new request in LOCAL">
+
+		<echo message="RUN IN LOCAL" />
+
+		<delete file="request1.xml" />
+
+		<tstamp>
+			<format property="rquid" pattern="ddHHmms" locale="en,UK" />
+		</tstamp>
+
+		<echo message="RQUID ---> ${rquid}" />
+
+		<copy file="request.xml" tofile="request1.xml" />
+
+		<exec executable="fart" dir=".">
+			<arg value="--" />
+			<arg value="request1.xml" />
+			<arg value="@@RQUID@@" />
+			<arg value="${rquid}" />
+		</exec>
+
+		<exec executable="fart" dir=".">
+			<arg value="--" />
+			<arg value="request1.xml" />
+			<arg value="@@RESPONSE@@" />
+			<arg value="Response 1" />
+		</exec>
+
+		<property name="port" value="7801" />
+
+		<echo>This port ${port}</echo>
+
+		<loadfile property="file.request.xml" srcFile="request1.xml" />
+		<echo message="${file.request.xml}" />
+
+		<echo message="RUN MOCKUP" />
+
+		<parallel timeout="95000">
+
+			<echo message="RUN parallel MOCKUP" />
+
+			<exec executable="C:\All\SmartBear\SoapUI-5.3.0\bin\mockservicerunner.bat" dir="." timeout="35000">
+				<arg value="-m" />
+				<arg value="MockService 1" />
+				<arg value="C:\All\Srv-AvalPay\SendOTP-soapui-project.xml" />
+			</exec>
+
+			<sequential>
+
+				<echo message="ESPERANDO MOCKUP" />
+
+				<waitfor maxwait="40" maxwaitunit="second">
+					<and>
+						<socket server="127.0.0.1" port="9090" />
+					</and>
+				</waitfor>
+
+				<echo message="INVOCANDO PETICION!!!!!!!!!!!!!!" />
+
+				<exec executable="C:\All\curl\I386\curl" dir=".">
+					<arg value="-X" />
+					<arg value="POST" />
+					<arg value="-H" />
+					<arg value="Content-Type: text/xml" />
+					<arg value="-H" />
+					<arg value="SOAPAction:urn://grupoaval.com/${domain}/v1/${OperationName}Request" />
+					<arg value="--data-binary" />
+					<arg value="@request1.xml" />
+					<arg value="http://127.0.0.1:${port}/${domain}/Services/${ServiceName}Svc" />
+				</exec>
+
+				<delete file="results.txt" />
+
+				<sleep seconds="3" />
+
+				<exec executable="sqlplus" dir=".">
+					<arg value="-s" />
+					<arg value="USRATH10/USRATH10@'(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=127.0.0.1)(PORT=1521))(CONNECT_DATA=(SID=XE)))'" />
+					<arg value="@query-dev.sql" />
+					<arg value="${rquid}" />
+				</exec>
+
+				<sleep seconds="1" />
+
+				<exec executable="taskkill">
+					<arg line="/im java.exe /f /t" />
+				</exec>
+			</sequential>
+
+		</parallel>
+
+	</target>
+
+
+	<target name="run-request-local-mockup-error" description="Execute new request in LOCAL">
+
+		<echo message="RUN IN LOCAL" />
+
+		<delete file="request1.xml" />
+
+		<tstamp>
+			<format property="rquid" pattern="ddHHmms" locale="en,UK" />
+		</tstamp>
+
+		<echo message="RQUID ---> ${rquid}" />
+
+		<copy file="request.xml" tofile="request1.xml" />
+
+		<exec executable="fart" dir=".">
+			<arg value="--" />
+			<arg value="request1.xml" />
+			<arg value="@@RQUID@@" />
+			<arg value="${rquid}" />
+		</exec>
+
+		<exec executable="fart" dir=".">
+			<arg value="--" />
+			<arg value="request1.xml" />
+			<arg value="@@RESPONSE@@" />
+			<arg value="Response 2" />
+		</exec>
+
+		<property name="port" value="7801" />
+
+		<echo>This port ${port}</echo>
+
+		<loadfile property="file.request.xml" srcFile="request1.xml" />
+		<echo message="${file.request.xml}" />
+
+		<echo message="RUN MOCKUP" />
+
+		<parallel timeout="95000">
+
+			<echo message="RUN parallel MOCKUP" />
+
+			<exec executable="C:\All\SmartBear\SoapUI-5.3.0\bin\mockservicerunner.bat" dir="." timeout="35000">
+				<arg value="-m" />
+				<arg value="MockService 1" />
+				<arg value="C:\All\Srv-AvalPay\SendOTP-soapui-project.xml" />
+			</exec>
+
+			<sequential>
+
+				<echo message="ESPERANDO MOCKUP" />
+
+				<waitfor maxwait="40" maxwaitunit="second">
+					<and>
+						<socket server="127.0.0.1" port="9090" />
+					</and>
+				</waitfor>
+
+				<echo message="INVOCANDO PETICION!!!!!!!!!!!!!!" />
+
+				<exec executable="C:\All\curl\I386\curl" dir=".">
+					<arg value="-X" />
+					<arg value="POST" />
+					<arg value="-H" />
+					<arg value="Content-Type: text/xml" />
+					<arg value="-H" />
+					<arg value="SOAPAction:urn://grupoaval.com/${domain}/v1/${OperationName}Request" />
+					<arg value="--data-binary" />
+					<arg value="@request1.xml" />
+					<arg value="http://127.0.0.1:${port}/${domain}/Services/${ServiceName}Svc" />
+				</exec>
+
+				<delete file="results.txt" />
+
+				<sleep seconds="3" />
+
+				<exec executable="sqlplus" dir=".">
+					<arg value="-s" />
+					<arg value="USRATH10/USRATH10@'(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=127.0.0.1)(PORT=1521))(CONNECT_DATA=(SID=XE)))'" />
+					<arg value="@query-dev.sql" />
+					<arg value="${rquid}" />
+				</exec>
+
+				<sleep seconds="1" />
+
+				<exec executable="taskkill">
+					<arg line="/im java.exe /f /t" />
+				</exec>
+			</sequential>
+
+		</parallel>
+
+	</target>
+
+	<target name="run-request-local-mockup-mockup" description="Execute new request in LOCAL">
+
+		<echo message="RUN IN LOCAL" />
+
+		<delete file="request1.xml" />
+
+		<tstamp>
+			<format property="rquid" pattern="ddHHmms" locale="en,UK" />
+		</tstamp>
+
+		<echo message="RQUID ---> ${rquid}" />
+
+		<copy file="request.xml" tofile="request1.xml" />
+
+		<exec executable="fart" dir=".">
+			<arg value="--" />
+			<arg value="request1.xml" />
+			<arg value="@@RQUID@@" />
+			<arg value="${rquid}" />
+		</exec>
+
+		<exec executable="fart" dir=".">
+			<arg value="--" />
+			<arg value="request1.xml" />
+			<arg value="@@RESPONSE@@" />
+			<arg value="Response 1" />
+		</exec>
+
+		<property name="port" value="7801" />
+
+		<echo>This port ${port}</echo>
+
+		<loadfile property="file.request.xml" srcFile="request1.xml" />
+		<echo message="${file.request.xml}" />
+
+		<echo message="RUN MOCKUP" />
+
+		<parallel timeout="125000">
+
+			<echo message="RUN parallel MOCKUP" />
+
+			<exec executable="C:\All\SmartBear\SoapUI-5.3.0\bin\mockservicerunner.bat" dir="." timeout="40000">
+				<arg value="-m" />
+				<arg value="MockService 1" />
+				<arg value="C:\All\Srv-AvalPay\SendOTP-soapui-project.xml" />
+			</exec>
+
+			<sequential>
+
+				<echo message="ESPERANDO MOCKUP" />
+
+				<waitfor maxwait="40" maxwaitunit="second">
+					<and>
+						<socket server="127.0.0.1" port="9090" />
+					</and>
+				</waitfor>
+
+				<exec executable="C:\All\SmartBear\SoapUI-5.3.0\bin\mockservicerunner.bat" dir="." timeout="30000">
+					<arg value="-m" />
+					<arg value="TokenInquiryManagementV2Binding MockService" />
+					<arg value="C:\All\Srv-AvalPay\V2-TokenInquiryManagement-soapui-project.xml" />
+				</exec>
+
+				<echo message="INVOCANDO PETICION!!!!!!!!!!!!!!" />
+
+				<exec executable="C:\All\curl\I386\curl" dir=".">
+					<arg value="-X" />
+					<arg value="POST" />
+					<arg value="-H" />
+					<arg value="Content-Type: text/xml" />
+					<arg value="-H" />
+					<arg value="SOAPAction:urn://grupoaval.com/${domain}/v1/${OperationName}Request" />
+					<arg value="--data-binary" />
+					<arg value="@request1.xml" />
+					<arg value="http://127.0.0.1:${port}/${domain}/Services/${ServiceName}Svc" />
+				</exec>
+
+				<delete file="results.txt" />
+
+				<sleep seconds="3" />
+
+				<exec executable="sqlplus" dir=".">
+					<arg value="-s" />
+					<arg value="USRATH10/USRATH10@'(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=127.0.0.1)(PORT=1521))(CONNECT_DATA=(SID=XE)))'" />
+					<arg value="@query-dev.sql" />
+					<arg value="${rquid}" />
+				</exec>
+
+				<sleep seconds="1" />
+
+				<exec executable="taskkill">
+					<arg line="/im java.exe /f /t" />
+				</exec>
+
+				<exec executable="taskkill">
+					<arg line="/im java.exe /f /t" />
+				</exec>
+			</sequential>
+
+		</parallel>
+
+	</target>
+
+
+
+	<target name="run-request-pt" description="Execute new request in PT">
+
+		<echo message="RUN IN PT" />
+
+		<delete file="request1.xml" />
+
+		<tstamp>
+			<format property="rquid" pattern="ddHHmms" locale="en,UK" />
+		</tstamp>
+
+		<echo message="RQUID ---> ${rquid}" />
+
+		<copy file="request.xml" tofile="request1.xml" />
+
+		<exec executable="fart" dir=".">
+			<arg value="--" />
+			<arg value="request1.xml" />
+			<arg value="@@RQUID@@" />
+			<arg value="${rquid}" />
+		</exec>
+
+
+		<!--xslt in="request.xml" out="request1.xml" style="rquid.xslt" classpath="C:\workspace_ath\work10\lib\saxon9he.jar">
+			<param name="rquid" expression="${rquid}" />
+		</xslt -->
+
+		<property name="port" value="7811" />
+
+		<input message="bbog,bba,bocc,bpop,aval?" addproperty="bank" validargs="bbog,bpop,bavv,bocc,aval" defaultvalue="bavv" />
+		<echo>This bank ${bank}</echo>
+
+		<switch value="${bank}">
+			<case value="bba">
+				<var name="port" unset="true" />
+				<property name="port" value="7811" />
+			</case>
+			<case value="bbog">
+				<var name="port" unset="true" />
+				<property name="port" value="7812" />
+			</case>
+			<case value="bocc">
+				<var name="port" unset="true" />
+				<property name="port" value="7813" />
+			</case>
+			<case value="bpop">
+				<var name="port" unset="true" />
+				<property name="port" value="7814" />
+			</case>
+			<case value="aval">
+				<var name="port" unset="true" />
+				<property name="port" value="7810" />
+			</case>
+			<default>
+				<var name="port" unset="true" />
+				<property name="port" value="7811" />
+			</default>
+		</switch>
+
+		<echo>This port ${port}</echo>
+
+		<loadfile property="file.request.xml" srcFile="request1.xml" />
+		<echo message="${file.request.xml}" />
+
+		<delete file="response.xml" />
+
+		<exec executable="C:\All\curl\I386\curl" dir=".">
+			<arg value="-o" />
+			<arg value="response.xml" />
+			<arg value="-X" />
+			<arg value="POST" />
+			<arg value="-H" />
+			<arg value="Content-Type: text/xml" />
+			<arg value="-H" />
+			<arg value="SOAPAction:urn://grupoaval.com/${domain}/v1/${OperationName}Request" />
+			<arg value="--data-binary" />
+			<arg value="@request1.xml" />
+			<arg value="http://10.130.1.13:${port}/${domain}/Services/${ServiceName}Svc" />
+
+
+		</exec>
+
+		<loadfile property="file.response.xml" srcFile="response.xml" />
+		<echo message="${file.response.xml}" />
+
+		<delete file="results.txt" />
+
+		<exec executable="sqlplus" dir=".">
+			<arg value="-s" />
+			<arg value="CONSULTA/CONSULTA@'(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=10.130.4.37)(PORT=1523))(CONNECT_DATA=(SID=WSRR)))'" />
+			<arg value="@query.sql" />
+			<arg value="${rquid}" />
+		</exec>
+	</target>
+
+	<target name="run-request-qa" description="Execute new request in QA">
+
+		<echo message="RUN IN QA" />
+
+		<delete file="request1.xml" />
+		<tstamp>
+			<format property="rquid" pattern="ddHHmms" locale="en,UK" />
+		</tstamp>
+
+		<echo message="RQUID ---> ${rquid}" />
+
+		<copy file="request.xml" tofile="request1.xml" />
+
+		<exec executable="fart" dir=".">
+			<arg value="--" />
+			<arg value="request1.xml" />
+			<arg value="@@RQUID@@" />
+			<arg value="${rquid}" />
+		</exec>
+
+		<property name="port" value="7810" />
+
+		<echo>This port ${port}</echo>
+
+		<loadfile property="file.request.xml" srcFile="request1.xml" />
+		<echo message="${file.request.xml}" />
+
+		<delete file="response.xml" />
+
+		<exec executable="C:\All\curl\I386\curl" dir=".">
+			<arg value="-o" />
+			<arg value="response.xml" />
+			<arg value="-X" />
+			<arg value="POST" />
+			<arg value="-H" />
+			<arg value="Content-Type: text/xml" />
+			<arg value="-H" />
+			<arg value="SOAPAction:urn://grupoaval.com/${domain}/v1/${OperationName}Request" />
+			<arg value="--data-binary" />
+			<arg value="@request1.xml" />
+			<arg value="http://10.130.2.38:${port}/${domain}/Services/${ServiceName}Svc" />
+
+			<redirector output="response.txt" alwayslog="true" />
+		</exec>
+
+		<loadfile property="file.response.xml" srcFile="response.xml" />
+		<echo message="${file.response.xml}" />
+
+		<delete file="results.txt" />
+
+		<exec executable="sqlplus" dir=".">
+			<arg value="-s" />
+			<arg value="CONSULTA/CONSULTA@'(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=10.137.0.45)(PORT=1523))(CONNECT_DATA=(SID=WSRR)))'" />
+			<arg value="@query.sql" />
+			<arg value="${rquid}" />
+		</exec>
+	</target>
+
+
+
+
+	<target name="put-local-mq-request">
+		<echo message="-------> Run  - ${srv1} " />
+		<delete file="response1.xml" />
+		<parallel>
+			<echo message="RUN MsgTestS.exe" />
+			<exec executable="${mqtool.dir.bin}/MsgTestS.exe" dir="${workspace.dir}/${srv1}" spawn="false">
+				<arg value="test-trn.xml" />
+				<arg value="request1.xml" />
+				<arg value="${mqtool.arg.qmname}" />
+				<arg value="127.0.0.1" />
+				<arg value="${mqtool.arg.port}" />
+				<arg value="" />
+				<arg value="${mqtool.arg.queuetest}" />
+			</exec>
+			<echo message="RUN TAIL ${srvname}.log" />
+			<java classname="co.com.bancodebogota.util.Logger3" timeout="35000">
+				<arg value="${srvname}.log" />
+				<arg value="C:/all/logBroker/Instancia1/" />
+				<arg value="35000" />
+				<classpath>
+					<pathelement location="${workspace.dir}/lib/viewerlogger.jar" />
+					<pathelement path="${java.class.path}" />
+				</classpath>
+			</java>
+		</parallel>
+		<echo message="END Tail" />
+		<echo message="---------Completed Test---------" />
+	</target>
+
+	<target name="test-qa-datapower">
+		<echo message="-------> Run Selenium Test On QA" />
+		<parallel>
+			<java classname="org.testng.TestNG">
+				<arg value="testng.xml" />
+				<classpath>
+					<pathelement location="${workspace.dir}/lib/testng-6.8.jar" />
+					<fileset dir="${workspace.dir}/lib">
+						<include name="*.jar" />
+					</fileset>
+				</classpath>
+			</java>
+
+			<echo message="RUN TAIL ${mqtool.arg.ip.qa} ${svnant.repository.user} ${svnant.repository.user} ${srvname}.log" />
+			<java classname="co.com.bancodebogota.util.Logger2" timeout="50000">
+				<arg value="${mqtool.arg.ip.qa}" />
+				<arg value="${svnant.repository.user}" />
+				<arg value="${svnant.repository.user}" />
+				<arg value="${srvname}.log" />
+				<classpath>
+					<pathelement location="${workspace.dir}/lib/viewerlogger.jar" />
+					<pathelement path="${java.class.path}" />
+				</classpath>
+			</java>
+		</parallel>
+		<echo message="---------Completed Selenium Test---------" />
+	</target>
+
+	<target name="put-dev-mq-request">
+		<echo message="-------> Run  - ${srv1} " />
+		<delete file="response1.xml" />
+		<parallel>
+			<echo message="RUN MsgTest.exe" />
+			<exec executable="${mqtool.dir.bin}/MsgTest.exe" dir="${workspace.dir}/${srv1}" spawn="false">
+				<arg value="test-dev.xml" />
+				<arg value="request1.xml" />
+				<arg value="${mqtool.arg.qmname.dev}" />
+				<arg value="${mqtool.arg.ip.dev}" />
+				<arg value="${mqtool.arg.port.dev}" />
+				<arg value="${mqtool.arg.channel.dev}" />
+				<arg value="${mqtool.arg.queuetest.dev}" />
+			</exec>
+			<echo message="RUN TAIL ${mqtool.arg.ip.dev} ${svnant.repository.user} ${svnant.repository.user} ${srvname}.log" />
+			<java classname="co.com.bancodebogota.util.Logger2" timeout="10000">
+				<arg value="${mqtool.arg.ip.dev}" />
+				<arg value="${svnant.repository.user}" />
+				<arg value="${svnant.repository.user}" />
+				<arg value="${srvname}.log" />
+				<classpath>
+					<pathelement location="${workspace.dir}/lib/viewerlogger.jar" />
+					<pathelement path="${java.class.path}" />
+				</classpath>
+			</java>
+		</parallel>
+		<echo message="END Tail" />
+		<echo message="---------Completed Test---------" />
+	</target>
+
+
+	<target name="process-log">
+		<echo message="-------> Process log - ${srvname}.log " />
+
+		<mkdir dir="C:/all/pruebas/${srvname}/${TODAY_MY}/1" />
+
+		<copy todir="C:/all/pruebas/${srvname}/${TODAY_MY}">
+			<fileset dir="${workspace.dir}/${srv1}">
+				<include name="${srvname}.log" />
+			</fileset>
+		</copy>
+
+		<exec dir="C:/all/pruebas/" executable="cmd">
+			<arg value="/c" />
+			<arg value="mil-splitter.bat" />
+			<arg value="C:/all/pruebas/${srvname}/${TODAY_MY}/1" />
+			<arg value="C:/all/pruebas/${srvname}/${TODAY_MY}/${srvname}.log" />
+		</exec>
+
+		<exec dir="C:/all/pruebas/" executable="cmd">
+			<arg value="/c" />
+			<arg value="iterar.bat" />
+			<arg value="C:/all/pruebas/${srvname}/${TODAY_MY}/1" />
+		</exec>
+
+
+	</target>
+
+	<target name="get-log-from-dev">
+		<echo message="-------> GetLog - DEV - ${srvname}.log " />
+		<exec executable="pscp" dir="${workspace.dir}/${srv1}" spawn="false">
+			<arg value="-pw" />
+			<arg value="mvega" />
+			<arg value="mvega@10.85.68.79:/logBroker/Instancia1/${srvname}.log" />
+			<arg value="${workspace.dir}/${srv1}" />
+		</exec>
+		<echo message="---------Completed Download---------" />
+		<echo message="--------- decode ${srvname}.log" />
+		<java classname="co.com.bancodebogota.util.Logger4" timeout="25000">
+			<arg value="${srvname}.log" />
+			<arg value="${workspace.dir}/${srv1}" />
+			<arg value="2000" />
+			<classpath>
+				<pathelement location="${workspace.dir}/lib/viewerlogger.jar" />
+				<pathelement path="${java.class.path}" />
+			</classpath>
+		</java>
+	</target>
+
+	<target name="get-log-from-qa">
+		<echo message="-------> GetLog - QA - ${srvname}.log " />
+		<exec executable="pscp" dir="${workspace.dir}/${srv1}" spawn="false">
+			<arg value="-pw" />
+			<arg value="mvega" />
+			<arg value="mvega@10.85.68.98:/logBroker/Instancia1/${srvname}.log" />
+			<arg value="${workspace.dir}/${srv1}" />
+		</exec>
+		<echo message="---------Completed Download---------" />
+		<echo message="--------- decode ${srvname}.log" />
+		<java classname="co.com.bancodebogota.util.Logger4" timeout="25000">
+			<arg value="${srvname}.log" />
+			<arg value="${workspace.dir}/${srv1}" />
+			<arg value="2000" />
+			<classpath>
+				<pathelement location="${workspace.dir}/lib/viewerlogger.jar" />
+				<pathelement path="${java.class.path}" />
+			</classpath>
+		</java>
+	</target>
+
+
+	<target name="show-log-qa">
+		<echo message="RUN TAIL ${mqtool.arg.ip.qa} ${svnant.repository.user} ${svnant.repository.user} ${srvname}.log" />
+		<java classname="co.com.bancodebogota.util.Logger2">
+			<arg value="${mqtool.arg.ip.qa}" />
+			<arg value="${svnant.repository.user}" />
+			<arg value="${svnant.repository.user}" />
+			<arg value="${srvname}.log" />
+			<classpath>
+				<pathelement location="${workspace.dir}/lib/viewerlogger.jar" />
+				<pathelement path="${java.class.path}" />
+			</classpath>
+		</java>
+
+	</target>
+
+	<target name="review-new-response" depends="check-response" if="response.present">
+
+		<echo message="Test Case 1" />
+
+		<loadfile property="file.response.xml" srcFile="response1.xml" />
+
+		<echo message="${file.response.xml}" />
+
+
+		<xmltask source="response1.xml">
+
+			<call path="/soapenv:Envelope/soapenv:Body/*[local-name()='${xmltest.response.op}']">
+
+				<param name="statuscode" path="*[local-name()='${xmltest.response.msg}']/*[local-name()='Status']/*[local-name()='StatusCode']/text()" />
+				<!-- <param name="servercode" path="*[local-name()='${xmltest.response.msg}']/*[local-name()='Status']/*[local-name()='ServerStatusCode']/text()" /> -->
+				<param name="severity" path="*[local-name()='${xmltest.response.msg}']/*[local-name()='Status']/*[local-name()='Severity']/text()" />
+				<param name="desc" path="*[local-name()='${xmltest.response.msg}']/*[local-name()='Status']/*[local-name()='StatusDesc']/text()" />
+
+				<actions>
+					<echo file="report.rpt" append="true" message="Response -> ${xmltest.response.op}" />
+					<if>
+						<equals arg1="@{statuscode}" arg2="0" />
+						<then>
+							<echo message="RESPONSE OK" />
+						</then>
+						<else>
+							<echo message="BUSINESS ERROR" />
+						</else>
+					</if>
+					<echo message="StatusCode = @{statuscode}" />
+					<!-- <echo message="ServerStatusCode = @{servercode}"/> -->
+					<echo message="Severity = @{severity}" />
+					<echo message="StatusDesc = @{desc}" />
+				</actions>
+			</call>
+
+			<call path="/soapenv:Envelope/soapenv:Body/soapenv:Fault">
+
+				<param name="statuscode" path="detail/*[local-name()='GeneralException']/*[local-name()='Status']/*[local-name()='StatusCode']/text()" />
+				<param name="servercode" path="detail/*[local-name()='GeneralException']/*[local-name()='Status']/*[local-name()='ServerStatusCode']/text()" />
+				<param name="severity" path="detail/*[local-name()='GeneralException']/*[local-name()='Status']/*[local-name()='Severity']/text()" />
+				<param name="desc" path="detail/*[local-name()='GeneralException']/*[local-name()='Status']/*[local-name()='StatusDesc']/text()" />
+				<!--param name="serverdesc" path="detail/*[local-name()='GeneralException']/*[local-name()='Status']/*[local-name()='ServerStatusDesc']/text()" /-->
+
+				<actions>
+					<echo message="Response -> Exception" />
+					<echo message="StatusCode = @{statuscode}" />
+					<echo message="ServerStatusCode = @{servercode}" />
+					<echo message="Severity = @{severity}" />
+					<echo message="StatusDesc = @{desc}" />
+					<!--echo message="ServerStatusDesc = @{serverdesc}" /-->
+				</actions>
+			</call>
+
+		</xmltask>
+	</target>
+
+	<target name="check-response">
+		<available file="response1.xml" property="response.present" />
+
+		<fail message="Missing files: response1.xml">
+			<condition>
+				<not>
+					<available file="response1.xml" />
+				</not>
+			</condition>
+		</fail>
+	</target>
+
+
+	<target name="validate-response" depends="check-response" if="response.present">
+		<echo message="-------> Run  - MessageValidator " />
+		<java classname="com.bbogota.wsdl.util.MessageValidator" append="no" failonerror="false" logerror="off" timeout="15000">
+			<arg value="${wsdl}" />
+			<arg value="setSendOtp" />
+			<arg value="response1.xml" />
+			<classpath>
+				<pathelement location="${workspace.dir}/lib/wsdlutil.jar" />
+				<pathelement path="${java.class.path}" />
+			</classpath>
+		</java>
+		<echo message="END MessageValidator" />
+	</target>
+
+	<target name="validate-request">
+
+		<echo message="-------> Run  - MessageValidator " />
+
+		<java classname="com.bbogota.wsdl.util.MessageValidator" append="no" failonerror="false" logerror="off" timeout="15000">
+			<arg value="${wsdl}" />
+			<arg value="setSendOtp" />
+			<arg value="request1.xml" />
+			<arg value="IN" />
+			<classpath>
+				<pathelement location="${workspace.dir}/lib/wsdlutil.jar" />
+				<pathelement path="${java.class.path}" />
+			</classpath>
+		</java>
+		<echo message="END MessageValidator" />
+	</target>
+
+
+	<target name="mail-deployment-request" description="Solicitud Despliegue">
+
+		<input message="PT,QA,PT-QA?" addproperty="environment" validargs="PT,QA,PT-QA" defaultvalue="PT" />
+		<echo>This environment ${environment}</echo>
+
+		<delete file="template1.html" />
+
+		<copy file="template.html" tofile="template1.html" />
+
+		<!--exec executable="svn" dir=".">
+				<arg value="info" />
+				<arg value="https://10.140.0.22/svn/GDT/Plataformas/INTEGRACION/Aplicaciones/IIB/Requerimientos/A%C3%B1o2017/28113_Req_AvalPay_ServiciodeValidaci%C3%B3nOTPActTarjetas/Desarrollo/GDS.FO.08.Entrega%20de%20Software_RQ28113.doc" />
+			</exec-->
+
+		<record name="version.txt" />
+
+		<exec executable="C:/Program Files/Git/bin/bash.exe">
+			<arg value="-c" />
+			<arg value="svn info ${svnant.req}/Desarrollo/${docrelease} | C:/All/cmder/vendor/git-for-windows/usr/bin/grep.exe -i 'n:' | C:/All/cmder/vendor/git-for-windows/usr/bin/awk.exe '{print $2}' " />
+		</exec>
+
+		<record name="version.txt" action="stop" />
+
+		<loadfile srcFile="version.txt" property="version" />
+
+		<echo>Vertion: ${version}</echo>
+
+		<exec executable="fart" dir=".">
+			<arg value="--" />
+			<arg value="template1.html" />
+			<arg value="@@REQ@@" />
+			<arg value="${requirement}" />
+		</exec>
+
+		<exec executable="fart" dir=".">
+			<arg value="--" />
+			<arg value="template1.html" />
+			<arg value="@@VERSION@@" />
+			<arg value="${version}" />
+		</exec>
+
+		<exec executable="fart" dir=".">
+			<arg value="--" />
+			<arg value="template1.html" />
+			<arg value="@@ENV@@" />
+			<arg value="${environment}" />
+		</exec>
+
+		<exec executable="fart" dir=".">
+			<arg value="--" />
+			<arg value="template1.html" />
+			<arg value="@@REPOPATH@@" />
+			<arg value="${svnant.req}" />
+		</exec>
+
+		<exec executable="fart" dir=".">
+			<arg value="--" />
+			<arg value="template1.html" />
+			<arg value="@@PLATFORM@@" />
+			<arg value="${platform}" />
+		</exec>
+
+		<exec executable="blat.exe" dir=".">
+			<arg value="template1.html" />
+			<arg value="-p" />
+			<arg value="gmailsmtp" />
+			<arg value="-f" />
+			<arg value="miltonvega@cbit-online.com" />
+			<arg value="-u" />
+			<arg value="miltonvega@cbit-online.com" />
+			<arg value="-pw" />
+			<arg value="periferia" />
+			<arg value="-to" />
+			<arg value="miltonvega@cbit-online.com" />
+			<arg value="-subject" />
+			<arg value="Solicitud Despliegue ${environment}" />
+			<arg value="-server" />
+			<arg value="127.0.0.1:3099" />
+			<arg value="-debug" />
+
+		</exec>
+
+
+	</target>
+
+
+</project>
+

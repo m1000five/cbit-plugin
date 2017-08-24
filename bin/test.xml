@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!-- Request reply with multiple concurrent tests -->
+<MsgTest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="C:/MsgTest/Schema/MsgTest.xsd">
+	<Control>
+		<Connection>
+			<QMgr>%2%</QMgr>
+			<Channel>%5%</Channel>
+			<Host>%3%</Host>
+			<Port>%4%</Port>
+		</Connection>
+		<TestLog>
+			<Append/>
+			<File>service.log</File>
+			<Dir>${workspace}/${projectName}</Dir>
+		</TestLog>
+		<TestReport>
+			<File>report.rpt</File>
+			<Dir>${workspace}/${projectName}</Dir>
+		</TestReport>
+		<TestMaxWait>10</TestMaxWait>
+		<NextLogMsgInterval>1</NextLogMsgInterval>
+		<Concurrency>5</Concurrency>
+		<ConcurrencyWait>20</ConcurrencyWait>
+		<OnError>LOG</OnError>
+	</Control>
+	<Defaults>
+		<Str Name="Dir">${workspace}/${projectName}</Str>
+		<PutMsg>
+			<Q>CNTL.${ctrlId}.IN</Q>
+		</PutMsg>
+	</Defaults>
+	<Test Name="#1 RequestReply1">
+
+		<GetFile>
+			<File>%1%</File>
+		</GetFile>
+		
+		<MQMD Name="MD01">
+			<MsgId />
+			<CorrelId>RequestReply</CorrelId>
+			<ReplyToQ>%6%</ReplyToQ>
+		</MQMD>
+		
+		<PutMsg MQMD="MD01" />
+
+		<WaitOnTime>
+			<Interval>5</Interval>
+		</WaitOnTime>
+
+		<MQMD Name="MD01">
+			<MsgId />
+			<CorrelId>%MsgId%</CorrelId>
+		</MQMD>
+		<GetMsg MQMD="MD01">
+			<Q>%ReplyToQ%</Q>
+		</GetMsg>
+
+		<PutFile>
+ 			<File>response1.xml</File>
+ 		</PutFile>
+		
+
+	</Test>
+
+</MsgTest>

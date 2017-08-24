@@ -1,0 +1,18 @@
+create procedure [$schema].[${table}_Update]
+#foreach ($c in $columnsWithoutTime)
+	@$c.getNameWithDataType()#if (!$foreach.isLast()),#end
+
+#end
+as
+begin
+
+	update [$schema].[$table]
+	set
+#foreach ($c in $columnsWithoutPrimaryKeyAndCtime)
+		[$c.getName()] = $c.getAsValue(true)#if (!$foreach.isLast()),#end
+
+#end
+	where id = @id
+	
+end
+go

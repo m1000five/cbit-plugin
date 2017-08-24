@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Rsrc-Class-Path: ./ velocity-1.7.jar log4j-1.2.16.jar spring-tx-3.0.5.
+ RELEASE.jar spring-context-3.0.5.RELEASE.jar commons-collections-3.2.
+ 1.jar commons-pool-1.5.5.jar spring-beans-3.0.5.RELEASE.jar aopallian
+ ce-1.0.jar spring-aop-3.0.5.RELEASE.jar commons-dbcp-1.4.jar sqljdbc4
+ -1.0.0.jar spring-expression-3.0.5.RELEASE.jar spring-asm-3.0.5.RELEA
+ SE.jar spring-jdbc-3.0.5.RELEASE.jar commons-logging-1.1.1.jar spring
+ -core-3.0.5.RELEASE.jar commons-lang-2.5.jar jide-3.1.1.jar
+Class-Path: .
+Rsrc-Main-Class: com.trilix.sqltool.application.Application
+Main-Class: org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader
+

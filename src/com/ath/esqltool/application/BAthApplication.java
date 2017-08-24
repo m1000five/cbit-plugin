@@ -1,0 +1,105 @@
+package com.ath.esqltool.application;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.Map;
+
+import com.ath.esqltool.delegates.BAthGenerator;
+import com.ath.esqltool.domain.BAthFacadeProject;
+import com.ath.esqltool.util.BUtil;
+
+public class BAthApplication {
+
+	public BAthApplication() {
+
+		String current;
+		try {
+
+			current = new java.io.File(".").getCanonicalPath();
+			System.out.println("Current dir:" + current);
+
+			BAthFacadeProject facade = new BAthFacadeProject(current);
+
+			facade.setIdeRequirement("28496");
+
+			facade.setDomain("customers");
+			facade.setSrvName("CardPswAssignment");
+			facade.setOprName("modCardPsw");
+			facade.setOrgName("AVV");
+			facade.setChannel("BABN");
+			facade.setBankId("00010524");
+			facade.setNamespace("urn://grupoaval.com/customers/v1/");
+			
+			LinkedHashSet<String> setOthersNamespaces = new LinkedHashSet<String>();
+
+			setOthersNamespaces.add("urn://grupoaval.com/customers/v1/");
+			setOthersNamespaces.add("urn://grupoaval.com/xsd/ifx/");
+			setOthersNamespaces.add("urn://grupoaval.com/xsd/ifx/v2/");
+			setOthersNamespaces.add("urn://grupoaval.com/xsd/ifx/v3/");
+			setOthersNamespaces.add("urn://otravaina.com/xsd/ifx/v3/");
+			setOthersNamespaces.add("http://www.s1.com");
+
+			HashMap<String, String> mapNamespaces = BUtil.genOthersNamespaces(setOthersNamespaces);
+
+			if (!mapNamespaces.isEmpty()) {
+				Iterator it = mapNamespaces.entrySet().iterator();
+				while (it.hasNext()) {
+					Map.Entry pair = (Map.Entry) it.next();
+					System.out.println(" NAMESPACES----------> " + pair.getKey().toString() + " -> " + pair.getValue());
+				}
+			}
+
+//			facade.setPrefixns("v1");
+
+//			HashMap<String, String> mapOthersNamespaces = new HashMap<String, String>();
+//			mapOthersNamespaces.put("ifx", "urn://grupoaval.com/xsd/ifx/");
+//			mapOthersNamespaces.put("v2", "urn://grupoaval.com/xsd/ifx/v2/");
+//			mapOthersNamespaces.put("v3", "urn://grupoaval.com/xsd/ifx/v3/");
+
+			facade.setMapOthersNamespaces(mapNamespaces);
+
+			// facade.setOprWsdlReqName("setSecurityRequest");
+			// facade.setOprWsdlResName("setSecurityResponse");
+			// facade.setMsgReq("SecurityAddRq");
+			// facade.setMsgRes("SecurityAddRs");
+
+			// controller.setNamespace("urn://bancodebogota.com/customers/product/service/");
+			//
+			// controller.setCtrlId(800050);
+			//
+			// BStepOrchestable defaultstep = new BFmgBo(0, "FMG.DEST.00000",
+			// "ESB_DEST_NomServicio_NomOperacion_FMG" );
+			//
+			// controller.addStep(defaultstep);
+			//
+			// BStepOrchestable step1 = new BFmgBo(60003, "FMG.60003.IN", "FMG_PASO_1" );
+			//
+			// controller.addStep(step1);
+			//
+			//
+			// BStepOrchestable step2 = new BFmgBo(60006, "FMG.60006.IN", "FMG_PASO_2" );
+			//
+			// controller.addStep(step2);
+
+			// controller.setNumberSetps(1);
+
+			BAthGenerator generator = new BAthGenerator();
+
+			// String pathTemplates =
+			// "C:\\all\\integracion\\SOA\\wmb2\\guidelines\\PlantillasPrototipos\\ESB_NombreServicio_NombreOperacion_CTRL\\com\\bancodebogota\\domain\\nombreservicio\\nombreoperacion";
+
+			generator.generar(facade);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public static void main(String[] args) {
+		new BAthApplication();
+
+	}
+
+}

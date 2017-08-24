@@ -1,0 +1,23 @@
+09:52:21 **** MsgTestS V1.3.0 Started at 09:52:21.  **** Compiled on Jul 25 2008 at 04:04:16 ****
+09:52:21 I030 MsgTest TestReport.File="C:/workspace/ESB_TransfersRegionalMgmt_setCompensation_CTRL\report.rpt" opened.
+09:52:21 I034 Test Num=001 Test=#1 RequestReply1. Initialised.
+09:52:21 I035 Test Num=001 Test=#1 RequestReply1. Assigned to the active list.
+09:52:22 I075 Test load phase completed. Test execution phase started at 09:52:22.
+09:52:22 I107 ==========================================================================
+09:52:27 I162 Test Num=001 TotalGetFile=1 SuccessfulGetFile=1 FailedGetFile=0.
+09:52:27 I164 Test Num=001 TotalPutFile=1 SuccessfulPutFile=1 FailedPutFile=0.
+09:52:27 I166 Test Num=001 TotalGetMsg=1 SuccessfulGetMsg=1 FailedGetMsg=0.
+09:52:27 I168 Test Num=001 TotalPutMsg=1 SuccessfulPutMsg=1 FailedPutMsg=0.
+09:52:27 I036 Test Num=001 Test=#1 RequestReply1. Completed successfully.
+09:52:27 I107 ==========================================================================
+09:52:27 I093 Interval statistics.
+09:52:27 I108     No intervals were defined
+09:52:27 I107 ==========================================================================
+09:52:27 I163 TotalGetFile=1 SuccessfulGetFile=1 FailedGetFile=0.
+09:52:27 I165 TotalPutFile=1 SuccessfulPutFile=1 FailedPutFile=0.
+09:52:27 I167 TotalGetMsg=1 SuccessfulGetMsg=1 FailedGetMsg=0.
+09:52:27 I169 TotalPutMsg=1 SuccessfulPutMsg=1 FailedPutMsg=0.
+09:52:27 I062 Test results Total=1 Successful=1 Failed=0 Incomplete=0.
+09:52:27 I063 Total concurrency wait time=5000 milliseconds.
+09:52:27 **** MsgTestS V1.3.0 Finished at 09:52:27. ****
+Response -> setTransferRegionalCompensationResponse

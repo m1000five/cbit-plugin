@@ -1,0 +1,103 @@
+09:52:21 **** MsgTestS V1.3.0 Started at 09:52:21.  **** Compiled on Jul 25 2008 at 04:04:16 ****
+09:52:21 I028 MsgTest TestLog.File="C:/workspace/ESB_TransfersRegionalMgmt_setCompensation_CTRL\service.log" opened.
+09:52:21 I030 MsgTest TestReport.File="C:/workspace/ESB_TransfersRegionalMgmt_setCompensation_CTRL\report.rpt" opened.
+09:52:21 I040 MQCONN server connection to QMgr="MQBRK01" successful, CC=0, RC=0.
+09:52:21 I211 MQOPEN of queue manager object for QMgr="MQBRK01" successful, CC=0, RC=0.
+09:52:21 I213 MQINQ of queue manager object for QMgr="MQBRK01" successful, CC=0, RC=0.
+09:52:21 I215 ConnQMgr="MQBRK01" has a CodedCharSetId=850.
+09:52:21 I216 MQCLOSE of queue manager object for ConnQMgr="MQBRK01" successful, CC=0, RC=0.
+09:52:21 I218 GetLocaleInfo()="850" was used to determine a default value for LocalCodedCharSetId="850".
+09:52:21 I222 The default value MQENC_NATIVE was used for LocalEncoding="0x0222".
+09:52:21 I049 Script invocation variable values.
+09:52:21 I+++   %1% string assigned value "request1.xml".
+09:52:21 I+++   %2% string assigned value "MQBRK01".
+09:52:21 I+++   %3% string assigned value "127.0.0.1".
+09:52:21 I+++   %4% string assigned value "1414".
+09:52:21 I+++   %5% string assigned value " ".
+09:52:21 I+++   %6% string assigned value "PRUEBAS".
+09:52:21 I+++   %YYYY% string assigned value "2016".
+09:52:21 I+++   %YY% string assigned value "16".
+09:52:21 I+++   %MMM% string assigned value "Jul".
+09:52:21 I+++   %MM% string assigned value "07".
+09:52:21 I+++   %DDD% string assigned value "Tue".
+09:52:21 I+++   %DD% string assigned value "05".
+09:52:21 I+++   %hh% string assigned value "09".
+09:52:21 I+++   %mm% string assigned value "52".
+09:52:21 I+++   %ss% string assigned value "21".
+09:52:21 I+++   %PID% string assigned value "5144".
+09:52:21 I+++   %ScriptName% string assigned value "test".
+09:52:21 I049 <Default> variable values.
+09:52:21 I+++   %Dir% string assigned value "C:/workspace/ESB_TransfersRegionalMgmt_setCompensation_CTRL".
+09:52:21 I034 Test Num=001 Test=#1 RequestReply1. Initialised.
+09:52:21 I035 Test Num=001 Test=#1 RequestReply1. Assigned to the active list.
+09:52:22 I075 Test load phase completed. Test execution phase started at 09:52:22.
+09:52:22 I044 Test Num=001   Command=GetFile. Initialise.
+09:52:22 I061 Test Num=001     Value resolution "%1%" to formatted string "request1.xml".
+09:52:22 I061 Test Num=001     Value resolution "%Dir%" to formatted string "C:/workspace/ESB_TransfersRegionalMgmt_setCompensation_CTRL".
+09:52:22 I+++ Test Num=001     Dir=C:/workspace/ESB_TransfersRegionalMgmt_setCompensation_CTRL File=request1.xml.
+09:52:22 I+++ Test Num=001     Buffer=TestBuff.
+09:52:22 I045 Test Num=001   Command=GetFile MaxWait=10:0. Run.
+09:52:22 I+++ Test Num=001     Got file=C:/workspace/ESB_TransfersRegionalMgmt_setCompensation_CTRL\request1.xml.
+09:52:22 I+++ Test Num=001     Buffer=TestBuff BuffLen=1792 DataLen=1474.
+09:52:22 I+++ Test Num=001     Data="<?xml version="1.0" encoding="UTF-8"?>..<soapenv...".
+09:52:22 I038 Test Num=001   Command=GetFile completed successfully. ExecutionTime=0.000652.
+09:52:22 I044 Test Num=001   Command=MQMD Name="MD01" ResName="". Initialise.
+09:52:22 I045 Test Num=001   Command=MQMD Name="MD01" ResName="MD01". Run.
+09:52:22 I038 Test Num=001   Command=MQMD completed successfully. ExecutionTime=0.000244.
+09:52:22 I044 Test Num=001   Command=PutMsg. Initialise.
+09:52:22 I054 Test Num=001     MQOPEN of TargQ="CNTL.700005.IN" TargQMgr="" ConnQMgr="MQBRK01" successful, CC=0, RC=0.
+09:52:22 I045 Test Num=001   Command=PutMsg. Run.
+09:52:22 I061 Test Num=001     Value resolution "%6%" to formatted string "PRUEBAS".
+09:52:22 I+++ Test Num=001     MsgId=0x414d51204d5142524b30312020202020e4af7b5720005002.
+09:52:22 I+++ Test Num=001     CorrelId=RequestReply.
+09:52:22 I+++ Test Num=001     TargQ="CNTL.700005.IN" TargQMgr="" ConnQMgr="MQBRK01" PMO.Options=0x00002004 message put successful.
+09:52:22 I+++ Test Num=001     Buffer=TestBuff BuffLen=1792 DataLen=1474 MsgLen=1474.
+09:52:22 I+++ Test Num=001     Data="<?xml version="1.0" encoding="UTF-8"?>..<soapenv...".
+09:52:22 I038 Test Num=001   Command=PutMsg completed successfully. ExecutionTime=0.000696.
+09:52:22 I044 Test Num=001   Command=WaitOnTime Interval=5:0. Initialise.
+09:52:22 I045 Test Num=001   Command=WaitOnTime Interval=5:0. Run.
+09:52:23 I045 Test Num=001   Command=WaitOnTime Interval=5:1. Run.
+09:52:24 I045 Test Num=001   Command=WaitOnTime Interval=5:2. Run.
+09:52:25 I045 Test Num=001   Command=WaitOnTime Interval=5:3. Run.
+09:52:26 I045 Test Num=001   Command=WaitOnTime Interval=5:4. Run.
+09:52:27 I045 Test Num=001   Command=WaitOnTime Interval=5:5. Run.
+09:52:27 I038 Test Num=001   Command=WaitOnTime completed successfully. ExecutionTime=5.000507.
+09:52:27 I044 Test Num=001   Command=MQMD Name="MD01" ResName="". Initialise.
+09:52:27 I045 Test Num=001   Command=MQMD Name="MD01" ResName="MD01". Run.
+09:52:27 I038 Test Num=001   Command=MQMD completed successfully. ExecutionTime=0.000482.
+09:52:27 I044 Test Num=001   Command=GetMsg. Initialise.
+09:52:27 I061 Test Num=001     Value resolution "%ReplyToQ%" to formatted string "PRUEBAS".
+09:52:27 I054 Test Num=001     MQOPEN of TargQ="PRUEBAS" TargQMgr="" ConnQMgr="MQBRK01" successful, CC=0, RC=0.
+09:52:27 I045 Test Num=001   Command=GetMsg MaxWait=10:0. Run.
+09:52:27 I061 Test Num=001     Value resolution "%MsgId%" to formatted string "0x414d51204d5142524b30312020202020e4af7b5720005002".
+09:52:27 I+++ Test Num=001     MsgId=0x414d51204d5142524b30312020202020e4af7b5720002f0b.
+09:52:27 I+++ Test Num=001     CorrelId=0x414d51204d5142524b30312020202020e4af7b5720005002.
+09:52:27 I+++ Test Num=001     TargQ="PRUEBAS" TargQMgr="" ConnQMgr="MQBRK01" GMO.Options=0x00002004 message get successful.
+09:52:27 I+++ Test Num=001     Buffer=TestBuff BuffLen=1792 DataLen=940 MsgLen=940.
+09:52:27 I+++ Test Num=001     Data="<?xml version="1.0" encoding="UTF-8"?><soapenv:E...".
+09:52:27 I038 Test Num=001   Command=GetMsg completed successfully. ExecutionTime=0.001388.
+09:52:27 I044 Test Num=001   Command=PutFile. Initialise.
+09:52:27 I061 Test Num=001     Value resolution "%Dir%" to formatted string "C:/workspace/ESB_TransfersRegionalMgmt_setCompensation_CTRL".
+09:52:27 I+++ Test Num=001     Dir=C:/workspace/ESB_TransfersRegionalMgmt_setCompensation_CTRL File=response1.xml.
+09:52:27 I+++ Test Num=001     Buffer=TestBuff BuffLen=1792 DataLen=940.
+09:52:27 I045 Test Num=001   Command=PutFile. Run.
+09:52:27 I+++ Test Num=001     Put file=C:/workspace/ESB_TransfersRegionalMgmt_setCompensation_CTRL\response1.xml.
+09:52:27 I+++ Test Num=001     Buffer=TestBuff BuffLen=1792 DataLen=940.
+09:52:27 I+++ Test Num=001     Data="<?xml version="1.0" encoding="UTF-8"?><soapenv:E...".
+09:52:27 I038 Test Num=001   Command=PutFile completed successfully. ExecutionTime=0.002887.
+09:52:27 I162 Test Num=001 TotalGetFile=1 SuccessfulGetFile=1 FailedGetFile=0.
+09:52:27 I164 Test Num=001 TotalPutFile=1 SuccessfulPutFile=1 FailedPutFile=0.
+09:52:27 I166 Test Num=001 TotalGetMsg=1 SuccessfulGetMsg=1 FailedGetMsg=0.
+09:52:27 I168 Test Num=001 TotalPutMsg=1 SuccessfulPutMsg=1 FailedPutMsg=0.
+09:52:27 I036 Test Num=001 Test=#1 RequestReply1. Completed successfully.
+09:52:27 I056 Test Num=001 MQCLOSE of TargQ="CNTL.700005.IN" TargQMgr="" ConnQMgr="MQBRK01" successful, CC=0, RC=0.
+09:52:27 I056 Test Num=001 MQCLOSE of TargQ="PRUEBAS" TargQMgr="" ConnQMgr="MQBRK01" successful, CC=0, RC=0.
+09:52:27 I196 MQBACK from ConnQMgr="MQBRK01" successful, CC=0, RC=0
+09:52:27 I042 MQDISC from ConnQMgr="MQBRK01" successful, CC=0, RC=0.
+09:52:27 I163 TotalGetFile=1 SuccessfulGetFile=1 FailedGetFile=0.
+09:52:27 I165 TotalPutFile=1 SuccessfulPutFile=1 FailedPutFile=0.
+09:52:27 I167 TotalGetMsg=1 SuccessfulGetMsg=1 FailedGetMsg=0.
+09:52:27 I169 TotalPutMsg=1 SuccessfulPutMsg=1 FailedPutMsg=0.
+09:52:27 I062 Test results Total=1 Successful=1 Failed=0 Incomplete=0.
+09:52:27 I063 Total concurrency wait time=5000 milliseconds.
+09:52:27 **** MsgTestS V1.3.0 Finished at 09:52:27. ****

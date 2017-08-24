@@ -1,0 +1,219 @@
+BROKER SCHEMA com.ath.services.${domain}
+
+--->> Declaracion de namespaces
+DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';
+DECLARE ifx NAMESPACE 'urn://grupoaval.com/xsd/ifx/';
+DECLARE v1 NAMESPACE 'urn://grupoaval.com/${domain}/v1/';
+DECLARE v2 NAMESPACE 'urn://grupoaval.com/xsd/ifx/v2/';
+DECLARE v3 NAMESPACE 'urn://grupoaval.com/xsd/ifx/v3/';
+--->> Declaracion de variables promovidas
+DECLARE UDP_CodService EXTERNAL CHARACTER '';
+DECLARE UDP_Channel EXTERNAL CHARACTER '';
+DECLARE UDP_BankId EXTERNAL CHARACTER '';
+
+CREATE COMPUTE MODULE ${ServiceName}Svc${OperationNameCapital}_REQ_CmpMappingReq
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.Properties = InputRoot.Properties;
+		SET OutputRoot.MQMD = InputRoot.MQMD;
+		SET OutputRoot.MQRFH2 = InputRoot.MQRFH2;
+		
+		DECLARE refMQRFH2 REFERENCE TO OutputRoot.MQRFH2;
+		DECLARE valData ROW;
+		DECLARE value REFERENCE TO valData;
+		DECLARE descripError CHARACTER;
+        DECLARE codeError INTEGER;		
+
+		--> Guardar variables para manejo de errores	
+		SET Environment.Variables.usr = refMQRFH2.usr;
+		SET Environment.Variables.headers.MQMD = InputRoot.MQMD;
+		SET Environment.Variables.headers.MQRFH2 = refMQRFH2;
+	
+		--> Crear referencia hacia el arbol de salida.
+		SET OutputRoot.XMLNSC = InputRoot.XMLNSC;
+
+		--> Se guardan datos en cabecera para auditoría
+		SET refMQRFH2.usr.log.transactionDate = CURRENT_TIMESTAMP;
+		SET refMQRFH2.usr.log.idLog = '2';
+		SET refMQRFH2.usr.log.callType = 'WS';
+		
+		SET refMQRFH2.usr.log.nameApplication 				= COALESCE(InputRoot.MQRFH2.usr.log.nameApplication, InputRoot.MQRFH2.usr.MWAS.Hdr.Servicio);
+		SET refMQRFH2.usr.log.nameSrv						= InputRoot.MQRFH2.usr.log.nameSrv;
+		SET refMQRFH2.usr.log.nameUser						= '';
+		SET refMQRFH2.usr.log.consumerName 					= InputRoot.MQRFH2.usr.log.consumerName;
+		SET refMQRFH2.usr.log.nmProvider 					= COALESCE(InputRoot.MQRFH2.usr.log.nmProviderSrv, '');
+		SET refMQRFH2.usr.log.ipClient 						= COALESCE(InputRoot.MQRFH2.usr.log.ipClient, '');
+		SET refMQRFH2.usr.log.BANK_ID 						= InputRoot.MQRFH2.usr.log.BANK_ID;
+		SET refMQRFH2.usr.transactionInfoRq.transactionId	= InputRoot.MQRFH2.usr.transactionInfoRq.transactionId;
+		--> Se guardan datos del Usuario
+		SET OutputRoot.MQRFH2.usr.log.reference1			= COALESCE(InputRoot.MQRFH2.usr.log.reference1, '');
+		SET OutputRoot.MQRFH2.usr.log.reference2			= COALESCE(InputRoot.MQRFH2.usr.log.reference2, '');
+		
+		PROPAGATE TO TERMINAL 'out1' DELETE NONE;
+		
+		-->Enviar Cabeceras DPs
+		CREATE NEXTSIBLING OF OutputRoot.Properties DOMAIN ('HTTPInputHeader');
+		SET OutputRoot.HTTPInputHeader.CodService 		= UDP_CodService;
+		SET OutputRoot.HTTPInputHeader.${ServiceName} 		= InputRoot.MQRFH2.usr.log.nameApplication;
+		SET OutputRoot.HTTPInputHeader.OperationName	= InputRoot.MQRFH2.usr.log.nameSrv;
+		SET OutputRoot.HTTPInputHeader.RqUID 			= InputRoot.MQRFH2.usr.transactionInfoRq.transactionId;
+		SET OutputRoot.HTTPInputHeader.BankId 			= COALESCE(InputRoot.MQRFH2.usr.log.BANK_ID, UDP_BankId);
+		SET OutputRoot.HTTPInputHeader.Channel 			= UDP_Channel;
+		SET OutputRoot.HTTPInputHeader.Ref1 			= COALESCE(InputRoot.MQRFH2.usr.log.reference1, '');
+		SET OutputRoot.HTTPInputHeader.Ref2 			= COALESCE(InputRoot.MQRFH2.usr.log.reference2, '');
+		
+		RETURN TRUE;
+	END;
+END MODULE;
+
+CREATE COMPUTE MODULE ${ServiceName}Svc${OperationNameCapital}_REQ_CmpMappingResp
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.Properties = InputRoot.Properties;
+		SET OutputRoot.MQMD = Environment.Variables.headers.MQMD;
+		SET OutputRoot.MQMD.Expiry = -1;
+		SET OutputRoot.MQRFH2 = Environment.Variables.headers.MQRFH2;
+	
+		DECLARE inMsg REFERENCE TO InputRoot.XMLNSC.v1:${OperationName}Response.v1:CardPswdAssignmentRs;
+		DECLARE refMQRFH2 REFERENCE TO OutputRoot.MQRFH2;
+		DECLARE data ROW;
+		DECLARE value REFERENCE TO data.value;
+		DECLARE serverStatusCode CHARACTER COALESCE(inMsg.ifx:Status.ifx:StatusCode, InputRoot.SOAP.*:Body.*:Fault.*:faultcode);
+		DECLARE serverStatusDesc CHARACTER COALESCE(inMsg.ifx:Status.ifx:ServerStatusCode, InputRoot.SOAP.*:Body.*:Fault.*:faultstring);
+		
+		-->Buscar en Cache la homologación de Error recibido del Backend
+		CALL common.procedures.global.cache.getDataErrorCache(
+			Environment.Variables.usr.log.BANK_ID,
+			serverStatusCode,
+			Environment.Variables.usr.log.nameApplication || Environment.Variables.usr.log.nameSrvRBM,
+			'ERRORS',
+			'IFX',
+			value
+		);
+
+		SET refMQRFH2.usr.log.transactionDate = CURRENT_TIMESTAMP;
+		SET refMQRFH2.usr.log.idLog = '3';
+		SET refMQRFH2.usr.log.callType = 'WS';
+		SET refMQRFH2.usr.log.HOST_CODE = serverStatusCode;
+		SET refMQRFH2.usr.log.IFX_CODE = serverStatusCode;--value.codeError;
+		
+		SET Environment.Variables.usr = refMQRFH2.usr;
+		
+		IF EXISTS(InputRoot.SOAP[]) THEN
+            SET OutputRoot.XMLNSC.soapenv:Fault.faultcode = serverStatusCode;
+            SET OutputRoot.XMLNSC.soapenv:Fault.faultstring = serverStatusCode;
+            
+			--> Envio a auditoría
+			PROPAGATE TO TERMINAL 'out1' DELETE NONE;
+			SET OutputRoot.XMLNSC   = NULL;
+			
+			CREATE FIELD OutputRoot.XMLNSC.v1:${OperationName}Response.v1:CardPswdAssignmentRs;
+			SET OutputRoot.XMLNSC.v1:${OperationName}Response.(XMLNSC.NamespaceDecl)xmlns:v1 = v1;
+			SET OutputRoot.XMLNSC.v1:${OperationName}Response.(XMLNSC.NamespaceDecl)xmlns:ifx = ifx;
+			
+			DECLARE outMsg REFERENCE TO OutputRoot.XMLNSC.v1:${OperationName}Response.v1:CardPswdAssignmentRs;
+			
+			SET outMsg.ifx:Status.ifx:StatusCode = value.codeError;
+			SET outMsg.ifx:Status.ifx:ServerStatusCode = serverStatusCode;
+			SET outMsg.ifx:Status.ifx:Severity = value.severity;
+			SET outMsg.ifx:Status.ifx:StatusDesc = value.descError;
+			SET outMsg.ifx:Status.ifx:ServerStatusDesc = serverStatusDesc;
+			
+			SET outMsg.ifx:RqUID  = COALESCE(Environment.Variables.usr.transactionInfoRq.transactionId, 0);
+			
+			RETURN TRUE;
+        END IF;
+        
+		SET OutputRoot.XMLNSC = InputRoot.XMLNSC;
+		--> Envio a auditoría
+		PROPAGATE TO TERMINAL 'out1' DELETE NONE;
+		
+		RETURN TRUE;
+	END;
+END MODULE;
+
+CREATE COMPUTE MODULE ${ServiceName}Svc${OperationNameCapital}_REQ_CreateErrorRespWS
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyMessageHeaders();
+		
+		DECLARE numeroError CHARACTER;
+		CALL com.ath.common.util.searchErrorNumber(InputExceptionList, numeroError);
+	
+		CREATE FIELD OutputRoot.XMLNSC.v1:${OperationName}Response.v1:CardPswdAssignmentRs;
+		SET OutputRoot.XMLNSC.v1:${OperationName}Response.(XMLNSC.NamespaceDecl)xmlns:v1 = v1;
+		SET OutputRoot.XMLNSC.v1:${OperationName}Response.(XMLNSC.NamespaceDecl)xmlns:ifx = ifx;
+		
+		DECLARE outMsg REFERENCE TO OutputRoot.XMLNSC.v1:${OperationName}Response.v1:CardPswdAssignmentRs;
+		DECLARE data ROW;
+		DECLARE value REFERENCE TO data.value;
+
+		CALL common.procedures.global.cache.getDataErrorCache(
+			Environment.Variables.usr.log.BANK_ID,
+			numeroError,
+			Environment.Variables.usr.log.nameApplication || Environment.Variables.usr.log.nameSrvRBM,
+			'ERRORS',
+			'IFX',
+			value
+		);
+		
+		SET outMsg.ifx:Status.ifx:StatusCode = value.codeError;
+		SET outMsg.ifx:Status.ifx:ServerStatusCode = numeroError;
+		SET outMsg.ifx:Status.ifx:Severity = value.severity;
+		SET outMsg.ifx:Status.ifx:StatusDesc = value.descError;
+		SET outMsg.ifx:Status.ifx:ServerStatusDesc= LEFT(InputRoot.XMLNSC.exceptionReq.exception.desc, 255);
+		
+		SET outMsg.ifx:RqUID = Environment.Variables.usr.transactionInfoRq.transactionId;
+
+		RETURN TRUE;
+	END;
+	
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+END MODULE;
+
+
+CREATE COMPUTE MODULE ${ServiceName}Svc${OperationNameCapital}_REQ_CreateDBErrorRespWS
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyMessageHeaders();
+		
+		DECLARE codeError, nameError, descError CHARACTER '';
+		
+		DECLARE refExceptionList REFERENCE TO InputExceptionList;
+		CALL common.procedures.general.getDescriptionExceptionList(refExceptionList, codeError, nameError, descError);
+
+		CREATE FIELD OutputRoot.XMLNSC.v1:${OperationName}Response.v1:CardPswdAssignmentRs;
+		SET OutputRoot.XMLNSC.v1:${OperationName}Response.(XMLNSC.NamespaceDecl)xmlns:v1 = v1;
+		SET OutputRoot.XMLNSC.v1:${OperationName}Response.(XMLNSC.NamespaceDecl)xmlns:ifx = ifx;
+		
+		DECLARE outMsg REFERENCE TO OutputRoot.XMLNSC.v1:${OperationName}Response.v1:CardPswdAssignmentRs;
+		
+		SET outMsg.ifx:Status.ifx:StatusCode = '1001';
+		SET outMsg.ifx:Status.ifx:ServerStatusCode = codeError;
+		SET outMsg.ifx:Status.ifx:Severity = 'Error';
+		SET outMsg.ifx:Status.ifx:StatusDesc = nameError;
+		SET outMsg.ifx:Status.ifx:ServerStatusDesc = descError;
+		
+		SET outMsg.ifx:RqUID = Environment.Variables.usr.transactionInfoRq.transactionId;
+
+		RETURN TRUE;
+	END;
+	
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+END MODULE;

@@ -1,0 +1,35 @@
+<srvConfiguration>
+	<service>
+		<type>ATM</type>
+		<name>${ServiceName}Svc</name>
+		<serviceStatus>1</serviceStatus>
+		<serviceListATM>
+			<service>
+				<name>${OperationName}</name>
+				<nameProvider>${Org}</nameProvider>
+				<protocol>WS</protocol>
+				<queueName>${ServiceNameAcron}${OperationNameCapital}${SuffixOrg}_BABN.REQ</queueName>
+			</service>
+		</serviceListATM>
+		<notificationEmail>
+			<to>dcolorado@ath.com.co</to>
+			<cc>dcolorado@ath.com.co</cc>
+			<subject>Notificacion de error</subject>
+			<body>Mensaje generado automaticamente Bus de Servicios.</body>
+			<numPerHours>2</numPerHours>
+		</notificationEmail>
+		<priority>1</priority>
+		<logs>1,2,3,4</logs>
+		<attemps>
+			<maxNum>3</maxNum>
+		</attemps>
+		<reference1></reference1>
+		<reference2></reference2>
+		<fieldsOper>
+			<tag>
+				<type>CARDTAGS.cardNum</type>
+				<field></field>
+			</tag>
+		</fieldsOper>
+	</service>
+</srvConfiguration>

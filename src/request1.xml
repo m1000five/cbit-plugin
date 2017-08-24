@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" 
+	xmlns:ser="${namespace}" 
+	xmlns:even="urn://bancodebogota.com/transfer/arrangement/event/" 
+	xmlns:v1="urn://bancodebogota.com/ifx/base/v1/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:${oprWsdlReqName}>
+         <even:${msgReq}>
+            <v1:RqUID>22681BA7-DF5E-EE4A-91F3-F5DDD7DE9194</v1:RqUID>
+            
+         </even:${msgReq}>
+      </ser:${oprWsdlReqName}>
+   </soapenv:Body>
+</soapenv:Envelope>

@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<project name="project" default="run">
+	<!-- generated with FWK2 Toolkit Plugin -->
+	<!-- ====== ANT Build File ======= --> 
+	<!-- Se requiere un directorio workspace en el que esten directamente los distintos proyectos -->
+	
+	<!-- Ruta del broker, directorio classes -->
+	<property name="MQSI_JARPATH" value="C:/ibm/IBM/MQSI/8.0.0.6/classes"/>
+	<property name="requirement" value="${ideRequirement}"/>
+	<!-- Nombre de directorio local para ubicacion de repo: SOA/release/requirements/CVAPD00000000/REQCVAPD00000000/ -->
+	<property name="model.requirement" value="REQCVAPD00000000"/>
+	<property name="fmg1" value="${projectName}"/>
+	<property name="execution.group.fw" value="EX_FWBASEV2"/>
+	<property name="execution.group.fmg" value="GEFMGNOMONETARIO02"/>
+	<property name="execution.group.cntl" value="GENOMONETARIO02"/>
+	<property name="workspace.dir" value="${workspace}/"/>
+	
+	<target name="run" description="">
+		<antcall target="clean"/>
+		<antcall target="prepare-folders"/>
+		<antcall target="artifacts-fmg-1"/>
+	</target>
+	
+	<target name="run-without-prepare" description="">
+		<antcall target="artifacts-fmg-1"/>
+	</target>
+
+	<target name="clean" description="Clean up">
+		<echo>Cleaning up...</echo>
+		<delete dir="${workspace.dir}${requirement}"/>
+	</target>
+	
+	<target name="prepare-folders" description="--> prepare folders for requirement">
+		<echo>Creating req folders...</echo>
+		<mkdir dir="${workspace.dir}${requirement}/db/db_scripts"/>
+		<mkdir dir="${workspace.dir}${requirement}/wmb/wmb_bars"/>
+		<mkdir dir="${workspace.dir}${requirement}/wmb/wmq_scripts"/>
+		<mkdir dir="${workspace.dir}${requirement}/wmb/wmb_bars/ESBBRK.PRD"/>
+		<mkdir dir="${workspace.dir}${requirement}/wmb/wmb_bars/ESBBRK.PRD/${execution.group.fmg}"/>
+		<mkdir dir="${workspace.dir}${requirement}/wmb/wmq_scripts/ESBBRK.PRD.QM"/>
+		
+		
+		<echo>Copying files to build folder...</echo>
+		<copy todir="${workspace.dir}${requirement}/db">
+			<fileset dir="${workspace.dir}${model.requirement}/db">
+				<include name="*.*" />
+			</fileset>
+		</copy>
+		<copy todir="${workspace.dir}${requirement}/wmb">
+			<fileset dir="${workspace.dir}${model.requirement}/wmb">
+				<include name="*.*" />
+			</fileset>
+		</copy>
+	
+	</target>
+	
+	
+	<target name="artifacts-fmg-1" description="--> runs mqsipackagebar from an ant task">
+		
+		
+		<copy todir="${workspace.dir}${requirement}/wmb/wmq_scripts/ESBBRK.PRD.QM">
+			<fileset dir="${workspace.dir}${fmg1}">
+				<include name="*.txt" />
+			</fileset>
+		</copy>
+		
+		<copy todir="${workspace.dir}${requirement}/db/db_scripts">
+			<fileset dir="${workspace.dir}${fmg1}">
+				<include name="*.sql" />
+			</fileset>
+		</copy>
+		
+		
+		<java classname="com.ibm.broker.config.appdev.FlowRendererBAR" failonerror="true" fork="true">
+		    <arg line="-w ${workspace.dir}"/>
+			<arg line="-a ${workspace.dir}${requirement}/wmb/wmb_bars/ESBBRK.PRD/${execution.group.fmg}/${fmg1}.bar"/>
+			<arg line="-k ${fmg1}"/>
+			<classpath>
+				<fileset dir="${MQSI_JARPATH}">
+					<include name="*.jar"/>
+				</fileset>
+			</classpath>
+		</java>
+	</target>
+	
+	
+</project>

@@ -1,0 +1,2 @@
+DELETE QLOCAL('${ServiceName}Svc${SuffixOrg}${SuffixChannel}.FCD.RES') PURGE
+DELETE QLOCAL('${ServiceNameAcron}${OperationNameCapital}${SuffixOrg}${SuffixChannel}.REQ') PURGE

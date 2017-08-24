@@ -1,0 +1,2 @@
+DEFINE QLOCAL('${ServiceName}Svc${SuffixOrg}${SuffixChannel}.FCD.RES') REPLACE
+DEFINE QLOCAL('${ServiceNameAcron}${OperationNameCapital}${SuffixOrg}${SuffixChannel}.REQ') REPLACE
