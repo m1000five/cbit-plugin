@@ -14,23 +14,25 @@ public abstract class BAthProject {
 
 	protected String oprName;
 	
-	private String orgName;
+	protected String orgName;
 	
-	private String domain;
+	protected String domain;
 	
-	private String channel;
+	protected String channel;
 	
-	private String bankId;
+	protected String namespace;
+	
+	protected String bankId;
 	
 	protected String errorMessage;
 	
-	private String wsdlName;
+	protected String wsdlName;
 	
-	private String wsdlPort;
+	protected String wsdlPort;
 	
-	private String wsdlBinding;
+	protected String wsdlBinding;
 	
-	private String wsdlSvcPort;
+	protected String wsdlSvcPort;
 	
 	
 	public abstract boolean validate();

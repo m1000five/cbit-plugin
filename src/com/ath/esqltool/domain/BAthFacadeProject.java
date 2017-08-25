@@ -12,12 +12,6 @@ import com.ath.esqltool.util.BUtil;
 public class BAthFacadeProject extends BAthProject { 
 
 	private Integer srvId;
-
-	private String domain;
-
-	private String oprName;
-	
-	private String namespace;
 	
 	private String prefixns;
 	private String prefixauxns;

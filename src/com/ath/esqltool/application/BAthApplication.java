@@ -2,12 +2,15 @@ package com.ath.esqltool.application;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Map;
 
 import com.ath.esqltool.delegates.BAthGenerator;
 import com.ath.esqltool.domain.BAthFacadeProject;
+import com.ath.esqltool.domain.BAthOrchestable;
+import com.ath.esqltool.domain.BAthParticularProject;
 import com.ath.esqltool.util.BUtil;
 
 public class BAthApplication {
@@ -62,6 +65,22 @@ public class BAthApplication {
 //			mapOthersNamespaces.put("v3", "urn://grupoaval.com/xsd/ifx/v3/");
 
 			facade.setMapOthersNamespaces(mapNamespaces);
+			
+			
+			HashSet<BAthOrchestable> listStepsOrchestables = new HashSet<BAthOrchestable>();
+			
+			if (listStepsOrchestables != null && !listStepsOrchestables.isEmpty()) {
+				Iterator<BAthOrchestable> iterator = listStepsOrchestables.iterator();
+				while (iterator.hasNext()) {
+					BAthOrchestable bAthOrchestable = (BAthOrchestable) iterator.next();
+					
+					BAthParticularProject particular = BAthParticularProject.valueOf(facade);
+					
+					
+					
+				}
+				
+			}
 
 			// facade.setOprWsdlReqName("setSecurityRequest");
 			// facade.setOprWsdlResName("setSecurityResponse");

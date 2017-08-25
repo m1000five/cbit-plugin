@@ -386,6 +386,27 @@ public class BAthParticularProject extends BAthProject {
 	public void setCodService(String codService) {
 		this.codService = codService;
 	}
+
+	public static BAthParticularProject valueOf(BAthFacadeProject facade) {
+		BAthParticularProject athParticularProject = new BAthParticularProject(); 
+		
+		athParticularProject.setCurrentDir(facade.getCurrentDir());
+		
+		athParticularProject.setNamespace(facade.getNamespace());
+		athParticularProject.setIdeRequirement(facade.getIdeRequirement());
+		athParticularProject.setSrvName(facade.getSrvName());
+		athParticularProject.setOprName(facade.getOprName());
+		
+		athParticularProject.setDomain(facade.getDomain());
+		athParticularProject.setChannel(facade.getChannel());
+		
+		athParticularProject.setWsdlName(facade.getWsdlName());
+		athParticularProject.setWsdlPort(facade.getWsdlPort());
+		athParticularProject.setWsdlBinding(facade.getWsdlBinding());
+		athParticularProject.setWsdlSvcPort(facade.getWsdlSvcPort());
+		
+		return athParticularProject;
+	}
 	
 	
 	
