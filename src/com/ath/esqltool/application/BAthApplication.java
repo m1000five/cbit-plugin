@@ -25,7 +25,7 @@ public class BAthApplication {
 			facade.setIdeRequirement("28496");
 
 			facade.setDomain("customers");
-			facade.setSrvName("CardPswAssignment");
+			facade.setSrvName("CardPswdAssignment");
 			facade.setOprName("modCardPsw");
 			facade.setOrgName("AVV");
 			facade.setChannel("BABN");
@@ -38,9 +38,7 @@ public class BAthApplication {
 			setOthersNamespaces.add("urn://grupoaval.com/xsd/ifx/");
 			setOthersNamespaces.add("urn://grupoaval.com/xsd/ifx/v2/");
 			setOthersNamespaces.add("urn://grupoaval.com/xsd/ifx/v3/");
-			setOthersNamespaces.add("urn://otravaina.com/xsd/ifx/v3/");
-			setOthersNamespaces.add("http://www.s1.com");
-
+			
 			HashMap<String, String> mapNamespaces = BUtil.genOthersNamespaces(setOthersNamespaces);
 
 			if (!mapNamespaces.isEmpty()) {
