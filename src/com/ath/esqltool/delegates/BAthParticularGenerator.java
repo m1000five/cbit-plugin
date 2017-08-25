@@ -3,6 +3,8 @@ package com.ath.esqltool.delegates;
 import java.io.File;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.Iterator;
+import java.util.Map;
 
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
@@ -66,6 +68,8 @@ public class BAthParticularGenerator {
 			vc.put("ideRequirement", particularProject.getIdeRequirement());
 			vc.put("projectName", particularProject.getName());
 			vc.put("workspace", particularProject.getCurrentDir());
+			String prefix = BUtil.getPrefix(particularProject.getNamespace(), null);
+			vc.put("prefixns", prefix);
 			
 //			vc.put("destination", particularProject.getAppUpper());
 //			vc.put("destinationAlias", particularProject.getAliasApp());
@@ -114,6 +118,40 @@ public class BAthParticularGenerator {
 			out = new PrintWriter(particularProject.getPathParticularFlow());
 			out.println(sw.toString());
 			out.close();
+			
+			
+			StringBuffer bufOtherNamespaces = new StringBuffer("");
+			
+
+			if (!particularProject.getMapOthersNamespaces().isEmpty()) {
+
+				Iterator it = particularProject.getMapOthersNamespaces().entrySet().iterator();
+				while (it.hasNext()) {
+					Map.Entry pair = (Map.Entry) it.next();
+					
+					if (pair.getKey().toString().equalsIgnoreCase(particularProject.getNamespace())) {
+						continue;
+					}
+
+					bufOtherNamespaces.append("\nDECLARE ").append(pair.getKey());
+					bufOtherNamespaces.append("		NAMESPACE '");
+					bufOtherNamespaces.append(pair.getValue());
+					bufOtherNamespaces.append("';\n");
+					
+					if (particularProject.getPrefixauxns() == null) {
+						particularProject.setPrefixauxns(pair.getKey().toString());
+					}
+					
+					System.out.println(pair.getKey() + " = " + pair.getValue());
+
+					it.remove(); // avoids a ConcurrentModificationException
+				}
+
+			}
+
+			
+			vc.put("prefixauxns", particularProject.getPrefixauxns()!= null?particularProject.getPrefixauxns():"aux");
+			vc.put("otherNamespaces", bufOtherNamespaces.toString());
 			
 			 
 

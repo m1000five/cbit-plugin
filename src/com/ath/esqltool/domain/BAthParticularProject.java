@@ -1,6 +1,7 @@
 package com.ath.esqltool.domain;
 
 import java.util.HashMap;
+import java.util.LinkedHashSet;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -29,7 +30,16 @@ public class BAthParticularProject extends BAthProject {
 	private boolean generateId = false;
 	private boolean newLegacyRegister = false;
 	
+	//TODO revisar si subir estos campos a la clase abastracta, igual que las listas de namespaces
+	private String prefixns;
+	private String prefixauxns;
+	
 	private HashMap<String, String> map = new HashMap<String, String>();
+	
+	
+	private HashMap<String, String> mapOthersNamespaces = new HashMap<String, String>();
+	
+	private LinkedHashSet<String> setNamespaces = new LinkedHashSet<String>();
 
 //	private BParticularBo fmgBo;
 //	private BLegacyBo legacyBo;
@@ -406,6 +416,38 @@ public class BAthParticularProject extends BAthProject {
 		athParticularProject.setWsdlSvcPort(facade.getWsdlSvcPort());
 		
 		return athParticularProject;
+	}
+
+	public HashMap<String, String> getMapOthersNamespaces() {
+		return mapOthersNamespaces;
+	}
+
+	public void setMapOthersNamespaces(HashMap<String, String> mapOthersNamespaces) {
+		this.mapOthersNamespaces = mapOthersNamespaces;
+	}
+
+	public LinkedHashSet<String> getSetNamespaces() {
+		return setNamespaces;
+	}
+
+	public void setSetNamespaces(LinkedHashSet<String> setNamespaces) {
+		this.setNamespaces = setNamespaces;
+	}
+
+	public String getPrefixns() {
+		return prefixns;
+	}
+
+	public void setPrefixns(String prefixns) {
+		this.prefixns = prefixns;
+	}
+
+	public String getPrefixauxns() {
+		return prefixauxns;
+	}
+
+	public void setPrefixauxns(String prefixauxns) {
+		this.prefixauxns = prefixauxns;
 	}
 	
 	

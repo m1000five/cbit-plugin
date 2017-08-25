@@ -1,9 +1,14 @@
 package com.ath.esqltool.application;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.Map;
 
 import com.ath.esqltool.delegates.BAthParticularGenerator;
 import com.ath.esqltool.domain.BAthParticularProject;
+import com.ath.esqltool.util.BUtil;
 
 
 public class BAthParticularApplication {
@@ -33,44 +38,17 @@ public class BAthParticularApplication {
 			particular.setCodService("5023_BCK");
 			particular.setParticularDesc("Description CardPswAssignment");
 			particular.setDatasource("ESBDATA");
+
+			LinkedHashSet<String> setOthersNamespaces = new LinkedHashSet<String>();
+
+			setOthersNamespaces.add("urn://grupoaval.com/customers/v1/");
+			setOthersNamespaces.add("urn://grupoaval.com/xsd/ifx/");
+			setOthersNamespaces.add("urn://grupoaval.com/xsd/ifx/v2/");
+			setOthersNamespaces.add("urn://grupoaval.com/xsd/ifx/v3/");
 			
-//			particular.setIdeRequirement("28496");
-//			particular.setDomain("domain");
-//			particular.setSrvName("ServiceName");
-//			particular.setOprName("operationName");
-//			particular.setOrgName("ORG");
-//			particular.setChannel("Channel"); 
-//			particular.setBankId("BankId");
-//			particular.setApp("AVV");
-//			particular.setNamespace("urn://grupoaval.com/domain/v1/");
-//			particular.setCodService("5023_BCK");
-//			particular.setParticularDesc("Description CardPswAssignment");
-//			particular.setDatasource("ESBDATA");
-			
-			
-//			particular.setIdeRequirement("28496");
-//			particular.setDomain("customers");
-//			particular.setSrvName("CardPswAssignment");
-//			particular.setOprName("modCardPsw");
-//			particular.setOrgName("AVV");
-//			particular.setChannel("BABN");
-//			particular.setBankId("00010524");
-//			particular.setApp("AVV");
-//			particular.setNamespace("urn://grupoaval.com/domain/v1/");
-//			particular.setCodService("5023_BCK");
-//			particular.setParticularDesc("Description CardPswAssignment");
-//			particular.setDatasource("ESBDATA");
-			
-			
-			
-			
-			
-//			particular.setNameStepRq("nameStepRq");
-//			particular.setNameDestRequest("nameDestRequest");
-//			particular.setNameDestResponse("nameDestResponse");
-//			particular.setNameOpDestRq("nameOpDestRq");
-//			particular.setNameStepRs("nameStepRs");
-//			particular.setNameOpDestRs("nameOpDestRs");
+			HashMap<String, String> mapNamespaces = BUtil.genOthersNamespaces(setOthersNamespaces);
+
+			particular.setMapOthersNamespaces(mapNamespaces);
 			
 			
 			if (particular.validate()) {

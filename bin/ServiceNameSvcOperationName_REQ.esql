@@ -2,10 +2,12 @@ BROKER SCHEMA com.ath.services.${domain}
 
 --->> Declaracion de namespaces
 DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';
-DECLARE ifx NAMESPACE 'urn://grupoaval.com/xsd/ifx/';
-DECLARE v1 NAMESPACE 'urn://grupoaval.com/${domain}/v1/';
-DECLARE v2 NAMESPACE 'urn://grupoaval.com/xsd/ifx/v2/';
-DECLARE v3 NAMESPACE 'urn://grupoaval.com/xsd/ifx/v3/';
+
+
+${otherNamespaces}
+
+
+
 --->> Declaracion de variables promovidas
 DECLARE UDP_CodService EXTERNAL CHARACTER '';
 DECLARE UDP_Channel EXTERNAL CHARACTER '';
@@ -74,12 +76,12 @@ CREATE COMPUTE MODULE ${ServiceName}Svc${OperationNameCapital}_REQ_CmpMappingRes
 		SET OutputRoot.MQMD.Expiry = -1;
 		SET OutputRoot.MQRFH2 = Environment.Variables.headers.MQRFH2;
 	
-		DECLARE inMsg REFERENCE TO InputRoot.XMLNSC.v1:${OperationName}Response.v1:CardPswdAssignmentRs;
+		DECLARE inMsg REFERENCE TO InputRoot.XMLNSC.${prefixns}:${OperationName}Response.${prefixns}:CardPswdAssignmentRs;
 		DECLARE refMQRFH2 REFERENCE TO OutputRoot.MQRFH2;
 		DECLARE data ROW;
 		DECLARE value REFERENCE TO data.value;
-		DECLARE serverStatusCode CHARACTER COALESCE(inMsg.ifx:Status.ifx:StatusCode, InputRoot.SOAP.*:Body.*:Fault.*:faultcode);
-		DECLARE serverStatusDesc CHARACTER COALESCE(inMsg.ifx:Status.ifx:ServerStatusCode, InputRoot.SOAP.*:Body.*:Fault.*:faultstring);
+		DECLARE serverStatusCode CHARACTER COALESCE(inMsg.${prefixauxns}:Status.${prefixauxns}:StatusCode, InputRoot.SOAP.*:Body.*:Fault.*:faultcode);
+		DECLARE serverStatusDesc CHARACTER COALESCE(inMsg.${prefixauxns}:Status.${prefixauxns}:ServerStatusCode, InputRoot.SOAP.*:Body.*:Fault.*:faultstring);
 		
 		-->Buscar en Cache la homologación de Error recibido del Backend
 		CALL common.procedures.global.cache.getDataErrorCache(
@@ -107,19 +109,19 @@ CREATE COMPUTE MODULE ${ServiceName}Svc${OperationNameCapital}_REQ_CmpMappingRes
 			PROPAGATE TO TERMINAL 'out1' DELETE NONE;
 			SET OutputRoot.XMLNSC   = NULL;
 			
-			CREATE FIELD OutputRoot.XMLNSC.v1:${OperationName}Response.v1:CardPswdAssignmentRs;
-			SET OutputRoot.XMLNSC.v1:${OperationName}Response.(XMLNSC.NamespaceDecl)xmlns:v1 = v1;
-			SET OutputRoot.XMLNSC.v1:${OperationName}Response.(XMLNSC.NamespaceDecl)xmlns:ifx = ifx;
+			CREATE FIELD OutputRoot.XMLNSC.${prefixns}:${OperationName}Response.${prefixns}:CardPswdAssignmentRs;
+			SET OutputRoot.XMLNSC.${prefixns}:${OperationName}Response.(XMLNSC.NamespaceDecl)xmlns:${prefixns} = ${prefixns};
+			SET OutputRoot.XMLNSC.${prefixns}:${OperationName}Response.(XMLNSC.NamespaceDecl)xmlns:${prefixauxns} = ${prefixauxns};
 			
-			DECLARE outMsg REFERENCE TO OutputRoot.XMLNSC.v1:${OperationName}Response.v1:CardPswdAssignmentRs;
+			DECLARE outMsg REFERENCE TO OutputRoot.XMLNSC.${prefixns}:${OperationName}Response.${prefixns}:CardPswdAssignmentRs;
 			
-			SET outMsg.ifx:Status.ifx:StatusCode = value.codeError;
-			SET outMsg.ifx:Status.ifx:ServerStatusCode = serverStatusCode;
-			SET outMsg.ifx:Status.ifx:Severity = value.severity;
-			SET outMsg.ifx:Status.ifx:StatusDesc = value.descError;
-			SET outMsg.ifx:Status.ifx:ServerStatusDesc = serverStatusDesc;
+			SET outMsg.${prefixauxns}:Status.${prefixauxns}:StatusCode = value.codeError;
+			SET outMsg.${prefixauxns}:Status.${prefixauxns}:ServerStatusCode = serverStatusCode;
+			SET outMsg.${prefixauxns}:Status.${prefixauxns}:Severity = value.severity;
+			SET outMsg.${prefixauxns}:Status.${prefixauxns}:StatusDesc = value.descError;
+			SET outMsg.${prefixauxns}:Status.${prefixauxns}:ServerStatusDesc = serverStatusDesc;
 			
-			SET outMsg.ifx:RqUID  = COALESCE(Environment.Variables.usr.transactionInfoRq.transactionId, 0);
+			SET outMsg.${prefixauxns}:RqUID  = COALESCE(Environment.Variables.usr.transactionInfoRq.transactionId, 0);
 			
 			RETURN TRUE;
         END IF;
@@ -140,11 +142,11 @@ CREATE COMPUTE MODULE ${ServiceName}Svc${OperationNameCapital}_REQ_CreateErrorRe
 		DECLARE numeroError CHARACTER;
 		CALL com.ath.common.util.searchErrorNumber(InputExceptionList, numeroError);
 	
-		CREATE FIELD OutputRoot.XMLNSC.v1:${OperationName}Response.v1:CardPswdAssignmentRs;
-		SET OutputRoot.XMLNSC.v1:${OperationName}Response.(XMLNSC.NamespaceDecl)xmlns:v1 = v1;
-		SET OutputRoot.XMLNSC.v1:${OperationName}Response.(XMLNSC.NamespaceDecl)xmlns:ifx = ifx;
+		CREATE FIELD OutputRoot.XMLNSC.${prefixns}:${OperationName}Response.${prefixns}:CardPswdAssignmentRs;
+		SET OutputRoot.XMLNSC.${prefixns}:${OperationName}Response.(XMLNSC.NamespaceDecl)xmlns:${prefixns} = ${prefixns};
+		SET OutputRoot.XMLNSC.${prefixns}:${OperationName}Response.(XMLNSC.NamespaceDecl)xmlns:${prefixauxns} = ${prefixauxns};
 		
-		DECLARE outMsg REFERENCE TO OutputRoot.XMLNSC.v1:${OperationName}Response.v1:CardPswdAssignmentRs;
+		DECLARE outMsg REFERENCE TO OutputRoot.XMLNSC.${prefixns}:${OperationName}Response.${prefixns}:CardPswdAssignmentRs;
 		DECLARE data ROW;
 		DECLARE value REFERENCE TO data.value;
 
@@ -157,11 +159,11 @@ CREATE COMPUTE MODULE ${ServiceName}Svc${OperationNameCapital}_REQ_CreateErrorRe
 			value
 		);
 		
-		SET outMsg.ifx:Status.ifx:StatusCode = value.codeError;
-		SET outMsg.ifx:Status.ifx:ServerStatusCode = numeroError;
-		SET outMsg.ifx:Status.ifx:Severity = value.severity;
-		SET outMsg.ifx:Status.ifx:StatusDesc = value.descError;
-		SET outMsg.ifx:Status.ifx:ServerStatusDesc= LEFT(InputRoot.XMLNSC.exceptionReq.exception.desc, 255);
+		SET outMsg.${prefixauxns}:Status.${prefixauxns}:StatusCode = value.codeError;
+		SET outMsg.${prefixauxns}:Status.${prefixauxns}:ServerStatusCode = numeroError;
+		SET outMsg.${prefixauxns}:Status.${prefixauxns}:Severity = value.severity;
+		SET outMsg.${prefixauxns}:Status.${prefixauxns}:StatusDesc = value.descError;
+		SET outMsg.${prefixauxns}:Status.${prefixauxns}:ServerStatusDesc= LEFT(InputRoot.XMLNSC.exceptionReq.exception.desc, 255);
 		
 		SET outMsg.ifx:RqUID = Environment.Variables.usr.transactionInfoRq.transactionId;
 
@@ -190,19 +192,19 @@ CREATE COMPUTE MODULE ${ServiceName}Svc${OperationNameCapital}_REQ_CreateDBError
 		DECLARE refExceptionList REFERENCE TO InputExceptionList;
 		CALL common.procedures.general.getDescriptionExceptionList(refExceptionList, codeError, nameError, descError);
 
-		CREATE FIELD OutputRoot.XMLNSC.v1:${OperationName}Response.v1:CardPswdAssignmentRs;
-		SET OutputRoot.XMLNSC.v1:${OperationName}Response.(XMLNSC.NamespaceDecl)xmlns:v1 = v1;
-		SET OutputRoot.XMLNSC.v1:${OperationName}Response.(XMLNSC.NamespaceDecl)xmlns:ifx = ifx;
+		CREATE FIELD OutputRoot.XMLNSC.${prefixns}:${OperationName}Response.${prefixns}:CardPswdAssignmentRs;
+		SET OutputRoot.XMLNSC.${prefixns}:${OperationName}Response.(XMLNSC.NamespaceDecl)xmlns:${prefixns} = ${prefixns};
+		SET OutputRoot.XMLNSC.${prefixns}:${OperationName}Response.(XMLNSC.NamespaceDecl)xmlns:${prefixauxns} = ${prefixauxns};
 		
-		DECLARE outMsg REFERENCE TO OutputRoot.XMLNSC.v1:${OperationName}Response.v1:CardPswdAssignmentRs;
+		DECLARE outMsg REFERENCE TO OutputRoot.XMLNSC.${prefixns}:${OperationName}Response.${prefixns}:CardPswdAssignmentRs;
 		
-		SET outMsg.ifx:Status.ifx:StatusCode = '1001';
-		SET outMsg.ifx:Status.ifx:ServerStatusCode = codeError;
-		SET outMsg.ifx:Status.ifx:Severity = 'Error';
-		SET outMsg.ifx:Status.ifx:StatusDesc = nameError;
-		SET outMsg.ifx:Status.ifx:ServerStatusDesc = descError;
+		SET outMsg.${prefixauxns}:Status.${prefixauxns}:StatusCode = '1001';
+		SET outMsg.${prefixauxns}:Status.${prefixauxns}:ServerStatusCode = codeError;
+		SET outMsg.${prefixauxns}:Status.${prefixauxns}:Severity = 'Error';
+		SET outMsg.${prefixauxns}:Status.${prefixauxns}:StatusDesc = nameError;
+		SET outMsg.${prefixauxns}:Status.${prefixauxns}:ServerStatusDesc = descError;
 		
-		SET outMsg.ifx:RqUID = Environment.Variables.usr.transactionInfoRq.transactionId;
+		SET outMsg.${prefixauxns}:RqUID = Environment.Variables.usr.transactionInfoRq.transactionId;
 
 		RETURN TRUE;
 	END;
