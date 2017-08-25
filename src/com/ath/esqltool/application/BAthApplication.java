@@ -27,10 +27,15 @@ public class BAthApplication {
 			facade.setDomain("customers");
 			facade.setSrvName("CardPswdAssignment");
 			facade.setOprName("modCardPsw");
-			facade.setOrgName("AVV");
+			facade.setOrgName("AVV");//("AVV");
 			facade.setChannel("BABN");
 			facade.setBankId("00010524");
 			facade.setNamespace("urn://grupoaval.com/customers/v1/");
+			
+			facade.setWsdlName("CardPswdAssignmentSvc.wsdl");
+			facade.setWsdlPort("CardPswdAssignmentSvc");
+			facade.setWsdlBinding("CardPswdAssignmentSvcBinding");
+			facade.setWsdlSvcPort("CardPswdAssignmentSvcPort");
 			
 			LinkedHashSet<String> setOthersNamespaces = new LinkedHashSet<String>();
 

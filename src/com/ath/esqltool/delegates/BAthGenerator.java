@@ -50,6 +50,7 @@ public class BAthGenerator {
 			vc.put("ServiceName", facade.getSrvName());
 			vc.put("namespace", facade.getNamespace());
 			vc.put("domain", facade.getDomain());
+			vc.put("domainCapital", BUtil.capitalizeFirstLetterOfEachWord(facade.getDomain()));
 			vc.put("OperationName", facade.getOprName());
 			vc.put("ServiceNameUpper", facade.getSrvName().toUpperCase());
 			vc.put("OperationNameUpper", facade.getOprName().toUpperCase());
@@ -66,6 +67,19 @@ public class BAthGenerator {
 //			vc.put("prefixns", facade.getPrefixns());
 			String prefix = BUtil.getPrefix(facade.getNamespace(), null);
 			vc.put("prefixns", prefix);
+			
+			
+//			facade.setWsdlName("CardPswdAssignmentSvc.wsdl");
+//			facade.setWsdlPort("CardPswdAssignmentSvc");
+//			facade.setWsdlBinding("CardPswdAssignmentBinding");
+//			facade.setWsdlSvcPort("CardPswdAssignmentPort");
+			
+			
+			vc.put("wsdlName", facade.getWsdlName() != null?facade.getWsdlName():"WsdlName.wsdl");
+			vc.put("port", facade.getWsdlPort() != null?facade.getWsdlPort():"wsdlPort");
+			vc.put("binding", facade.getWsdlBinding() != null?facade.getWsdlBinding():"binding");
+			vc.put("svcPort", facade.getWsdlSvcPort() != null?facade.getWsdlSvcPort():"svcPort");
+			
 
 			File file = new File(facade.getPath());
 			file.mkdirs();

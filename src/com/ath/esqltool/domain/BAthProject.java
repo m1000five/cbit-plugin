@@ -24,6 +24,15 @@ public abstract class BAthProject {
 	
 	protected String errorMessage;
 	
+	private String wsdlName;
+	
+	private String wsdlPort;
+	
+	private String wsdlBinding;
+	
+	private String wsdlSvcPort;
+	
+	
 	public abstract boolean validate();
 
 	public abstract String getName();
@@ -133,6 +142,38 @@ public abstract class BAthProject {
 
 	public void setOrgName(String orgName) {
 		this.orgName = orgName;
+	}
+
+	public String getWsdlName() {
+		return wsdlName;
+	}
+
+	public void setWsdlName(String wsdlName) {
+		this.wsdlName = wsdlName;
+	}
+
+	public String getWsdlPort() {
+		return wsdlPort;
+	}
+
+	public void setWsdlPort(String wsdlPort) {
+		this.wsdlPort = wsdlPort;
+	}
+
+	public String getWsdlBinding() {
+		return wsdlBinding;
+	}
+
+	public void setWsdlBinding(String wsdlBinding) {
+		this.wsdlBinding = wsdlBinding;
+	}
+
+	public String getWsdlSvcPort() {
+		return wsdlSvcPort;
+	}
+
+	public void setWsdlSvcPort(String wsdlSvcPort) {
+		this.wsdlSvcPort = wsdlSvcPort;
 	}
 	
 	
