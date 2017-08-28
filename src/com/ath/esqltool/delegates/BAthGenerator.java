@@ -47,6 +47,8 @@ public class BAthGenerator {
 			VelocityContext vc = new VelocityContext();
 
 			// vc.put("ctrlId", facade.getSrvId());
+			
+			//TODO establecer valores por defecto si vienen los valores vacios?
 			vc.put("ServiceName", facade.getSrvName());
 			vc.put("namespace", facade.getNamespace());
 			vc.put("domain", facade.getDomain());
