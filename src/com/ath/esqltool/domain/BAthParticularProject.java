@@ -106,6 +106,10 @@ public class BAthParticularProject extends BAthProject {
 	public String getName() {
 		return getSrvName() + "Svc_" + getOrgName();
 	}
+	
+	public static String getDefaultName(String srvName, String orgName) {
+		return srvName + "Svc_" + orgName;
+	}
 
 	public String getPackage() {
 		return "com/ath/services/" + getDomain().toLowerCase();
