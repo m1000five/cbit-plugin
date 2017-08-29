@@ -66,7 +66,7 @@ public class BAthFacadeProject extends BAthProject {
 	}
 	
 	public String getName() {
-		return getSrvName() + "SvcFcdWs";
+		return getSrvName() + "FcdWs";
 	}
 
 	public String getPackage() {

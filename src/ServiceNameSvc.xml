@@ -1,7 +1,7 @@
 <srvConfiguration>
 	<service>
 		<type>ATM</type>
-		<name>${ServiceName}Svc</name>
+		<name>${ServiceName}</name>
 		<serviceStatus>1</serviceStatus>
 		<serviceListATM>
 			<service>

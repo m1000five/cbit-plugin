@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmMQOutput.msgnode="ComIbmMQOutput.msgnode" xmlns:ComIbmSOAPExtract.msgnode="ComIbmSOAPExtract.msgnode" xmlns:ComIbmSOAPInput.msgnode="ComIbmSOAPInput.msgnode" xmlns:ComIbmSOAPReply.msgnode="ComIbmSOAPReply.msgnode" xmlns:ComIbmThrow.msgnode="ComIbmThrow.msgnode" xmlns:ComIbmTryCatch.msgnode="ComIbmTryCatch.msgnode" xmlns:SRRetrieveEntity.msgnode="SRRetrieveEntity.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="com/ath/services/${domain}/${ServiceName}SvcFcdWs_REQ.msgflow" nsPrefix="com_ath_services_${domain}_${ServiceName}SvcFcdWs_REQ.msgflow">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmMQOutput.msgnode="ComIbmMQOutput.msgnode" xmlns:ComIbmSOAPExtract.msgnode="ComIbmSOAPExtract.msgnode" xmlns:ComIbmSOAPInput.msgnode="ComIbmSOAPInput.msgnode" xmlns:ComIbmSOAPReply.msgnode="ComIbmSOAPReply.msgnode" xmlns:ComIbmThrow.msgnode="ComIbmThrow.msgnode" xmlns:ComIbmTryCatch.msgnode="ComIbmTryCatch.msgnode" xmlns:SRRetrieveEntity.msgnode="SRRetrieveEntity.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="com/ath/services/${domain}/${ServiceName}FcdWs_REQ.msgflow" nsPrefix="com_ath_services_${domain}_${ServiceName}FcdWs_REQ.msgflow">
   <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1">
     <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
-    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.name" name="name" defaultValueLiteral="${ServiceName}Svc.xml">
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.name" name="name" defaultValueLiteral="${ServiceName}.xml">
       <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
     <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.UDP_Channel" name="UDP_Channel" defaultValueLiteral="${Channel}">
       <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.UDP_Application" name="UDP_Application" defaultValueLiteral="${ServiceName}Svc">
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.UDP_Application" name="UDP_Application" defaultValueLiteral="${ServiceName}">
       <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
     <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.UDP_BankId" name="UDP_BankId" defaultValueLiteral="${BankId}">
       <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
-    <translation xmi:type="utility:TranslatableString" key="${ServiceName}SvcFcdWs_REQ" bundleName="com/ath/services/${domain}/${ServiceName}SvcFcdWs_REQ" pluginId="${ServiceName}SvcFcdWs"/>
-    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/${ServiceName}SvcFcdWs/icons/full/obj16/${ServiceName}SvcFcdWs_REQ.gif"/>
-    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/${ServiceName}SvcFcdWs/icons/full/obj30/${ServiceName}SvcFcdWs_REQ.gif"/>
+    <translation xmi:type="utility:TranslatableString" key="${ServiceName}FcdWs_REQ" bundleName="com/ath/services/${domain}/${ServiceName}FcdWs_REQ" pluginId="${ServiceName}FcdWs"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/${ServiceName}FcdWs/icons/full/obj16/${ServiceName}FcdWs_REQ.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/${ServiceName}FcdWs/icons/full/obj30/${ServiceName}FcdWs_REQ.gif"/>
     <composition>
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="353,91" dataSource="ESBDATA" computeExpression="esql://routine/common.modules.fcd#Facade_GetInfoError_WS.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="GetInfoError_WS"/>
       </nodes>
       <nodes xmi:type="ComIbmSOAPReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="708,93" validateMaster="none">
-        <translation xmi:type="utility:ConstantString" string="${ServiceName}Svc_SOAPReply"/>
+        <translation xmi:type="utility:ConstantString" string="${ServiceName}_SOAPReply"/>
       </nodes>
       <nodes xmi:type="SRRetrieveEntity.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="479,152" name="Default" depthPolicy="MatchOnly">
         <translation xmi:type="utility:ConstantString" string="RLGetConfigParams"/>
       </nodes>
-      <nodes xmi:type="ComIbmThrow.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="608,223" messageCatalog="FCD" messageNumber="3" messageText="No hay archivo de configuración en WSRR para aplicación.">
+      <nodes xmi:type="ComIbmThrow.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="608,223" messageCatalog="FCD" messageNumber="3" messageText="No hay archivo de configuracion en WSRR para aplicacion.">
         <translation xmi:type="utility:ConstantString" string="ThrowInqConfigApp"/>
       </nodes>
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="599,26" dataSource="ESBDATA" computeExpression="esql://routine/common.modules.fcd#Facade_Error_WS_DB.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="CreateDBErrorRespWS"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="482,92" dataSource="ESBDATA" computeExpression="esql://routine/com.ath.services.${domain}#${ServiceName}SvcFcdWs_REQ_CreateErrorRespWS.Main" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="482,92" dataSource="ESBDATA" computeExpression="esql://routine/com.ath.services.${domain}#${ServiceName}FcdWs_REQ_CreateErrorRespWS.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="CreateErrorRespWS"/>
       </nodes>
       <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="443,26" queueName="EXCEPTION.REGISTER.REQ" transactionMode="no" persistenceMode="no" validateMaster="none">
@@ -42,16 +42,16 @@
       <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_10" location="732,223" queueName="LOG.REGISTER.REQ" transactionMode="no" persistenceMode="no" validateMaster="none">
         <translation xmi:type="utility:ConstantString" string="MQOUT.LOG.REGISTER.REQ"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_11" location="623,152" dataSource="ESBDATA" computeExpression="esql://routine/com.ath.services.${domain}#${ServiceName}SvcFcdWs_REQ_CmpRouteMsg.Main" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_11" location="623,152" dataSource="ESBDATA" computeExpression="esql://routine/com.ath.services.${domain}#${ServiceName}FcdWs_REQ_CmpRouteMsg.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="CmpRouteMsg"/>
       </nodes>
-      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_12" location="735,153" destinationMode="list" transactionMode="no" persistenceMode="no" request="true" replyToQ="${ServiceName}Svc${SuffixOrg}${SuffixChannel}.FCD.RES" validateMaster="none">
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_12" location="735,153" destinationMode="list" transactionMode="no" persistenceMode="no" request="true" replyToQ="${ServiceName}${SuffixOrg}${SuffixChannel}.FCD.RES" validateMaster="none">
         <translation xmi:type="utility:ConstantString" string="MQOUT.GENERIC.SRV.REQ"/>
       </nodes>
       <nodes xmi:type="ComIbmTryCatch.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_13" location="238,144">
         <translation xmi:type="utility:ConstantString" string="TryReceiveMsg"/>
       </nodes>
-      <nodes xmi:type="ComIbmSOAPInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="112,148" wsdlFileName="${wsdlName}" selectedPortType="${port}" selectedBinding="${binding}" selectedPort="${svcPort}" targetNamespace="${namespace}" useHTTPTransport="true" urlSelector="/${domainCapital}/Services/${ServiceName}Svc">
+      <nodes xmi:type="ComIbmSOAPInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="112,148" wsdlFileName="${wsdlName}" selectedPortType="${port}" selectedBinding="${binding}" selectedPort="${svcPort}" targetNamespace="${namespace}" useHTTPTransport="true" urlSelector="/${domainCapital}/Services/${ServiceName}">
         <translation xmi:type="utility:ConstantString" string="SOAP Input"/>
       </nodes>
       <nodes xmi:type="ComIbmSOAPExtract.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_15" location="379,148">
@@ -75,11 +75,11 @@
       <propertyDescriptor groupName="Group.Basic" propertyEditor="com.ibm.etools.mft.flow.properties.StringPropertyEditor" configurable="true" describedAttribute="Property.name">
         <propertyName xmi:type="utility:TranslatableString" key="Property.name" bundleName="SRRetrieveEntity" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
         <propertyDescriptor groupName="Group.Basic" configurable="true" userDefined="true" describedAttribute="Property.UDP_Channel">
-          <propertyName xmi:type="utility:TranslatableString" key="Property.UDP_Channel" bundleName="com/ath/services/${domain}/${ServiceName}SvcFcdWs_REQ" pluginId="${ServiceName}SvcFcdWs"/>
+          <propertyName xmi:type="utility:TranslatableString" key="Property.UDP_Channel" bundleName="com/ath/services/${domain}/${ServiceName}FcdWs_REQ" pluginId="${ServiceName}FcdWs"/>
           <propertyDescriptor groupName="Group.Basic" configurable="true" userDefined="true" describedAttribute="Property.UDP_Application">
-            <propertyName xmi:type="utility:TranslatableString" key="Property.UDP_Application" bundleName="com/ath/services/${domain}/${ServiceName}SvcFcdWs_REQ" pluginId="${ServiceName}SvcFcdWs"/>
+            <propertyName xmi:type="utility:TranslatableString" key="Property.UDP_Application" bundleName="com/ath/services/${domain}/${ServiceName}FcdWs_REQ" pluginId="${ServiceName}FcdWs"/>
             <propertyDescriptor groupName="Group.Basic" configurable="true" userDefined="true" describedAttribute="Property.UDP_BankId">
-              <propertyName xmi:type="utility:TranslatableString" key="Property.UDP_BankId" bundleName="com/ath/services/${domain}/${ServiceName}SvcFcdWs_REQ" pluginId="${ServiceName}SvcFcdWs"/>
+              <propertyName xmi:type="utility:TranslatableString" key="Property.UDP_BankId" bundleName="com/ath/services/${domain}/${ServiceName}FcdWs_REQ" pluginId="${ServiceName}FcdWs"/>
             </propertyDescriptor>
           </propertyDescriptor>
         </propertyDescriptor>

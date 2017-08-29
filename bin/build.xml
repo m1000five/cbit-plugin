@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project name="${ServiceName}SvcFcdWs" default="run">
+<project name="${ServiceName}FcdWs" default="run">
 	<!-- generated with FWK2 Toolkit Plugin -->
 	<!-- ====== ANT Build File ======= -->
 	<!-- Se requiere un directorio workspace en el que esten directamente los distintos proyectos -->
@@ -10,15 +10,15 @@
 	<property name="requirement" value="28496" />
 	<property name="model.requirement" value="REQCVAPD00000000" />
 
-	<property name="docrelease" value="GDS.FO.08.Entrega%20de%20Software_${ServiceName}Svc_RQ28496.doc" />
+	<property name="docrelease" value="GDS.FO.08.Entrega%20de%20Software_${ServiceName}_RQ28496.doc" />
 	<property name="platform" value="IIB" />
 	<property name="developer" value="MILTON VEGA" />
 
-	<property name="srv1" value="${ServiceName}SvcFcdWs" />
-	<property name="srvname" value="${ServiceName}SvcFcdWs" />
+	<property name="srv1" value="${ServiceName}FcdWs" />
+	<property name="srvname" value="${ServiceName}FcdWs" />
 	<property name="OperationName" value="${OperationName}" />
 
-	<property name="barname" value="${ServiceName}SvcFcdWs.bar" />
+	<property name="barname" value="${ServiceName}FcdWs.bar" />
 	
 	
 
@@ -165,12 +165,12 @@
 
 
 		<exec executable="cmd" dir="C:\IBM\MQSI\7.0\bin">
-			<arg value="/c mqsiprofile.cmd &amp; C:\IBM\MQSI\7.0\bin\mqsideploy.bat IIB10 -e GE_BAN.CO -a C:\workspace_ath\work10\${ServiceName}SvcFcdWs\${ServiceName}SvcFcdWs.bar -w 600" />
+			<arg value="/c mqsiprofile.cmd &amp; C:\IBM\MQSI\7.0\bin\mqsideploy.bat IIB10 -e GE_BAN.CO -a C:\workspace_ath\work10\${ServiceName}FcdWs\${ServiceName}FcdWs.bar -w 600" />
 			<!--arg value="IIB10" />
 			<arg value="-e" />
 			<arg value="GE_BAN.CO" />
 			<arg value="-a" />
-			<arg value="C:\workspace_ath\work10\${ServiceName}SvcFcdWs\${ServiceName}SvcFcdWs.bar" />
+			<arg value="C:\workspace_ath\work10\${ServiceName}FcdWs\${ServiceName}FcdWs.bar" />
 			<arg value="-w" />
 			<arg value="600" /-->
 		</exec>
@@ -182,7 +182,7 @@
 			<arg value="-e" />
 			<arg value="${deploytool.arg.group}" />
 			<arg value="-a" />
-			<arg value="${workspace.dir}/${ServiceName}SvcFcdWs/${barname}" />
+			<arg value="${workspace.dir}/${ServiceName}FcdWs/${barname}" />
 			<arg value="-w" />
 			<arg value="600" />
 		</exec-->
@@ -192,7 +192,7 @@
 			<arg value="-e" />
 			<arg value="${deploytool.arg.group}" />
 			<arg value="-a" />
-			<arg value="${workspace.dir}/${ServiceName}SvcFcdWs/${barname}" />
+			<arg value="${workspace.dir}/${ServiceName}FcdWs/${barname}" />
 			<arg value="-w" />
 			<arg value="600" />
 		</exec-->
@@ -246,7 +246,7 @@
 
 		<property name="port" value="7801" />
 
-		<echo>This port ${port}</echo>
+		<echo>This port 7801</echo>
 
 		<loadfile property="file.request.xml" srcFile="request1.xml" />
 		<echo message="${file.request.xml}" />
@@ -260,7 +260,7 @@
 			<arg value="SOAPAction:urn://grupoaval.com/${domain}/v1/${OperationName}Request" />
 			<arg value="--data-binary" />
 			<arg value="@request1.xml" />
-			<arg value="http://127.0.0.1:${port}/${domain}/Services/${ServiceName}Svc" />
+			<arg value="http://127.0.0.1:7801/${domain}/Services/${ServiceName}" />
 		</exec>
 
 		<delete file="results.txt" />
@@ -304,7 +304,7 @@
 
 		<property name="port" value="7801" />
 
-		<echo>This port ${port}</echo>
+		<echo>This port 7801</echo>
 
 		<loadfile property="file.request.xml" srcFile="request1.xml" />
 		<echo message="${file.request.xml}" />
@@ -342,7 +342,7 @@
 					<arg value="SOAPAction:urn://grupoaval.com/${domain}/v1/${OperationName}Request" />
 					<arg value="--data-binary" />
 					<arg value="@request1.xml" />
-					<arg value="http://127.0.0.1:${port}/${domain}/Services/${ServiceName}Svc" />
+					<arg value="http://127.0.0.1:7801/${domain}/Services/${ServiceName}" />
 				</exec>
 
 				<delete file="results.txt" />
@@ -398,7 +398,7 @@
 
 		<property name="port" value="7801" />
 
-		<echo>This port ${port}</echo>
+		<echo>This port 7801</echo>
 
 		<loadfile property="file.request.xml" srcFile="request1.xml" />
 		<echo message="${file.request.xml}" />
@@ -436,7 +436,7 @@
 					<arg value="SOAPAction:urn://grupoaval.com/${domain}/v1/${OperationName}Request" />
 					<arg value="--data-binary" />
 					<arg value="@request1.xml" />
-					<arg value="http://127.0.0.1:${port}/${domain}/Services/${ServiceName}Svc" />
+					<arg value="http://127.0.0.1:7801/${domain}/Services/${ServiceName}" />
 				</exec>
 
 				<delete file="results.txt" />
@@ -491,7 +491,7 @@
 
 		<property name="port" value="7801" />
 
-		<echo>This port ${port}</echo>
+		<echo>This port 7801</echo>
 
 		<loadfile property="file.request.xml" srcFile="request1.xml" />
 		<echo message="${file.request.xml}" />
@@ -535,7 +535,7 @@
 					<arg value="SOAPAction:urn://grupoaval.com/${domain}/v1/${OperationName}Request" />
 					<arg value="--data-binary" />
 					<arg value="@request1.xml" />
-					<arg value="http://127.0.0.1:${port}/${domain}/Services/${ServiceName}Svc" />
+					<arg value="http://127.0.0.1:7801/${domain}/Services/${ServiceName}" />
 				</exec>
 
 				<delete file="results.txt" />
@@ -624,7 +624,7 @@
 			</default>
 		</switch>
 
-		<echo>This port ${port}</echo>
+		<echo>This port 7801</echo>
 
 		<loadfile property="file.request.xml" srcFile="request1.xml" />
 		<echo message="${file.request.xml}" />
@@ -642,7 +642,7 @@
 			<arg value="SOAPAction:urn://grupoaval.com/${domain}/v1/${OperationName}Request" />
 			<arg value="--data-binary" />
 			<arg value="@request1.xml" />
-			<arg value="http://10.130.1.13:${port}/${domain}/Services/${ServiceName}Svc" />
+			<arg value="http://10.130.1.13:7801/${domain}/Services/${ServiceName}" />
 
 
 		</exec>
@@ -682,7 +682,7 @@
 
 		<property name="port" value="7810" />
 
-		<echo>This port ${port}</echo>
+		<echo>This port 7801</echo>
 
 		<loadfile property="file.request.xml" srcFile="request1.xml" />
 		<echo message="${file.request.xml}" />
@@ -700,7 +700,7 @@
 			<arg value="SOAPAction:urn://grupoaval.com/${domain}/v1/${OperationName}Request" />
 			<arg value="--data-binary" />
 			<arg value="@request1.xml" />
-			<arg value="http://10.130.2.38:${port}/${domain}/Services/${ServiceName}Svc" />
+			<arg value="http://10.130.2.38:7801/${domain}/Services/${ServiceName}" />
 
 			<redirector output="response.txt" alwayslog="true" />
 		</exec>
