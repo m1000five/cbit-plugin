@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmMQInput.msgnode="ComIbmMQInput.msgnode" xmlns:ComIbmMQOutput.msgnode="ComIbmMQOutput.msgnode" xmlns:ComIbmMQReply.msgnode="ComIbmMQReply.msgnode" xmlns:ComIbmThrow.msgnode="ComIbmThrow.msgnode" xmlns:ComIbmTryCatch.msgnode="ComIbmTryCatch.msgnode" xmlns:SRRetrieveITService.msgnode="SRRetrieveITService.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow"
-    xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="com/ath/services/${domain}/${ServiceName}Svc${OperationNameCapital}_REQ.msgflow" nsPrefix="com_ath_services_${domain}_${ServiceName}Svc${OperationNameCapital}_REQ.msgflow">
+    xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="com/ath/services/${domain}/${ServiceName}${OperationNameCapital}_REQ.msgflow" nsPrefix="com_ath_services_${domain}_${ServiceName}${OperationNameCapital}_REQ.msgflow">
   <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1">
     <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
     <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.UDP_CodService" name="UDP_CodService" defaultValueLiteral="${CodService}">
@@ -12,14 +12,14 @@
     <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.UDP_BankId" name="UDP_BankId" defaultValueLiteral="${BankId}">
       <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
-    <translation xmi:type="utility:TranslatableString" key="${ServiceName}Svc${OperationNameCapital}_REQ" bundleName="com/ath/services/${domain}/${ServiceName}Svc${OperationNameCapital}_REQ" pluginId="${ServiceName}Svc_${Org}"/>
-    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/${ServiceName}Svc_${Org}/icons/full/obj16/${ServiceName}Svc${OperationNameCapital}_REQ.gif"/>
-    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/${ServiceName}Svc_${Org}/icons/full/obj30/${ServiceName}Svc${OperationNameCapital}_REQ.gif"/>
+    <translation xmi:type="utility:TranslatableString" key="${ServiceName}${OperationNameCapital}_REQ" bundleName="com/ath/services/${domain}/${ServiceName}${OperationNameCapital}_REQ" pluginId="${ServiceName}_${Org}"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/${ServiceName}_${Org}/icons/full/obj16/${ServiceName}${OperationNameCapital}_REQ.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/${ServiceName}_${Org}/icons/full/obj30/${ServiceName}${OperationNameCapital}_REQ.gif"/>
     <composition>
       <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="49,158" queueName="CPAS${OperationNameCapital}_${Org}_${Channel}.REQ" messageDomainProperty="XMLNSC" transactionMode="no">
         <translation xmi:type="utility:ConstantString" string="${OperationNameCapital}_${Org}.REQ"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="653,10" dataSource="ESBDATA" computeExpression="esql://routine/com.ath.services.${domain}#${ServiceName}Svc${OperationNameCapital}_REQ_CreateDBErrorRespWS.Main" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="653,10" dataSource="ESBDATA" computeExpression="esql://routine/com.ath.services.${domain}#${ServiceName}${OperationNameCapital}_REQ_CreateDBErrorRespWS.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="CreateDBErrorRespWS"/>
       </nodes>
       <nodes xmi:type="ComIbmMQReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="775,172" validateMaster="none">
@@ -31,10 +31,10 @@
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="305,81" dataSource="ESBDATA" computeExpression="esql://routine/common.modules.general#CmpCreateMsgError.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="CmpCreateMsgError"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="545,82" dataSource="ESBDATA" computeExpression="esql://routine/com.ath.services.${domain}#${ServiceName}Svc${OperationNameCapital}_REQ_CreateErrorRespWS.Main" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="545,82" dataSource="ESBDATA" computeExpression="esql://routine/com.ath.services.${domain}#${ServiceName}${OperationNameCapital}_REQ_CreateErrorRespWS.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="CreateErrorRespWS"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="662,171" dataSource="ESBDATA" computeExpression="esql://routine/com.ath.services.${domain}#${ServiceName}Svc${OperationNameCapital}_REQ_CmpMappingResp.Main" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="662,171" dataSource="ESBDATA" computeExpression="esql://routine/com.ath.services.${domain}#${ServiceName}${OperationNameCapital}_REQ_CmpMappingResp.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="CmpMappingResp"/>
       </nodes>
       <nodes xmi:type="ComIbmTryCatch.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="200,158">
@@ -43,7 +43,7 @@
       <nodes xmi:type="SRRetrieveITService.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="421,163" name="DP_Customers_${Org}_9110" namespace="urn://grupoaval.com/${domain}/v1/">
         <translation xmi:type="utility:ConstantString" string="EPL_${OperationNameCapital}"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_10" location="305,162" dataSource="ESBDATA" computeExpression="esql://routine/com.ath.services.${domain}#${ServiceName}Svc${OperationNameCapital}_REQ_CmpMappingReq.Main" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_10" location="305,162" dataSource="ESBDATA" computeExpression="esql://routine/com.ath.services.${domain}#${ServiceName}${OperationNameCapital}_REQ_CmpMappingReq.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="CmpMappingReq"/>
       </nodes>
       <nodes xmi:type="ComIbmThrow.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_11" location="540,233" messageNumber="700" messageText="Error in ${ServiceName} > Req > EPL_${OperationNameCapital}: No Match">
@@ -76,11 +76,11 @@
     </composition>
     <propertyOrganizer>
       <propertyDescriptor groupName="Group.Basic" configurable="true" userDefined="true" describedAttribute="Property.UDP_CodService">
-        <propertyName xmi:type="utility:TranslatableString" key="Property.UDP_CodService" bundleName="com/ath/services/${domain}/${ServiceName}Svc${OperationNameCapital}_REQ" pluginId="${ServiceName}Svc_${Org}"/>
+        <propertyName xmi:type="utility:TranslatableString" key="Property.UDP_CodService" bundleName="com/ath/services/${domain}/${ServiceName}${OperationNameCapital}_REQ" pluginId="${ServiceName}_${Org}"/>
         <propertyDescriptor groupName="Group.Basic" configurable="true" userDefined="true" describedAttribute="Property.UDP_Channel">
-          <propertyName xmi:type="utility:TranslatableString" key="Property.UDP_Channel" bundleName="com/ath/services/${domain}/${ServiceName}Svc${OperationNameCapital}_REQ" pluginId="${ServiceName}Svc_${Org}"/>
+          <propertyName xmi:type="utility:TranslatableString" key="Property.UDP_Channel" bundleName="com/ath/services/${domain}/${ServiceName}${OperationNameCapital}_REQ" pluginId="${ServiceName}_${Org}"/>
           <propertyDescriptor groupName="Group.Basic" configurable="true" userDefined="true" describedAttribute="Property.UDP_BankId">
-            <propertyName xmi:type="utility:TranslatableString" key="Property.UDP_BankId" bundleName="com/ath/services/${domain}/${ServiceName}Svc${OperationNameCapital}_REQ" pluginId="${ServiceName}Svc_${Org}"/>
+            <propertyName xmi:type="utility:TranslatableString" key="Property.UDP_BankId" bundleName="com/ath/services/${domain}/${ServiceName}${OperationNameCapital}_REQ" pluginId="${ServiceName}_${Org}"/>
           </propertyDescriptor>
         </propertyDescriptor>
       </propertyDescriptor>

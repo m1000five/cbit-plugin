@@ -104,7 +104,11 @@ public class BAthParticularProject extends BAthProject {
 	}
 
 	public String getName() {
-		return getSrvName() + "Svc_" + getOrgName();
+		return getSrvName() + "_" + getOrgName();
+	}
+	
+	public static String getDefaultName(String srvName, String orgName) {
+		return srvName + "_" + orgName;
 	}
 
 	public String getPackage() {
@@ -113,11 +117,11 @@ public class BAthParticularProject extends BAthProject {
 
 	//C:\Users\milton.vega\eclipse-workspace\generator\src\ServiceNameSvcOperationName_REQ.esql
 	public String getPathParticularFlow() {
-		return getPath() + getSrvName()  + "Svc" + getOprNameCapital() + "_REQ" + IBAthConstants.SUFFIX_FLOW;
+		return getPath() + getSrvName() + getOprNameCapital() + "_REQ" + IBAthConstants.SUFFIX_FLOW;
 	}
 
 	public String getPathPrepareRq() {
-		return getPath() + getSrvName()  + "Svc" + getOprNameCapital() + "_REQ.esql";
+		return getPath() + getSrvName()  + getOprNameCapital() + "_REQ.esql";
 	}
 
 	public String getPathPrepareRs() {

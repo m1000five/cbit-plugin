@@ -28,7 +28,7 @@ public class BAthApplication {
 			facade.setIdeRequirement("28496");
 
 			facade.setDomain("customers");
-			facade.setSrvName("CardPswdAssignment");
+			facade.setSrvName("CardPswdAssignmentSvc");
 			facade.setOprName("modCardPsw");
 			facade.setOrgName("AVV");//("AVV");
 			facade.setChannel("BABN");

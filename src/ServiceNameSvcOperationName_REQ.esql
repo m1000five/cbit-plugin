@@ -13,7 +13,7 @@ DECLARE UDP_CodService EXTERNAL CHARACTER '';
 DECLARE UDP_Channel EXTERNAL CHARACTER '';
 DECLARE UDP_BankId EXTERNAL CHARACTER '';
 
-CREATE COMPUTE MODULE ${ServiceName}Svc${OperationNameCapital}_REQ_CmpMappingReq
+CREATE COMPUTE MODULE ${ServiceName}${OperationNameCapital}_REQ_CmpMappingReq
 	CREATE FUNCTION Main() RETURNS BOOLEAN
 	BEGIN
 		SET OutputRoot.Properties = InputRoot.Properties;
@@ -68,7 +68,7 @@ CREATE COMPUTE MODULE ${ServiceName}Svc${OperationNameCapital}_REQ_CmpMappingReq
 	END;
 END MODULE;
 
-CREATE COMPUTE MODULE ${ServiceName}Svc${OperationNameCapital}_REQ_CmpMappingResp
+CREATE COMPUTE MODULE ${ServiceName}${OperationNameCapital}_REQ_CmpMappingResp
 	CREATE FUNCTION Main() RETURNS BOOLEAN
 	BEGIN
 		SET OutputRoot.Properties = InputRoot.Properties;
@@ -134,7 +134,7 @@ CREATE COMPUTE MODULE ${ServiceName}Svc${OperationNameCapital}_REQ_CmpMappingRes
 	END;
 END MODULE;
 
-CREATE COMPUTE MODULE ${ServiceName}Svc${OperationNameCapital}_REQ_CreateErrorRespWS
+CREATE COMPUTE MODULE ${ServiceName}${OperationNameCapital}_REQ_CreateErrorRespWS
 	CREATE FUNCTION Main() RETURNS BOOLEAN
 	BEGIN
 		CALL CopyMessageHeaders();
@@ -182,7 +182,7 @@ CREATE COMPUTE MODULE ${ServiceName}Svc${OperationNameCapital}_REQ_CreateErrorRe
 END MODULE;
 
 
-CREATE COMPUTE MODULE ${ServiceName}Svc${OperationNameCapital}_REQ_CreateDBErrorRespWS
+CREATE COMPUTE MODULE ${ServiceName}${OperationNameCapital}_REQ_CreateDBErrorRespWS
 	CREATE FUNCTION Main() RETURNS BOOLEAN
 	BEGIN
 		CALL CopyMessageHeaders();

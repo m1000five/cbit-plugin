@@ -14,7 +14,7 @@ public class BAthTemplates {
 	
 	public static final String TEMPLATE_ESQL_FACADE = "ServiceNameSvcFcdWs_REQ.esql";
 	
-	//TODO modificar plantilla verificar propiedades nodo soapinput, timeout soporte wsd, nodos mq, transacion no
+	//TODO modificar plantilla verificar propiedades nodo soapinput, timeout soporte wsdl, nodos mq, transacion no
 	public static final String TEMPLATE_MSGFLOW_FACADE_REQ = "ServiceNameSvcFcdWs_REQ.msgflow";
 	public static final String TEMPLATE_MSGFLOW_FACADE_RES = "ServiceNameSvcFcdWs_RES.msgflow";
 	
@@ -23,7 +23,6 @@ public class BAthTemplates {
 	public static final String TEMPLATE_ANT_BUILD = "build.xml";
 	
 	//generator/src/ServiceNameSvcOperationName_REQ.esql
-	//TODO modificar la plantilla Especifico para que soporte los namespaces desde el WSDL
 	public static final String TEMPLATE_ESQL_PARTICULAR_RQ = "ServiceNameSvcOperationName_REQ.esql";
 	//generator/src/ServiceNameSvcOperationName_REQ.msgflow
 	public static final String TEMPLATE_MSGFLOW_PARTICULAR = "ServiceNameSvcOperationName_REQ.msgflow";

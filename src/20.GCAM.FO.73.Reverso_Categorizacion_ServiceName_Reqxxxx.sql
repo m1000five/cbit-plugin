@@ -19,7 +19,7 @@
 -----------------------------------------------------------------------------------------------------
   ESQUEMA PRODUCCION: PENDIENTE  
  -----------------------------------------------------------------------------------------------------
-  NOMBRE SERVICIO: ${ServiceNameUpper}mentSvc
+  NOMBRE SERVICIO: ${ServiceNameUpper}
 ===================================================================================================*/
 /*===================================================================================================
   CODIGO FUENTE
@@ -33,7 +33,7 @@
 
 ------------------------------------------------------ 
 
-DELETE MAPPING_CODE WHERE TRANCODE IN ('C_${ServiceNameUpper}SVC','C_${ServiceNameAcron}${OperationNameUpper}') AND BANKID IN ('00010524', '0052');
-DELETE TRANCODE WHERE CODEVALUE IN('C_${ServiceNameUpper}SVC','C_${ServiceNameAcron}${OperationNameUpper}');
+DELETE MAPPING_CODE WHERE TRANCODE IN ('C_${ServiceNameUpper}','C_${ServiceNameAcron}${OperationNameUpper}') AND BANKID IN ('00010524', '0052');
+DELETE TRANCODE WHERE CODEVALUE IN('C_${ServiceNameUpper}','C_${ServiceNameAcron}${OperationNameUpper}');
 
 COMMIT;
