@@ -2,6 +2,7 @@ package com.ath.esqltool.application;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Map;
@@ -38,17 +39,37 @@ public class BAthParticularApplication {
 			particular.setCodService("5023_BCK");
 			particular.setParticularDesc("Description CardPswAssignment");
 			particular.setDatasource("ESBDATA");
-
-			LinkedHashSet<String> setOthersNamespaces = new LinkedHashSet<String>();
-
-			setOthersNamespaces.add("urn://grupoaval.com/customers/v1/");
-			setOthersNamespaces.add("urn://grupoaval.com/xsd/ifx/");
-			setOthersNamespaces.add("urn://grupoaval.com/xsd/ifx/v2/");
-			setOthersNamespaces.add("urn://grupoaval.com/xsd/ifx/v3/");
+			particular.setPassthrough(false);
+			particular.setWsdlName("TokenInquiryManagementV2.wsdl");
 			
-			HashMap<String, String> mapNamespaces = BUtil.genOthersNamespaces(setOthersNamespaces);
 
-			particular.setMapOthersNamespaces(mapNamespaces);
+			LinkedHashSet<String> setFacadeNamespaces = new LinkedHashSet<String>();
+
+			setFacadeNamespaces.add("urn://grupoaval.com/customers/v1/");
+			setFacadeNamespaces.add("urn://grupoaval.com/xsd/ifx/");
+			setFacadeNamespaces.add("urn://grupoaval.com/xsd/ifx/v2/");
+			setFacadeNamespaces.add("urn://grupoaval.com/xsd/ifx/v3/");
+			
+			HashMap<String, String> mapFacadeNamespaces = BUtil.genOthersNamespaces(setFacadeNamespaces);
+			
+			
+			LinkedHashSet<String> setSpecificNamespaces = new LinkedHashSet<String>();
+
+			setSpecificNamespaces.add("urn://bancodebogota.com/customers/token/event/");
+			setSpecificNamespaces.add("urn://bancodebogota.com/customers/product/v1/");
+			setSpecificNamespaces.add("urn://bancodebogota.com/ifx/base/v1/");
+			setSpecificNamespaces.add("urn://bancodebogota.com/customers/product/service/v2/");
+			setSpecificNamespaces.add("urn://bancodebogota.com/customers/involvedparty/v1/");
+			
+			HashSet<String> tmpSet = new HashSet<String>(); 
+			tmpSet.addAll(mapFacadeNamespaces.keySet()); 
+			
+			HashMap<String, String> mapSpecificNamespaces = BUtil.genOthersNamespaces(setSpecificNamespaces, tmpSet);
+
+
+			particular.setMapOthersNamespaces(mapFacadeNamespaces);
+
+			particular.setMapSpecificNamespaces(mapSpecificNamespaces);
 			
 			
 			if (particular.validate()) {

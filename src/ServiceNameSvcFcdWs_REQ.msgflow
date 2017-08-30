@@ -90,10 +90,7 @@
     </attributeLinks>
     <stickyBoard>
       <stickyNote location="33,21">
-        <body xmi:type="utility:ConstantString" string="Mediante el WSDL adicionar nodo SOAPInput&#xA;y subflujo."/>
-      </stickyNote>
-      <stickyNote location="357,214">
-        <body xmi:type="utility:ConstantString" string="Subflujo"/>
+        <body xmi:type="utility:ConstantString" string="Pasos pendientes:&#xA; Por favor invocar el asistente de conjunto de mensajes&#xA; para importar el WSDL y que sea copiado en la carpeta model&#xA; reemplazando el actual."/>
       </stickyNote>
     </stickyBoard>
   </eClassifiers>
