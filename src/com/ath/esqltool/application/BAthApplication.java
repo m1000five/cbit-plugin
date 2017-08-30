@@ -36,6 +36,7 @@ public class BAthApplication {
 			facade.setNamespace("urn://grupoaval.com/customers/v1/");
 			
 			facade.setWsdlName("CardPswdAssignmentSvc.wsdl");
+			facade.setWsdlRelativePathName("model/CardPswdAssignmentSvc.wsdl");
 			facade.setWsdlPort("CardPswdAssignmentSvc");
 			facade.setWsdlBinding("CardPswdAssignmentSvcBinding");
 			facade.setWsdlSvcPort("CardPswdAssignmentSvcPort");

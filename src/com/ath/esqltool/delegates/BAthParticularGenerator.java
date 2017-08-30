@@ -18,8 +18,6 @@ import com.ath.esqltool.domain.BAthTemplates;
 import com.ath.esqltool.domain.IBAthConstants;
 import com.ath.esqltool.util.BUtil;
 
-
-
 public class BAthParticularGenerator {
 
 	public BAthParticularGenerator() {
@@ -31,7 +29,7 @@ public class BAthParticularGenerator {
 
 	public void generar(BAthParticularProject particularProject, String path) {
 
-		try {
+		try { 
 
 			VelocityEngine ve = new VelocityEngine();
 			if (path != null && path.length() > 0) {
@@ -70,37 +68,14 @@ public class BAthParticularGenerator {
 			vc.put("workspace", particularProject.getCurrentDir());
 			String prefix = BUtil.getPrefix(particularProject.getNamespace(), null);
 			vc.put("prefixns", prefix);
-			
-//			vc.put("destination", particularProject.getAppUpper());
-//			vc.put("destinationAlias", particularProject.getAliasApp());
-//			vc.put("dest", particularProject.getAliasApp().toLowerCase());
-//			vc.put("oprName", particularProject.getOprName());
-//			vc.put("srvName", particularProject.getSrvName());
-//			vc.put("oprNameLower", particularProject.getOprNameLower());
-//			vc.put("nameStepRs", particularProject.getNameStepRs() != null ? particularProject.getNameStepRs() : "nameStepRs");
-//			vc.put("nameDestResponse",
-//					particularProject.getNameDestResponse() != null ? particularProject.getNameDestResponse() : "nameOpDestRs");
-//			vc.put("nameOpDestRs",
-//					particularProject.getNameOpDestRs() != null ? particularProject.getNameOpDestRs() : "nameOpDestRs");
-//			vc.put("nameDestRequest",
-//					particularProject.getNameDestRequest() != null ? particularProject.getNameDestRequest() : "nameDestRequest");
-//			vc.put("nameOpDestRq",
-//					particularProject.getNameOpDestRq() != null ? particularProject.getNameOpDestRq() : "nameOpDestRq");
-//			vc.put("nameStepRq", particularProject.getNameStepRq() != null ? particularProject.getNameStepRq() : "nameStepRq");
-//			vc.put("projectName", particularProject.getName());
-//			//vc.put("fmgId", particularProject.getParticularBo().getParticular_id());
-//			vc.put("desc", particularProject.getParticularDesc());
-			//vc.put("legId", particularProject.getLegacyBo().getLeg_register_id());
-			//vc.put("adapterQueue", particularProject.getLegacyBo().getFw_communicator_input_mq());
-			
-			
 
-			File file = new File(particularProject.getPath()); 
+
+			File file = new File(particularProject.getPath());
 			file.mkdirs();
-			
+
 			String templateParticular = BAthTemplates.TEMPLATE_PARTICULAR_PROJECT;
 
-			Template tpl = ve.getTemplate(templateParticular );
+			Template tpl = ve.getTemplate(templateParticular);
 			StringWriter sw = new StringWriter();
 			tpl.merge(vc, sw);
 
@@ -108,9 +83,8 @@ public class BAthParticularGenerator {
 			out.println(sw.toString());
 			out.close();
 
-			
 			String templateMsgFlow = BAthTemplates.TEMPLATE_MSGFLOW_PARTICULAR;
-			
+
 			tpl = ve.getTemplate(templateMsgFlow);
 			sw = new StringWriter();
 			tpl.merge(vc, sw);
@@ -118,17 +92,18 @@ public class BAthParticularGenerator {
 			out = new PrintWriter(particularProject.getPathParticularFlow());
 			out.println(sw.toString());
 			out.close();
-			
-			
+
 			StringBuffer bufOtherNamespaces = new StringBuffer("");
-			
+			StringBuffer bufSpecificNamespaces = new StringBuffer("");
 
 			if (!particularProject.getMapOthersNamespaces().isEmpty()) {
 
 				Iterator it = particularProject.getMapOthersNamespaces().entrySet().iterator();
 				while (it.hasNext()) {
 					Map.Entry pair = (Map.Entry) it.next();
-					
+
+					System.out.println("namespace-> " + pair.getKey() + " = " + pair.getValue());
+
 					if (pair.getKey().toString().equalsIgnoreCase(particularProject.getNamespace())) {
 						continue;
 					}
@@ -137,27 +112,45 @@ public class BAthParticularGenerator {
 					bufOtherNamespaces.append("		NAMESPACE '");
 					bufOtherNamespaces.append(pair.getValue());
 					bufOtherNamespaces.append("';\n");
-					
+
 					if (particularProject.getPrefixauxns() == null) {
 						particularProject.setPrefixauxns(pair.getKey().toString());
 					}
-					
-					System.out.println(pair.getKey() + " = " + pair.getValue());
 
 					it.remove(); // avoids a ConcurrentModificationException
 				}
 
 			}
 
-			
-			vc.put("prefixauxns", particularProject.getPrefixauxns()!= null?particularProject.getPrefixauxns():"aux");
+			if (!particularProject.isPassthrough() && !particularProject.getMapSpecificNamespaces().isEmpty()) {
+
+				Iterator it = particularProject.getMapSpecificNamespaces().entrySet().iterator();
+				while (it.hasNext()) {
+					Map.Entry pair = (Map.Entry) it.next();
+
+					System.out.println("specific namespace-> " + pair.getKey() + " = " + pair.getValue());
+					if (pair.getKey().toString().equalsIgnoreCase(particularProject.getNamespace())) {
+						continue;
+					}
+
+					bufSpecificNamespaces.append("\nDECLARE ").append(pair.getKey());
+					bufSpecificNamespaces.append("		NAMESPACE '");
+					bufSpecificNamespaces.append(pair.getValue());
+					bufSpecificNamespaces.append("';\n");
+
+					it.remove(); // avoids a ConcurrentModificationException
+				}
+
+			}
+
+			vc.put("prefixauxns",
+					particularProject.getPrefixauxns() != null ? particularProject.getPrefixauxns() : "aux");
 			vc.put("otherNamespaces", bufOtherNamespaces.toString());
-			
-			 
+
+			vc.put("specificNamespaces", bufSpecificNamespaces.toString());
 
 			String templateEsqlRq = BAthTemplates.TEMPLATE_ESQL_PARTICULAR_RQ;
-			
-			
+
 			Template tpl1 = ve.getTemplate(templateEsqlRq);
 			StringWriter sw1 = new StringWriter();
 			tpl1.merge(vc, sw1);
@@ -165,59 +158,6 @@ public class BAthParticularGenerator {
 			out1.println(sw1.toString());
 			out1.close();
 
-			
-//			String templateEsqlRs = BAthTemplates.TEMPLATE_ESQL_FMG_RS;
-//			if (particularProject.getParticularType().equalsIgnoreCase("DS")) {
-//				templateEsqlRs = BAthTemplates.TEMPLATE_ESQL_FMG_RS_SP;
-//			}
-//			Template tpl2 = ve.getTemplate(templateEsqlRs);
-//			StringWriter sw2 = new StringWriter();
-//			tpl2.merge(vc, sw2);
-//			PrintWriter out2 = new PrintWriter(particularProject.getPathPrepareRs());
-//			out2.println(sw2.toString());
-//			out2.close();
-//
-//			String templateMqScript = BAthTemplates.TEMPLATE_MQ_FMG;
-//			if (particularProject.getParticularType().equalsIgnoreCase("DS")) {
-//				templateMqScript = BAthTemplates.TEMPLATE_MQ_FMG_SP;
-//			}
-//			//MQ_ESB_DEST_SP_NombreOperacion.txt
-//			tpl = ve.getTemplate(templateMqScript);
-//			sw = new StringWriter();
-//			tpl.merge(vc, sw);
-//
-//			out = new PrintWriter(particularProject.getMqPath());
-//			out.println(sw.toString());
-//			out.close();
-//
-//			tpl = ve.getTemplate(BAthTemplates.TEMPLATE_SQL_FMG);
-//			sw = new StringWriter();
-//			tpl.merge(vc, sw);
-//
-//			out = new PrintWriter(particularProject.getSqlPath());
-//			out.println(sw.toString());
-//			out.close();
-//			
-//			tpl = ve.getTemplate(BAthTemplates.FMG_ANT_BUILD);
-//			sw = new StringWriter();
-//			tpl.merge(vc, sw);
-//
-//			out = new PrintWriter(particularProject.getProjectPath() + "build.xml");
-//			out.println(sw.toString());
-//			out.close();
-//			
-//			
-//			String templateEsqlConstants = BAthTemplates.FMG_CONSTANTS;
-//			if (particularProject.getParticularType().equalsIgnoreCase("DS")) {
-//				templateEsqlConstants = BAthTemplates.FMG_CONSTANTS_SP;
-//			}
-//			tpl = ve.getTemplate(templateEsqlConstants);
-//			sw = new StringWriter();
-//			tpl.merge(vc, sw);
-//
-//			out = new PrintWriter(particularProject.getPathConstants());
-//			out.println(sw.toString());
-//			out.close();
 
 		} catch (Exception ex) {
 			ex.printStackTrace();

@@ -1,6 +1,7 @@
 package com.ath.esqltool.util;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Map;
@@ -71,6 +72,35 @@ public class BUtil {
 		return isUp;
 	}
 	
+	public static HashMap<String, String> genOthersNamespaces(LinkedHashSet<String> setOthersNamespaces, Set<String> currentSet) {
+		HashMap<String, String> mapOthersNamespaces  = new HashMap<String, String>();
+		
+		if (currentSet == null) {
+			currentSet = new HashSet<String>();
+		}
+		
+		if (setOthersNamespaces == null) {
+			return mapOthersNamespaces;
+		}
+		
+		
+		Iterator<String> iterator = setOthersNamespaces.iterator();
+		while (iterator.hasNext()) {
+			String namespace = (String) iterator.next();
+			System.out.println("DETERMINANDO PREFIJO: " + namespace);
+			
+			HashSet<String> tmpSet = new HashSet<String>(); 
+			tmpSet.addAll(mapOthersNamespaces.keySet());
+			
+			currentSet.addAll(tmpSet);
+			
+			mapOthersNamespaces.put(getPrefix(namespace, currentSet), namespace);
+			
+		}
+		
+		return mapOthersNamespaces;
+	}
+	
 	public static HashMap<String, String> genOthersNamespaces(LinkedHashSet<String> setOthersNamespaces) {
 		HashMap<String, String> mapOthersNamespaces  = new HashMap<String, String>();
 		
@@ -85,12 +115,6 @@ public class BUtil {
 			mapOthersNamespaces.put(getPrefix(namespace, mapOthersNamespaces.keySet()), namespace);
 			
 		}
-		
-//		facade.setNamespace("urn://grupoaval.com/customers/v1/");
-//		facade.setPrefixns("v1");
-//		mapOthersNamespaces.put("ifx", "urn://grupoaval.com/xsd/ifx/");
-//		mapOthersNamespaces.put("v2", "urn://grupoaval.com/xsd/ifx/v2/");
-//		mapOthersNamespaces.put("v3", "urn://grupoaval.com/xsd/ifx/v3/");
 		
 		return mapOthersNamespaces;
 	}

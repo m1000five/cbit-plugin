@@ -87,7 +87,7 @@
     </propertyOrganizer>
     <stickyBoard>
       <stickyNote location="46,17">
-        <body xmi:type="utility:ConstantString" string="Flujo especifico.&#xA;Proceder a crear el Message Set a partir de WSDL.&#xA;Adicionar el llamado al WS en el flujo."/>
+        <body xmi:type="utility:ConstantString" string="Pasos pendientes:&#xA; Por favor invocar el asistente de conjunto de mensajes&#xA; para importar el WSDL y que sea copiado en la carpeta model&#xA; reemplazando el actual."/>
       </stickyNote>
       <stickyNote location="524,139">
         <body xmi:type="utility:ConstantString" string="Subflujo llamado WS"/>

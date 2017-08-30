@@ -15,6 +15,8 @@ public class BAthParticularProject extends BAthProject {
 	private String particularType;
 	private String particularDesc;
 	
+	private Boolean passthrough = true;
+	
 	private String codService;
 
 	private String nameStepRq;
@@ -34,12 +36,11 @@ public class BAthParticularProject extends BAthProject {
 	private String prefixns;
 	private String prefixauxns;
 	
-	private HashMap<String, String> map = new HashMap<String, String>();
-	
-	
 	private HashMap<String, String> mapOthersNamespaces = new HashMap<String, String>();
+	private HashMap<String, String> mapSpecificNamespaces = new HashMap<String, String>();
 	
 	private LinkedHashSet<String> setNamespaces = new LinkedHashSet<String>();
+	private LinkedHashSet<String> setSpecificNamespaces = new LinkedHashSet<String>();
 
 //	private BParticularBo fmgBo;
 //	private BLegacyBo legacyBo;
@@ -452,6 +453,30 @@ public class BAthParticularProject extends BAthProject {
 
 	public void setPrefixauxns(String prefixauxns) {
 		this.prefixauxns = prefixauxns;
+	}
+
+	public LinkedHashSet<String> getSetSpecificNamespaces() {
+		return setSpecificNamespaces;
+	}
+
+	public void setSetSpecificNamespaces(LinkedHashSet<String> setSpecificNamespaces) {
+		this.setSpecificNamespaces = setSpecificNamespaces;
+	}
+
+	public HashMap<String, String> getMapSpecificNamespaces() {
+		return mapSpecificNamespaces;
+	}
+
+	public void setMapSpecificNamespaces(HashMap<String, String> mapSpecificNamespaces) {
+		this.mapSpecificNamespaces = mapSpecificNamespaces;
+	}
+
+	public Boolean isPassthrough() {
+		return passthrough;
+	}
+
+	public void setPassthrough(Boolean passthrough) {
+		this.passthrough = passthrough;
 	}
 	
 	
