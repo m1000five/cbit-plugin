@@ -28,6 +28,8 @@ public abstract class BAthProject {
 	
 	protected String wsdlName;
 	
+	protected String wsdlRelativePathName;
+	
 	protected String wsdlPort;
 	
 	protected String wsdlBinding;
@@ -176,6 +178,17 @@ public abstract class BAthProject {
 
 	public void setWsdlSvcPort(String wsdlSvcPort) {
 		this.wsdlSvcPort = wsdlSvcPort;
+	}
+
+	public String getWsdlRelativePathName() {
+		if (wsdlRelativePathName == null || wsdlRelativePathName.length() == 0) {
+			return wsdlName;
+		}
+		return wsdlRelativePathName;
+	}
+
+	public void setWsdlRelativePathName(String wsdlRelativePathName) {
+		this.wsdlRelativePathName = wsdlRelativePathName;
 	}
 	
 	

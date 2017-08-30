@@ -76,7 +76,7 @@ public class BAthGenerator {
 //			facade.setWsdlBinding("CardPswdAssignmentBinding");
 //			facade.setWsdlSvcPort("CardPswdAssignmentPort");
 			
-			
+			vc.put("wsdlRelativePathName", facade.getWsdlRelativePathName() != null?facade.getWsdlRelativePathName():"WsdlName.wsdl");
 			vc.put("wsdlName", facade.getWsdlName() != null?facade.getWsdlName():"WsdlName.wsdl");
 			vc.put("port", facade.getWsdlPort() != null?facade.getWsdlPort():"wsdlPort");
 			vc.put("binding", facade.getWsdlBinding() != null?facade.getWsdlBinding():"binding");
