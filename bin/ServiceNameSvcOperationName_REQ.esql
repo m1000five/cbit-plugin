@@ -56,7 +56,7 @@ CREATE COMPUTE MODULE ${ServiceName}${OperationNameCapital}_REQ_CmpMappingReq
 		-->Enviar Cabeceras DPs
 		CREATE NEXTSIBLING OF OutputRoot.Properties DOMAIN ('HTTPInputHeader');
 		SET OutputRoot.HTTPInputHeader.CodService 		= UDP_CodService;
-		SET OutputRoot.HTTPInputHeader.${ServiceName} 		= InputRoot.MQRFH2.usr.log.nameApplication;
+		SET OutputRoot.HTTPInputHeader.ServiceName 		= InputRoot.MQRFH2.usr.log.nameApplication;
 		SET OutputRoot.HTTPInputHeader.OperationName	= InputRoot.MQRFH2.usr.log.nameSrv;
 		SET OutputRoot.HTTPInputHeader.RqUID 			= InputRoot.MQRFH2.usr.transactionInfoRq.transactionId;
 		SET OutputRoot.HTTPInputHeader.BankId 			= COALESCE(InputRoot.MQRFH2.usr.log.BANK_ID, UDP_BankId);

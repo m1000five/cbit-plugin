@@ -66,6 +66,8 @@ public class BAthParticularGenerator {
 			vc.put("ideRequirement", particularProject.getIdeRequirement());
 			vc.put("projectName", particularProject.getName());
 			vc.put("workspace", particularProject.getCurrentDir());
+			vc.put("BusinessServiceName", particularProject.getSrvName());
+			
 			String prefix = BUtil.getPrefix(particularProject.getNamespace(), null);
 			vc.put("prefixns", prefix);
 

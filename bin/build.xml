@@ -17,9 +17,16 @@
 	<property name="srv1" value="${ServiceName}FcdWs" />
 	<property name="srvname" value="${ServiceName}FcdWs" />
 	<property name="OperationName" value="${OperationName}" />
+	
+	<property name="org" value="${Org}" />
+	<property name="bussinessName" value="${BusinessServiceName}" />
+	<property name="projectName" value="${ServiceName}FcdWs" />
 
 	<property name="barname" value="${ServiceName}FcdWs.bar" />
 	
+	<property name="org" value="${Org}" />
+	<property name="bussinessName" value="${BusinessServiceName}" />
+	<property name="projectName" value="${ServiceName}FcdWs" />
 	
 
 
@@ -67,8 +74,6 @@
 	<target name="run" description="Create folders and build artifacts">
 		<antcall target="clean" />
 		<antcall target="checkout-model-req" />
-		<antcall target="prepare-folders" />
-		<!--antcall target="build-fmgs"/-->
 		<antcall target="artifacts-cntl-1" />
 	</target>
 
@@ -93,30 +98,23 @@
 		<echo>Cleaning up...</echo>
 		<delete dir="${workspace.dir}/${requirement}" />
 	</target>
-
-	<target name="prepare-folders" description="--> prepare folders for requirement">
+	
+	<target name="create-req-folders" description="--> prepare folders for requirement">
 		<echo>Creating req folders...</echo>
-		<mkdir dir="${workspace.dir}/${requirement}/db/db_scripts" />
-		<mkdir dir="${workspace.dir}/${requirement}/wmb/wmb_bars" />
-		<mkdir dir="${workspace.dir}/${requirement}/wmb/wmq_scripts" />
-		<mkdir dir="${workspace.dir}/${requirement}/wmb/wmb_bars/ESBBRK.PRD" />
-		<mkdir dir="${workspace.dir}/${requirement}/wmb/wmb_bars/ESBBRK.PRD/${execution.group.fmg}" />
-		<mkdir dir="${workspace.dir}/${requirement}/wmb/wmq_scripts/ESBBRK.PRD.QM" />
-
+		<mkdir dir="${workspace.dir}/${requirement}_Req_${org}_${bussinessName}/Gestion" />
+		<mkdir dir="${workspace.dir}/${requirement}_Req_${org}_${bussinessName}/Desarrollo/Scripts" />
+		<mkdir dir="${workspace.dir}/${requirement}_Req_${org}_${bussinessName}/Desarrollo/WSDL" />
 
 		<echo>Copying files to build folder...</echo>
-		<copy todir="${workspace.dir}/${requirement}/db">
-			<fileset dir="${workspace.dir}/${model.requirement}/db">
-				<include name="*.*" />
-			</fileset>
-		</copy>
-		<copy todir="${workspace.dir}/${requirement}/wmb">
-			<fileset dir="${workspace.dir}/${model.requirement}/wmb">
-				<include name="*.*" />
+		<copy todir="${workspace.dir}/${requirement}_Req_${org}_${bussinessName}/Desarrollo/Scripts">
+			<fileset dir="${workspace.dir}/${projectName}">
+				<include name="20*.sql" />
 			</fileset>
 		</copy>
 
 	</target>
+
+	
 
 	<target name="build-fmgs">
 		<subant>

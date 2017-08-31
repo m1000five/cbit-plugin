@@ -55,7 +55,8 @@ public class BAthSpecificBo implements BAthOrchestable {
 		
 		buffer.append(getType());
 		buffer.append("|");
-		buffer.append(getName() + "Svc_");
+		buffer.append(getName());
+		buffer.append("_");
 		buffer.append(getBankOrg());
 		//CNTL|"+ combocntls.getText()
 		return buffer.toString();
