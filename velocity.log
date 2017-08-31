@@ -1,148 +1,258 @@
-2017-08-30 16:46:31,947 - Initializing Velocity, Calling init()...
-2017-08-30 16:46:31,947 - Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
-2017-08-30 16:46:31,947 - Default Properties File: org\apache\velocity\runtime\defaults\velocity.properties
-2017-08-30 16:46:31,947 - Trying to use logger class org.apache.velocity.runtime.log.AvalonLogChute
-2017-08-30 16:46:31,947 - Target log system for org.apache.velocity.runtime.log.AvalonLogChute is not available (java.lang.NoClassDefFoundError: org/apache/log/format/Formatter).  Falling back to next log system...
-2017-08-30 16:46:31,948 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
-2017-08-30 16:46:31,948 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
-2017-08-30 16:46:31,950 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
-2017-08-30 16:46:31,956 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
-2017-08-30 16:46:31,957 - Loaded System Directive: org.apache.velocity.runtime.directive.Stop
-2017-08-30 16:46:31,958 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
-2017-08-30 16:46:31,959 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
-2017-08-30 16:46:31,959 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
-2017-08-30 16:46:31,959 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
-2017-08-30 16:46:31,960 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
-2017-08-30 16:46:31,961 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
-2017-08-30 16:46:31,962 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
-2017-08-30 16:46:31,963 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
-2017-08-30 16:46:31,991 - Created '20' parsers.
-2017-08-30 16:46:31,995 - Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
-2017-08-30 16:46:31,995 - Could not load resource 'VM_global_library.vm' from ResourceLoader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader: ClasspathResourceLoader Error: cannot find resource VM_global_library.vm
-2017-08-30 16:46:31,995 - Velocimacro : Default library not found.
-2017-08-30 16:46:31,995 - Velocimacro : allowInline = true : VMs can be defined inline in templates
-2017-08-30 16:46:31,995 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
-2017-08-30 16:46:31,995 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
-2017-08-30 16:46:31,995 - Velocimacro : autoload off : VM system will not automatically reload global library macros
-2017-08-30 16:46:31,998 - Log4JLogChute initialized using file 'velocity.log'
-2017-08-30 16:46:31,998 - Initializing Velocity, Calling init()...
-2017-08-30 16:46:31,998 - Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
-2017-08-30 16:46:31,998 - Default Properties File: org\apache\velocity\runtime\defaults\velocity.properties
-2017-08-30 16:46:31,998 - Trying to use logger class org.apache.velocity.runtime.log.AvalonLogChute
-2017-08-30 16:46:31,998 - Target log system for org.apache.velocity.runtime.log.AvalonLogChute is not available (java.lang.NoClassDefFoundError: org/apache/log/format/Formatter).  Falling back to next log system...
-2017-08-30 16:46:31,998 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
-2017-08-30 16:46:31,998 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
-2017-08-30 16:46:31,999 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
-2017-08-30 16:46:31,999 - Do unicode file recognition:  false
-2017-08-30 16:46:31,999 - FileResourceLoader : adding path '.'
-2017-08-30 16:46:31,999 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
-2017-08-30 16:46:32,000 - Loaded System Directive: org.apache.velocity.runtime.directive.Stop
-2017-08-30 16:46:32,000 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
-2017-08-30 16:46:32,000 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
-2017-08-30 16:46:32,000 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
-2017-08-30 16:46:32,000 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
-2017-08-30 16:46:32,000 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
-2017-08-30 16:46:32,000 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
-2017-08-30 16:46:32,000 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
-2017-08-30 16:46:32,000 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
-2017-08-30 16:46:32,001 - Created '20' parsers.
-2017-08-30 16:46:32,001 - Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
-2017-08-30 16:46:32,001 - Velocimacro : Default library not found.
-2017-08-30 16:46:32,001 - Velocimacro : allowInline = true : VMs can be defined inline in templates
-2017-08-30 16:46:32,001 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
-2017-08-30 16:46:32,001 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
-2017-08-30 16:46:32,001 - Velocimacro : autoload off : VM system will not automatically reload global library macros
-2017-08-30 16:46:32,037 - ResourceManager : found athparticular.xml with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
-2017-08-30 16:46:32,044 - ResourceManager : found ServiceNameSvcOperationName_REQ.msgflow with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
-2017-08-30 16:46:32,082 - ResourceManager : found ServiceNameSvcOperationName_REQ.esql with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
-untime.resource.loader.ClasspathResourceLoader
-2017-08-30 16:46:32,082 - ResourceManager : found ServiceNameSvcOperationName_REQ.esql with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
-2017-08-30 16:55:56,222 - Log4JLogChute initialized using file 'velocity.log'
-2017-08-30 16:55:56,223 - Initializing Velocity, Calling init()...
-2017-08-30 16:55:56,223 - Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
-2017-08-30 16:55:56,223 - Default Properties File: org\apache\velocity\runtime\defaults\velocity.properties
-2017-08-30 16:55:56,223 - Trying to use logger class org.apache.velocity.runtime.log.AvalonLogChute
-2017-08-30 16:55:56,223 - Target log system for org.apache.velocity.runtime.log.AvalonLogChute is not available (java.lang.NoClassDefFoundError: org/apache/log/format/Formatter).  Falling back to next log system...
-2017-08-30 16:55:56,223 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
-2017-08-30 16:55:56,223 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
-2017-08-30 16:55:56,225 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
-2017-08-30 16:55:56,231 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
-2017-08-30 16:55:56,232 - Loaded System Directive: org.apache.velocity.runtime.directive.Stop
-2017-08-30 16:55:56,233 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
-2017-08-30 16:55:56,233 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
-2017-08-30 16:55:56,234 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
-2017-08-30 16:55:56,234 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
-2017-08-30 16:55:56,235 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
-2017-08-30 16:55:56,236 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
-2017-08-30 16:55:56,237 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
-2017-08-30 16:55:56,238 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
-2017-08-30 16:55:56,266 - Created '20' parsers.
-2017-08-30 16:55:56,270 - Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
-2017-08-30 16:55:56,270 - Could not load resource 'VM_global_library.vm' from ResourceLoader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader: ClasspathResourceLoader Error: cannot find resource VM_global_library.vm
-2017-08-30 16:55:56,270 - Velocimacro : Default library not found.
-2017-08-30 16:55:56,270 - Velocimacro : allowInline = true : VMs can be defined inline in templates
-2017-08-30 16:55:56,270 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
-2017-08-30 16:55:56,270 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
-2017-08-30 16:55:56,270 - Velocimacro : autoload off : VM system will not automatically reload global library macros
-2017-08-30 16:55:56,272 - Log4JLogChute initialized using file 'velocity.log'
-2017-08-30 16:55:56,272 - Log4JLogChute initialized using file 'velocity.log'
-2017-08-30 16:55:56,273 - Initializing Velocity, Calling init()...
-2017-08-30 16:55:56,273 - Initializing Velocity, Calling init()...
-2017-08-30 16:55:56,273 - Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
-2017-08-30 16:55:56,273 - Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
-2017-08-30 16:55:56,273 - Default Properties File: org\apache\velocity\runtime\defaults\velocity.properties
-2017-08-30 16:55:56,273 - Default Properties File: org\apache\velocity\runtime\defaults\velocity.properties
-2017-08-30 16:55:56,273 - Trying to use logger class org.apache.velocity.runtime.log.AvalonLogChute
-2017-08-30 16:55:56,273 - Trying to use logger class org.apache.velocity.runtime.log.AvalonLogChute
-2017-08-30 16:55:56,273 - Target log system for org.apache.velocity.runtime.log.AvalonLogChute is not available (java.lang.NoClassDefFoundError: org/apache/log/format/Formatter).  Falling back to next log system...
-2017-08-30 16:55:56,273 - Target log system for org.apache.velocity.runtime.log.AvalonLogChute is not available (java.lang.NoClassDefFoundError: org/apache/log/format/Formatter).  Falling back to next log system...
-2017-08-30 16:55:56,273 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
-2017-08-30 16:55:56,273 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
-2017-08-30 16:55:56,273 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
-2017-08-30 16:55:56,273 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
-2017-08-30 16:55:56,274 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
-2017-08-30 16:55:56,274 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
-2017-08-30 16:55:56,274 - Do unicode file recognition:  false
-2017-08-30 16:55:56,274 - Do unicode file recognition:  false
-2017-08-30 16:55:56,274 - FileResourceLoader : adding path '.'
-2017-08-30 16:55:56,274 - FileResourceLoader : adding path '.'
-2017-08-30 16:55:56,274 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
-2017-08-30 16:55:56,274 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
-2017-08-30 16:55:56,275 - Loaded System Directive: org.apache.velocity.runtime.directive.Stop
-2017-08-30 16:55:56,275 - Loaded System Directive: org.apache.velocity.runtime.directive.Stop
-2017-08-30 16:55:56,275 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
-2017-08-30 16:55:56,275 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
-2017-08-30 16:55:56,275 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
-2017-08-30 16:55:56,275 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
-2017-08-30 16:55:56,275 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
-2017-08-30 16:55:56,275 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
-2017-08-30 16:55:56,275 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
-2017-08-30 16:55:56,275 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
-2017-08-30 16:55:56,275 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
-2017-08-30 16:55:56,275 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
-2017-08-30 16:55:56,275 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
-2017-08-30 16:55:56,275 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
-2017-08-30 16:55:56,275 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
-2017-08-30 16:55:56,275 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
-2017-08-30 16:55:56,275 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
-2017-08-30 16:55:56,275 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
-2017-08-30 16:55:56,275 - Created '20' parsers.
-2017-08-30 16:55:56,275 - Created '20' parsers.
-2017-08-30 16:55:56,276 - Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
-2017-08-30 16:55:56,276 - Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
-2017-08-30 16:55:56,276 - Velocimacro : Default library not found.
-2017-08-30 16:55:56,276 - Velocimacro : Default library not found.
-2017-08-30 16:55:56,276 - Velocimacro : allowInline = true : VMs can be defined inline in templates
-2017-08-30 16:55:56,276 - Velocimacro : allowInline = true : VMs can be defined inline in templates
-2017-08-30 16:55:56,276 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
-2017-08-30 16:55:56,276 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
-2017-08-30 16:55:56,276 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
-2017-08-30 16:55:56,276 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
-2017-08-30 16:55:56,276 - Velocimacro : autoload off : VM system will not automatically reload global library macros
-2017-08-30 16:55:56,276 - Velocimacro : autoload off : VM system will not automatically reload global library macros
-2017-08-30 16:55:56,302 - ResourceManager : found athparticular.xml with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
-2017-08-30 16:55:56,302 - ResourceManager : found athparticular.xml with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
-2017-08-30 16:55:56,311 - ResourceManager : found ServiceNameSvcOperationName_REQ.msgflow with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
-2017-08-30 16:55:56,311 - ResourceManager : found ServiceNameSvcOperationName_REQ.msgflow with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
-2017-08-30 16:55:56,318 - ResourceManager : found ServiceNameSvcOperationName_REQ.esql with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
-2017-08-30 16:55:56,318 - ResourceManager : found ServiceNameSvcOperationName_REQ.esql with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+2017-08-31 17:10:18,300 - Initializing Velocity, Calling init()...
+2017-08-31 17:10:18,300 - Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
+2017-08-31 17:10:18,300 - Default Properties File: org\apache\velocity\runtime\defaults\velocity.properties
+2017-08-31 17:10:18,300 - Trying to use logger class org.apache.velocity.runtime.log.AvalonLogChute
+2017-08-31 17:10:18,300 - Target log system for org.apache.velocity.runtime.log.AvalonLogChute is not available (java.lang.NoClassDefFoundError: org/apache/log/format/Formatter).  Falling back to next log system...
+2017-08-31 17:10:18,300 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
+2017-08-31 17:10:18,300 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
+2017-08-31 17:10:18,303 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+2017-08-31 17:10:18,313 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+2017-08-31 17:10:18,314 - Loaded System Directive: org.apache.velocity.runtime.directive.Stop
+2017-08-31 17:10:18,315 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
+2017-08-31 17:10:18,316 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
+2017-08-31 17:10:18,317 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+2017-08-31 17:10:18,318 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+2017-08-31 17:10:18,319 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+2017-08-31 17:10:18,320 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+2017-08-31 17:10:18,321 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
+2017-08-31 17:10:18,322 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+2017-08-31 17:10:18,351 - Created '20' parsers.
+2017-08-31 17:10:18,356 - Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
+2017-08-31 17:10:18,356 - Could not load resource 'VM_global_library.vm' from ResourceLoader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader: ClasspathResourceLoader Error: cannot find resource VM_global_library.vm
+2017-08-31 17:10:18,356 - Velocimacro : Default library not found.
+2017-08-31 17:10:18,356 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2017-08-31 17:10:18,356 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+2017-08-31 17:10:18,357 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+2017-08-31 17:10:18,357 - Velocimacro : autoload off : VM system will not automatically reload global library macros
+2017-08-31 17:10:18,359 - Log4JLogChute initialized using file 'velocity.log'
+2017-08-31 17:10:18,359 - Initializing Velocity, Calling init()...
+2017-08-31 17:10:18,359 - Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
+2017-08-31 17:10:18,359 - Default Properties File: org\apache\velocity\runtime\defaults\velocity.properties
+2017-08-31 17:10:18,359 - Trying to use logger class org.apache.velocity.runtime.log.AvalonLogChute
+2017-08-31 17:10:18,359 - Target log system for org.apache.velocity.runtime.log.AvalonLogChute is not available (java.lang.NoClassDefFoundError: org/apache/log/format/Formatter).  Falling back to next log system...
+2017-08-31 17:10:18,359 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
+2017-08-31 17:10:18,359 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
+2017-08-31 17:10:18,361 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2017-08-31 17:10:18,361 - Do unicode file recognition:  false
+2017-08-31 17:10:18,361 - FileResourceLoader : adding path '.'
+2017-08-31 17:10:18,361 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+2017-08-31 17:10:18,361 - Loaded System Directive: org.apache.velocity.runtime.directive.Stop
+2017-08-31 17:10:18,361 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
+2017-08-31 17:10:18,361 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
+2017-08-31 17:10:18,361 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+2017-08-31 17:10:18,361 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+2017-08-31 17:10:18,361 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+2017-08-31 17:10:18,361 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+2017-08-31 17:10:18,361 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
+2017-08-31 17:10:18,362 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+2017-08-31 17:10:18,362 - Created '20' parsers.
+2017-08-31 17:10:18,362 - Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
+2017-08-31 17:10:18,362 - Velocimacro : Default library not found.
+2017-08-31 17:10:18,362 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2017-08-31 17:10:18,362 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+2017-08-31 17:10:18,362 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+2017-08-31 17:10:18,362 - Velocimacro : autoload off : VM system will not automatically reload global library macros
+2017-08-31 17:10:18,378 - ResourceManager : found athproject.xml with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+2017-08-31 17:10:18,386 - ResourceManager : found ServiceNameSvcFcdWs_REQ.msgflow with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+2017-08-31 17:10:18,393 - ResourceManager : found ServiceNameSvcFcdWs_REQ.esql with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+2017-08-31 17:10:18,395 - ResourceManager : found ServiceNameSvcFcdWs_RES.msgflow with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+2017-08-31 17:10:18,396 - ResourceManager : found Colas_MigracionBUS_ServiceNameSvc_Reqxxxx.mq with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+2017-08-31 17:10:18,398 - ResourceManager : found Reverso_Colas_MigracionBUS_ServiceNameSvc_Reqxxxx.mq with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+2017-08-31 17:10:18,400 - ResourceManager : found 20.GCAM.FO.73.Categorizacion_ServiceName_Reqxxxx.sql with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+2017-08-31 17:10:18,401 - Null reference [template '20.GCAM.FO.73.Categorizacion_ServiceName_Reqxxxx.sql', line 32, column 399] : $INSTANCE cannot be resolved.
+2017-08-31 17:10:18,403 - ResourceManager : found 20.GCAM.FO.73.Reverso_Categorizacion_ServiceName_Reqxxxx.sql with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+2017-08-31 17:10:18,403 - Null reference [template '20.GCAM.FO.73.Reverso_Categorizacion_ServiceName_Reqxxxx.sql', line 32, column 399] : $INSTANCE cannot be resolved.
+2017-08-31 17:10:18,414 - ResourceManager : found build.xml with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+2017-08-31 17:10:18,414 - Null reference [template 'build.xml', line 14, column 43] : ${developer} cannot be resolved.
+2017-08-31 17:10:18,414 - Null reference [template 'build.xml', line 19, column 47] : ${BusinessServiceName} cannot be resolved.
+2017-08-31 17:10:18,414 - Null reference [template 'build.xml', line 23, column 47] : ${BusinessServiceName} cannot be resolved.
+2017-08-31 17:10:18,419 - Null reference [template 'build.xml', line 52, column 96] : ${workspace.dir} cannot be resolved.
+2017-08-31 17:10:18,419 - Null reference [template 'build.xml', line 54, column 69] : ${workspace.dir} cannot be resolved.
+2017-08-31 17:10:18,419 - Null reference [template 'build.xml', line 63, column 30] : ${workspace.dir} cannot be resolved.
+2017-08-31 17:10:18,419 - Null reference [template 'build.xml', line 63, column 47] : ${model.requirement} cannot be resolved.
+2017-08-31 17:10:18,419 - Null reference [template 'build.xml', line 67, column 45] : ${workspace.dir} cannot be resolved.
+2017-08-31 17:10:18,419 - Null reference [template 'build.xml', line 68, column 40] : ${svnant.this.url} cannot be resolved.
+2017-08-31 17:10:18,419 - Null reference [template 'build.xml', line 68, column 70] : ${svnant.repository.user} cannot be resolved.
+2017-08-31 17:10:18,419 - Null reference [template 'build.xml', line 68, column 107] : ${svnant.repository.passwd} cannot be resolved.
+2017-08-31 17:10:18,420 - Null reference [template 'build.xml', line 81, column 30] : ${workspace.dir} cannot be resolved.
+2017-08-31 17:10:18,420 - Null reference [template 'build.xml', line 81, column 47] : ${requirement} cannot be resolved.
+2017-08-31 17:10:18,420 - Null reference [template 'build.xml', line 86, column 29] : ${workspace.dir} cannot be resolved.
+2017-08-31 17:10:18,420 - Null reference [template 'build.xml', line 86, column 46] : ${requirement} cannot be resolved.
+2017-08-31 17:10:18,420 - Null reference [template 'build.xml', line 86, column 65] : ${org} cannot be resolved.
+2017-08-31 17:10:18,420 - Null reference [template 'build.xml', line 86, column 72] : ${bussinessName} cannot be resolved.
+2017-08-31 17:10:18,420 - Null reference [template 'build.xml', line 87, column 29] : ${workspace.dir} cannot be resolved.
+2017-08-31 17:10:18,420 - Null reference [template 'build.xml', line 87, column 46] : ${requirement} cannot be resolved.
+2017-08-31 17:10:18,420 - Null reference [template 'build.xml', line 87, column 65] : ${org} cannot be resolved.
+2017-08-31 17:10:18,420 - Null reference [template 'build.xml', line 87, column 72] : ${bussinessName} cannot be resolved.
+2017-08-31 17:10:18,420 - Null reference [template 'build.xml', line 88, column 29] : ${workspace.dir} cannot be resolved.
+2017-08-31 17:10:18,420 - Null reference [template 'build.xml', line 88, column 46] : ${requirement} cannot be resolved.
+2017-08-31 17:10:18,420 - Null reference [template 'build.xml', line 88, column 65] : ${org} cannot be resolved.
+2017-08-31 17:10:18,420 - Null reference [template 'build.xml', line 88, column 72] : ${bussinessName} cannot be resolved.
+2017-08-31 17:10:18,420 - Null reference [template 'build.xml', line 91, column 30] : ${workspace.dir} cannot be resolved.
+2017-08-31 17:10:18,421 - Null reference [template 'build.xml', line 91, column 47] : ${requirement} cannot be resolved.
+2017-08-31 17:10:18,421 - Null reference [template 'build.xml', line 91, column 66] : ${org} cannot be resolved.
+2017-08-31 17:10:18,421 - Null reference [template 'build.xml', line 91, column 73] : ${bussinessName} cannot be resolved.
+2017-08-31 17:10:18,421 - Null reference [template 'build.xml', line 92, column 39] : ${workspace.dir} cannot be resolved.
+2017-08-31 17:10:18,421 - Null reference [template 'build.xml', line 105, column 48] : ${fmg1} cannot be resolved.
+2017-08-31 17:10:18,421 - Null reference [template 'build.xml', line 116, column 30] : ${workspace.dir} cannot be resolved.
+2017-08-31 17:10:18,421 - Null reference [template 'build.xml', line 116, column 47] : ${requirement} cannot be resolved.
+2017-08-31 17:10:18,421 - Null reference [template 'build.xml', line 117, column 39] : ${workspace.dir} cannot be resolved.
+2017-08-31 17:10:18,421 - Null reference [template 'build.xml', line 117, column 56] : ${srv1} cannot be resolved.
+2017-08-31 17:10:18,421 - Null reference [template 'build.xml', line 122, column 30] : ${workspace.dir} cannot be resolved.
+2017-08-31 17:10:18,421 - Null reference [template 'build.xml', line 122, column 47] : ${requirement} cannot be resolved.
+2017-08-31 17:10:18,421 - Null reference [template 'build.xml', line 123, column 39] : ${workspace.dir} cannot be resolved.
+2017-08-31 17:10:18,421 - Null reference [template 'build.xml', line 123, column 56] : ${srv1} cannot be resolved.
+2017-08-31 17:10:18,421 - Null reference [template 'build.xml', line 130, column 39] : ${workspace.dir} cannot be resolved.
+2017-08-31 17:10:18,421 - Null reference [template 'build.xml', line 131, column 39] : ${workspace.dir} cannot be resolved.
+2017-08-31 17:10:18,421 - Null reference [template 'build.xml', line 131, column 56] : ${requirement} cannot be resolved.
+2017-08-31 17:10:18,421 - Null reference [template 'build.xml', line 131, column 95] : ${execution.group.cntl} cannot be resolved.
+2017-08-31 17:10:18,421 - Null reference [template 'build.xml', line 131, column 119] : ${srv1} cannot be resolved.
+2017-08-31 17:10:18,422 - Null reference [template 'build.xml', line 132, column 39] : ${srv1} cannot be resolved.
+2017-08-31 17:10:18,422 - Null reference [template 'build.xml', line 134, column 47] : ${MQSI_JARPATH} cannot be resolved.
+2017-08-31 17:10:18,422 - Null reference [template 'build.xml', line 145, column 45] : ${barname} cannot be resolved.
+2017-08-31 17:10:18,422 - Null reference [template 'build.xml', line 196, column 43] : ${rquid} cannot be resolved.
+2017-08-31 17:10:18,422 - Null reference [template 'build.xml', line 204, column 37] : ${rquid} cannot be resolved.
+2017-08-31 17:10:18,422 - Null reference [template 'build.xml', line 212, column 32] : ${file.request.xml} cannot be resolved.
+2017-08-31 17:10:18,422 - Null reference [template 'build.xml', line 232, column 37] : ${rquid} cannot be resolved.
+2017-08-31 17:10:18,422 - Null reference [template 'build.xml', line 247, column 43] : ${rquid} cannot be resolved.
+2017-08-31 17:10:18,422 - Null reference [template 'build.xml', line 255, column 37] : ${rquid} cannot be resolved.
+2017-08-31 17:10:18,422 - Null reference [template 'build.xml', line 270, column 32] : ${file.request.xml} cannot be resolved.
+2017-08-31 17:10:18,422 - Null reference [template 'build.xml', line 316, column 53] : ${rquid} cannot be resolved.
+2017-08-31 17:10:18,422 - Null reference [template 'build.xml', line 341, column 43] : ${rquid} cannot be resolved.
+2017-08-31 17:10:18,422 - Null reference [template 'build.xml', line 349, column 37] : ${rquid} cannot be resolved.
+2017-08-31 17:10:18,422 - Null reference [template 'build.xml', line 364, column 32] : ${file.request.xml} cannot be resolved.
+2017-08-31 17:10:18,422 - Null reference [template 'build.xml', line 410, column 53] : ${rquid} cannot be resolved.
+2017-08-31 17:10:18,422 - Null reference [template 'build.xml', line 434, column 43] : ${rquid} cannot be resolved.
+2017-08-31 17:10:18,422 - Null reference [template 'build.xml', line 442, column 37] : ${rquid} cannot be resolved.
+2017-08-31 17:10:18,422 - Null reference [template 'build.xml', line 457, column 32] : ${file.request.xml} cannot be resolved.
+2017-08-31 17:10:18,423 - Null reference [template 'build.xml', line 509, column 53] : ${rquid} cannot be resolved.
+2017-08-31 17:10:18,423 - Null reference [template 'build.xml', line 539, column 43] : ${rquid} cannot be resolved.
+2017-08-31 17:10:18,423 - Null reference [template 'build.xml', line 547, column 37] : ${rquid} cannot be resolved.
+2017-08-31 17:10:18,423 - Null reference [template 'build.xml', line 552, column 57] : ${rquid} cannot be resolved.
+2017-08-31 17:10:18,423 - Null reference [template 'build.xml', line 558, column 33] : ${bank} cannot be resolved.
+2017-08-31 17:10:18,423 - Null reference [template 'build.xml', line 560, column 32] : ${bank} cannot be resolved.
+2017-08-31 17:10:18,423 - Null reference [template 'build.xml', line 590, column 32] : ${file.request.xml} cannot be resolved.
+2017-08-31 17:10:18,423 - Null reference [template 'build.xml', line 611, column 32] : ${file.response.xml} cannot be resolved.
+2017-08-31 17:10:18,423 - Null reference [template 'build.xml', line 619, column 37] : ${rquid} cannot be resolved.
+2017-08-31 17:10:18,423 - Null reference [template 'build.xml', line 632, column 43] : ${rquid} cannot be resolved.
+2017-08-31 17:10:18,423 - Null reference [template 'build.xml', line 640, column 37] : ${rquid} cannot be resolved.
+2017-08-31 17:10:18,423 - Null reference [template 'build.xml', line 648, column 32] : ${file.request.xml} cannot be resolved.
+2017-08-31 17:10:18,423 - Null reference [template 'build.xml', line 669, column 32] : ${file.response.xml} cannot be resolved.
+2017-08-31 17:10:18,423 - Null reference [template 'build.xml', line 677, column 37] : ${rquid} cannot be resolved.
+2017-08-31 17:10:18,423 - Null reference [template 'build.xml', line 685, column 48] : ${srv1} cannot be resolved.
+2017-08-31 17:10:18,423 - Null reference [template 'build.xml', line 689, column 43] : ${mqtool.dir.bin} cannot be resolved.
+2017-08-31 17:10:18,423 - Null reference [template 'build.xml', line 689, column 80] : ${workspace.dir} cannot be resolved.
+2017-08-31 17:10:18,423 - Null reference [template 'build.xml', line 689, column 97] : ${srv1} cannot be resolved.
+2017-08-31 17:10:18,424 - Null reference [template 'build.xml', line 692, column 45] : ${mqtool.arg.qmname} cannot be resolved.
+2017-08-31 17:10:18,424 - Null reference [template 'build.xml', line 694, column 45] : ${mqtool.arg.port} cannot be resolved.
+2017-08-31 17:10:18,424 - Null reference [template 'build.xml', line 696, column 45] : ${mqtool.arg.queuetest} cannot be resolved.
+2017-08-31 17:10:18,424 - Null reference [template 'build.xml', line 698, column 49] : ${srvname} cannot be resolved.
+2017-08-31 17:10:18,424 - Null reference [template 'build.xml', line 700, column 45] : ${srvname} cannot be resolved.
+2017-08-31 17:10:18,424 - Null reference [template 'build.xml', line 704, column 64] : ${workspace.dir} cannot be resolved.
+2017-08-31 17:10:18,424 - Null reference [template 'build.xml', line 705, column 60] : ${java.class.path} cannot be resolved.
+2017-08-31 17:10:18,424 - Null reference [template 'build.xml', line 719, column 64] : ${workspace.dir} cannot be resolved.
+2017-08-31 17:10:18,424 - Null reference [template 'build.xml', line 720, column 55] : ${workspace.dir} cannot be resolved.
+2017-08-31 17:10:18,424 - Null reference [template 'build.xml', line 726, column 49] : ${mqtool.arg.ip.qa} cannot be resolved.
+2017-08-31 17:10:18,424 - Null reference [template 'build.xml', line 726, column 69] : ${svnant.repository.user} cannot be resolved.
+2017-08-31 17:10:18,424 - Null reference [template 'build.xml', line 726, column 95] : ${svnant.repository.user} cannot be resolved.
+2017-08-31 17:10:18,424 - Null reference [template 'build.xml', line 726, column 121] : ${srvname} cannot be resolved.
+2017-08-31 17:10:18,424 - Null reference [template 'build.xml', line 728, column 45] : ${mqtool.arg.ip.qa} cannot be resolved.
+2017-08-31 17:10:18,424 - Null reference [template 'build.xml', line 729, column 45] : ${svnant.repository.user} cannot be resolved.
+2017-08-31 17:10:18,424 - Null reference [template 'build.xml', line 730, column 45] : ${svnant.repository.user} cannot be resolved.
+2017-08-31 17:10:18,424 - Null reference [template 'build.xml', line 731, column 45] : ${srvname} cannot be resolved.
+2017-08-31 17:10:18,425 - Null reference [template 'build.xml', line 733, column 64] : ${workspace.dir} cannot be resolved.
+2017-08-31 17:10:18,425 - Null reference [template 'build.xml', line 734, column 60] : ${java.class.path} cannot be resolved.
+2017-08-31 17:10:18,425 - Null reference [template 'build.xml', line 742, column 48] : ${srv1} cannot be resolved.
+2017-08-31 17:10:18,425 - Null reference [template 'build.xml', line 746, column 43] : ${mqtool.dir.bin} cannot be resolved.
+2017-08-31 17:10:18,425 - Null reference [template 'build.xml', line 746, column 79] : ${workspace.dir} cannot be resolved.
+2017-08-31 17:10:18,425 - Null reference [template 'build.xml', line 746, column 96] : ${srv1} cannot be resolved.
+2017-08-31 17:10:18,425 - Null reference [template 'build.xml', line 749, column 45] : ${mqtool.arg.qmname.dev} cannot be resolved.
+2017-08-31 17:10:18,425 - Null reference [template 'build.xml', line 750, column 45] : ${mqtool.arg.ip.dev} cannot be resolved.
+2017-08-31 17:10:18,425 - Null reference [template 'build.xml', line 751, column 45] : ${mqtool.arg.port.dev} cannot be resolved.
+2017-08-31 17:10:18,425 - Null reference [template 'build.xml', line 752, column 45] : ${mqtool.arg.channel.dev} cannot be resolved.
+2017-08-31 17:10:18,425 - Null reference [template 'build.xml', line 753, column 45] : ${mqtool.arg.queuetest.dev} cannot be resolved.
+2017-08-31 17:10:18,425 - Null reference [template 'build.xml', line 755, column 49] : ${mqtool.arg.ip.dev} cannot be resolved.
+2017-08-31 17:10:18,425 - Null reference [template 'build.xml', line 755, column 70] : ${svnant.repository.user} cannot be resolved.
+2017-08-31 17:10:18,425 - Null reference [template 'build.xml', line 755, column 96] : ${svnant.repository.user} cannot be resolved.
+2017-08-31 17:10:18,425 - Null reference [template 'build.xml', line 755, column 122] : ${srvname} cannot be resolved.
+2017-08-31 17:10:18,425 - Null reference [template 'build.xml', line 757, column 45] : ${mqtool.arg.ip.dev} cannot be resolved.
+2017-08-31 17:10:18,425 - Null reference [template 'build.xml', line 758, column 45] : ${svnant.repository.user} cannot be resolved.
+2017-08-31 17:10:18,425 - Null reference [template 'build.xml', line 759, column 45] : ${svnant.repository.user} cannot be resolved.
+2017-08-31 17:10:18,425 - Null reference [template 'build.xml', line 760, column 45] : ${srvname} cannot be resolved.
+2017-08-31 17:10:18,426 - Null reference [template 'build.xml', line 762, column 64] : ${workspace.dir} cannot be resolved.
+2017-08-31 17:10:18,426 - Null reference [template 'build.xml', line 763, column 60] : ${java.class.path} cannot be resolved.
+2017-08-31 17:10:18,426 - Null reference [template 'build.xml', line 773, column 55] : ${srvname} cannot be resolved.
+2017-08-31 17:10:18,426 - Null reference [template 'build.xml', line 775, column 44] : ${srvname} cannot be resolved.
+2017-08-31 17:10:18,426 - Null reference [template 'build.xml', line 775, column 55] : ${TODAY_MY} cannot be resolved.
+2017-08-31 17:10:18,426 - Null reference [template 'build.xml', line 777, column 45] : ${srvname} cannot be resolved.
+2017-08-31 17:10:18,426 - Null reference [template 'build.xml', line 777, column 56] : ${TODAY_MY} cannot be resolved.
+2017-08-31 17:10:18,426 - Null reference [template 'build.xml', line 778, column 39] : ${workspace.dir} cannot be resolved.
+2017-08-31 17:10:18,426 - Null reference [template 'build.xml', line 778, column 56] : ${srv1} cannot be resolved.
+2017-08-31 17:10:18,426 - Null reference [template 'build.xml', line 779, column 48] : ${srvname} cannot be resolved.
+2017-08-31 17:10:18,426 - Null reference [template 'build.xml', line 786, column 52] : ${srvname} cannot be resolved.
+2017-08-31 17:10:18,426 - Null reference [template 'build.xml', line 786, column 63] : ${TODAY_MY} cannot be resolved.
+2017-08-31 17:10:18,426 - Null reference [template 'build.xml', line 787, column 52] : ${srvname} cannot be resolved.
+2017-08-31 17:10:18,426 - Null reference [template 'build.xml', line 787, column 63] : ${TODAY_MY} cannot be resolved.
+2017-08-31 17:10:18,426 - Null reference [template 'build.xml', line 787, column 75] : ${srvname} cannot be resolved.
+2017-08-31 17:10:18,426 - Null reference [template 'build.xml', line 793, column 52] : ${srvname} cannot be resolved.
+2017-08-31 17:10:18,426 - Null reference [template 'build.xml', line 793, column 63] : ${TODAY_MY} cannot be resolved.
+2017-08-31 17:10:18,426 - Null reference [template 'build.xml', line 800, column 56] : ${srvname} cannot be resolved.
+2017-08-31 17:10:18,426 - Null reference [template 'build.xml', line 801, column 46] : ${workspace.dir} cannot be resolved.
+2017-08-31 17:10:18,426 - Null reference [template 'build.xml', line 801, column 63] : ${srv1} cannot be resolved.
+2017-08-31 17:10:18,426 - Null reference [template 'build.xml', line 804, column 77] : ${srvname} cannot be resolved.
+2017-08-31 17:10:18,426 - Null reference [template 'build.xml', line 805, column 37] : ${workspace.dir} cannot be resolved.
+2017-08-31 17:10:18,426 - Null reference [template 'build.xml', line 805, column 54] : ${srv1} cannot be resolved.
+2017-08-31 17:10:18,426 - Null reference [template 'build.xml', line 808, column 49] : ${srvname} cannot be resolved.
+2017-08-31 17:10:18,427 - Null reference [template 'build.xml', line 810, column 37] : ${srvname} cannot be resolved.
+2017-08-31 17:10:18,427 - Null reference [template 'build.xml', line 811, column 37] : ${workspace.dir} cannot be resolved.
+2017-08-31 17:10:18,427 - Null reference [template 'build.xml', line 811, column 54] : ${srv1} cannot be resolved.
+2017-08-31 17:10:18,427 - Null reference [template 'build.xml', line 814, column 56] : ${workspace.dir} cannot be resolved.
+2017-08-31 17:10:18,427 - Null reference [template 'build.xml', line 815, column 52] : ${java.class.path} cannot be resolved.
+2017-08-31 17:10:18,427 - Null reference [template 'build.xml', line 821, column 55] : ${srvname} cannot be resolved.
+2017-08-31 17:10:18,427 - Null reference [template 'build.xml', line 822, column 46] : ${workspace.dir} cannot be resolved.
+2017-08-31 17:10:18,427 - Null reference [template 'build.xml', line 822, column 63] : ${srv1} cannot be resolved.
+2017-08-31 17:10:18,427 - Null reference [template 'build.xml', line 825, column 77] : ${srvname} cannot be resolved.
+2017-08-31 17:10:18,427 - Null reference [template 'build.xml', line 826, column 37] : ${workspace.dir} cannot be resolved.
+2017-08-31 17:10:18,427 - Null reference [template 'build.xml', line 826, column 54] : ${srv1} cannot be resolved.
+2017-08-31 17:10:18,427 - Null reference [template 'build.xml', line 829, column 49] : ${srvname} cannot be resolved.
+2017-08-31 17:10:18,427 - Null reference [template 'build.xml', line 831, column 37] : ${srvname} cannot be resolved.
+2017-08-31 17:10:18,427 - Null reference [template 'build.xml', line 832, column 37] : ${workspace.dir} cannot be resolved.
+2017-08-31 17:10:18,427 - Null reference [template 'build.xml', line 832, column 54] : ${srv1} cannot be resolved.
+2017-08-31 17:10:18,427 - Null reference [template 'build.xml', line 835, column 56] : ${workspace.dir} cannot be resolved.
+2017-08-31 17:10:18,427 - Null reference [template 'build.xml', line 836, column 52] : ${java.class.path} cannot be resolved.
+2017-08-31 17:10:18,427 - Null reference [template 'build.xml', line 843, column 41] : ${mqtool.arg.ip.qa} cannot be resolved.
+2017-08-31 17:10:18,427 - Null reference [template 'build.xml', line 843, column 61] : ${svnant.repository.user} cannot be resolved.
+2017-08-31 17:10:18,428 - Null reference [template 'build.xml', line 843, column 87] : ${svnant.repository.user} cannot be resolved.
+2017-08-31 17:10:18,428 - Null reference [template 'build.xml', line 843, column 113] : ${srvname} cannot be resolved.
+2017-08-31 17:10:18,428 - Null reference [template 'build.xml', line 845, column 37] : ${mqtool.arg.ip.qa} cannot be resolved.
+2017-08-31 17:10:18,428 - Null reference [template 'build.xml', line 846, column 37] : ${svnant.repository.user} cannot be resolved.
+2017-08-31 17:10:18,428 - Null reference [template 'build.xml', line 847, column 37] : ${svnant.repository.user} cannot be resolved.
+2017-08-31 17:10:18,428 - Null reference [template 'build.xml', line 848, column 37] : ${srvname} cannot be resolved.
+2017-08-31 17:10:18,428 - Null reference [template 'build.xml', line 850, column 56] : ${workspace.dir} cannot be resolved.
+2017-08-31 17:10:18,428 - Null reference [template 'build.xml', line 851, column 52] : ${java.class.path} cannot be resolved.
+2017-08-31 17:10:18,428 - Null reference [template 'build.xml', line 863, column 32] : ${file.response.xml} cannot be resolved.
+2017-08-31 17:10:18,428 - Null reference [template 'build.xml', line 868, column 84] : ${xmltest.response.op} cannot be resolved.
+2017-08-31 17:10:18,428 - Null reference [template 'build.xml', line 870, column 80] : ${xmltest.response.msg} cannot be resolved.
+2017-08-31 17:10:18,428 - Null reference [template 'build.xml', line 871, column 85] : ${xmltest.response.msg} cannot be resolved.
+2017-08-31 17:10:18,428 - Null reference [template 'build.xml', line 872, column 78] : ${xmltest.response.msg} cannot be resolved.
+2017-08-31 17:10:18,428 - Null reference [template 'build.xml', line 873, column 74] : ${xmltest.response.msg} cannot be resolved.
+2017-08-31 17:10:18,428 - Null reference [template 'build.xml', line 876, column 100] : ${xmltest.response.op} cannot be resolved.
+2017-08-31 17:10:18,428 - Null reference [template 'build.xml', line 930, column 37] : ${wsdl} cannot be resolved.
+2017-08-31 17:10:18,428 - Null reference [template 'build.xml', line 934, column 56] : ${workspace.dir} cannot be resolved.
+2017-08-31 17:10:18,428 - Null reference [template 'build.xml', line 935, column 52] : ${java.class.path} cannot be resolved.
+2017-08-31 17:10:18,428 - Null reference [template 'build.xml', line 946, column 37] : ${wsdl} cannot be resolved.
+2017-08-31 17:10:18,428 - Null reference [template 'build.xml', line 951, column 56] : ${workspace.dir} cannot be resolved.
+2017-08-31 17:10:18,428 - Null reference [template 'build.xml', line 952, column 52] : ${java.class.path} cannot be resolved.
+2017-08-31 17:10:18,429 - Null reference [template 'build.xml', line 962, column 40] : ${environment} cannot be resolved.
+2017-08-31 17:10:18,429 - Null reference [template 'build.xml', line 977, column 46] : ${svnant.req} cannot be resolved.
+2017-08-31 17:10:18,429 - Null reference [template 'build.xml', line 977, column 71] : ${docrelease} cannot be resolved.
+2017-08-31 17:10:18,429 - Null reference [template 'build.xml', line 984, column 32] : ${version} cannot be resolved.
+2017-08-31 17:10:18,429 - Null reference [template 'build.xml', line 990, column 37] : ${requirement} cannot be resolved.
+2017-08-31 17:10:18,429 - Null reference [template 'build.xml', line 997, column 37] : ${version} cannot be resolved.
+2017-08-31 17:10:18,429 - Null reference [template 'build.xml', line 1004, column 37] : ${environment} cannot be resolved.
+2017-08-31 17:10:18,429 - Null reference [template 'build.xml', line 1011, column 37] : ${svnant.req} cannot be resolved.
+2017-08-31 17:10:18,429 - Null reference [template 'build.xml', line 1018, column 37] : ${platform} cannot be resolved.
+2017-08-31 17:10:18,429 - Null reference [template 'build.xml', line 1034, column 58] : ${environment} cannot be resolved.
+2017-08-31 17:10:18,431 - ResourceManager : found ServiceNameSvc.xml with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+xml', line 1034, column 58] : ${environment} cannot be resolved.
+2017-08-31 17:10:18,431 - ResourceManager : found ServiceNameSvc.xml with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader

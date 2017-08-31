@@ -50,6 +50,7 @@ public class BAthGenerator {
 			
 			//TODO establecer valores por defecto si vienen los valores vacios?
 			vc.put("ServiceName", facade.getSrvName());
+			vc.put("BusinessServiceName", facade.getSrvName());
 			vc.put("namespace", facade.getNamespace());
 			vc.put("domain", facade.getDomain());
 			vc.put("domainCapital", BUtil.capitalizeFirstLetterOfEachWord(facade.getDomain()));
@@ -69,6 +70,7 @@ public class BAthGenerator {
 //			vc.put("prefixns", facade.getPrefixns());
 			String prefix = BUtil.getPrefix(facade.getNamespace(), null);
 			vc.put("prefixns", prefix);
+
 			
 			
 //			facade.setWsdlName("CardPswdAssignmentSvc.wsdl");

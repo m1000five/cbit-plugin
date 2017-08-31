@@ -7,57 +7,39 @@
 	<!-- Ruta del broker, directorio classes -->
 	<property name="MQSI_JARPATH" value="C:/Program Files/IBM/IIB/10.0.0.3/server/classes" />
 	<property name="mqsi.home" value="C:/Program Files/IBM/IIB/10.0.0.3/server/bin" />
-	<property name="requirement" value="28496" />
+	<property name="requirement" value="${ideRequirement}" />
 	<property name="model.requirement" value="REQCVAPD00000000" />
-
-	<property name="docrelease" value="GDS.FO.08.Entrega%20de%20Software_${ServiceName}_RQ28496.doc" />
+	<property name="docrelease" value="GDS.FO.08.Entrega%20de%20Software_${ServiceName}_RQ${ideRequirement}.doc" />
 	<property name="platform" value="IIB" />
-	<property name="developer" value="MILTON VEGA" />
-
+	<property name="developer" value="${developer}" />
 	<property name="srv1" value="${ServiceName}FcdWs" />
 	<property name="srvname" value="${ServiceName}FcdWs" />
 	<property name="OperationName" value="${OperationName}" />
-	
 	<property name="org" value="${Org}" />
 	<property name="bussinessName" value="${BusinessServiceName}" />
 	<property name="projectName" value="${ServiceName}FcdWs" />
-
 	<property name="barname" value="${ServiceName}FcdWs.bar" />
-	
 	<property name="org" value="${Org}" />
 	<property name="bussinessName" value="${BusinessServiceName}" />
 	<property name="projectName" value="${ServiceName}FcdWs" />
-	
-
-
-	<property name="wsdl" value="SendOTP.wsdl" />
-
-	<property name="workspace.dir" value="C:\workspace_ath\work108" />
-
+	<property name="wsdl" value="${wsdlName}" />
+	<property name="workspace.dir" value="${workspace}" />
 	<property name="mqtool.dir" value="C:/MsgTest" />
 	<property name="mqtool.dir.bin" value="C:/MsgTest/bin" />
-
-
-	<property name="svnant.req" value="https://10.140.0.22/svn/GDT/Plataformas/INTEGRACION/Aplicaciones/IIB/Requerimientos/A%C3%B1o2017/28496_Req_BAVV_Ban.co_AsignacionDeClaveTDyTC" />
-
-	<property name="svnant.repository.user" value="Proveedor_idmesa" />
-	<property name="svnant.repository.passwd" value="RyX,863bg" />
-
+	<property name="svnant.req" value="https://10.140.0.22/svn/GDT/Plataformas/INTEGRACION/Aplicaciones/IIB/Requerimientos/A%C3%B1o2017/${ideRequirement}_Req_${Org}_${BusinessServiceName}" />
+	<property name="svnant.repository.user" value="" />
+	<property name="svnant.repository.passwd" value="" />
 	<property name="deploytool.arg.broker" value="IIB10" />
 	<property name="deploytool.arg.group" value="GE_BAN.CO" />
-
 	<property name="mqtool.arg.qmname" value="MB7QMGR" />
-
 	<property name="mqtool.arg.port" value="1414" />
 	<property name="mqtool.arg.queuetest" value="CNTL.700174.OUT" />
-
 	<property name="mqtool.arg.qmname.dev" value="ESBBRK.DEV.QM" />
 	<property name="mqtool.arg.ip.dev" value="10.85.68.79" />
 	<property name="mqtool.arg.port.dev" value="1414" />
 	<property name="mqtool.arg.channel.dev" value="ESBBRK.DEV.SVRCONN" />
 	<property name="mqtool.arg.queuetest.dev" value="PRUEBA" />
 	<property name="mqtool.arg.ip.qa" value="10.85.68.98" />
-
 	<property name="xmltest.response.op" value="getCustDataByProductRqRequest" />
 	<property name="xmltest.response.msg" value="getCustDataByProductRqResponse" />
 
@@ -98,7 +80,7 @@
 		<echo>Cleaning up...</echo>
 		<delete dir="${workspace.dir}/${requirement}" />
 	</target>
-	
+
 	<target name="create-req-folders" description="--> prepare folders for requirement">
 		<echo>Creating req folders...</echo>
 		<mkdir dir="${workspace.dir}/${requirement}_Req_${org}_${bussinessName}/Gestion" />
@@ -109,12 +91,13 @@
 		<copy todir="${workspace.dir}/${requirement}_Req_${org}_${bussinessName}/Desarrollo/Scripts">
 			<fileset dir="${workspace.dir}/${projectName}">
 				<include name="20*.sql" />
+				<include name="*Colas*.mq" />
 			</fileset>
 		</copy>
 
 	</target>
 
-	
+
 
 	<target name="build-fmgs">
 		<subant>
@@ -161,39 +144,18 @@
 	<target name="deploy-bar">
 		<echo message="Deploying  - ${barname} " />
 
-
 		<exec executable="cmd" dir="C:\IBM\MQSI\7.0\bin">
 			<arg value="/c mqsiprofile.cmd &amp; C:\IBM\MQSI\7.0\bin\mqsideploy.bat IIB10 -e GE_BAN.CO -a C:\workspace_ath\work10\${ServiceName}FcdWs\${ServiceName}FcdWs.bar -w 600" />
-			<!--arg value="IIB10" />
-			<arg value="-e" />
-			<arg value="GE_BAN.CO" />
-			<arg value="-a" />
-			<arg value="C:\workspace_ath\work10\${ServiceName}FcdWs\${ServiceName}FcdWs.bar" />
-			<arg value="-w" />
-			<arg value="600" /-->
 		</exec>
 
-		<!--exec executable="${mqsi.home}/mqsiprofile.cmd">
-			<arg value="/C" />
-			<arg value="mqsideploy.exe" />
-			<arg value="${deploytool.arg.broker}" />
-			<arg value="-e" />
-			<arg value="${deploytool.arg.group}" />
-			<arg value="-a" />
-			<arg value="${workspace.dir}/${ServiceName}FcdWs/${barname}" />
-			<arg value="-w" />
-			<arg value="600" />
-		</exec-->
+	</target>
 
-		<!--exec executable="${mqsi.home}/mqsideploy.exe" spawn="false">
-			<arg value="${deploytool.arg.broker}" />
-			<arg value="-e" />
-			<arg value="${deploytool.arg.group}" />
-			<arg value="-a" />
-			<arg value="${workspace.dir}/${ServiceName}FcdWs/${barname}" />
-			<arg value="-w" />
-			<arg value="600" />
-		</exec-->
+
+	<target name="create-queues">
+		<echo message="CREATE QUEUES" />
+		<exec executable="cmd" dir="C:\IBM\MQSI\7.0\bin">
+			<arg value="/c mqsiprofile.cmd &amp; runmqsc MB7QMGR &lt; ${workspace}${projectName}\Colas_MigracionBUS_${ServiceName}.mq" />
+		</exec>
 
 	</target>
 
