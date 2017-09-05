@@ -24,6 +24,9 @@ public class BAthApplication {
 			System.out.println("Current dir:" + current);
 
 			BAthFacadeProject facade = new BAthFacadeProject(current);
+			
+//			C:/Users/milton.vega/eclipse-workspace/generator/CardPswdAssignmentSvcFcdWs
+//			${workspace}${projectName}/
 
 			facade.setIdeRequirement("28496");
 

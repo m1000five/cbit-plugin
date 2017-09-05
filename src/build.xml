@@ -1,27 +1,25 @@
 <?xml version="1.0"?>
 <project name="${ServiceName}FcdWs" default="run">
-	<!-- generated with FWK2 Toolkit Plugin -->
+	<!-- generated with Toolkit Plugin -->
 	<!-- ====== ANT Build File ======= -->
 	<!-- Se requiere un directorio workspace en el que esten directamente los distintos proyectos -->
 
 	<!-- Ruta del broker, directorio classes -->
-	<property name="MQSI_JARPATH" value="C:/Program Files/IBM/IIB/10.0.0.3/server/classes" />
-	<property name="mqsi.home" value="C:/Program Files/IBM/IIB/10.0.0.3/server/bin" />
+	<property name="MQSI_JARPATH" value="C:/Program Files/IBM/IIB/10.0.0.8/server/classes" />
+	<property name="mqsi.home" value="C:/Program Files/IBM/IIB/10.0.0.8/server/bin" />
 	<property name="requirement" value="${ideRequirement}" />
-	<property name="model.requirement" value="REQCVAPD00000000" />
+	<property name="model.requirement" value="00001" />
 	<property name="docrelease" value="GDS.FO.08.Entrega%20de%20Software_${ServiceName}_RQ${ideRequirement}.doc" />
 	<property name="platform" value="IIB" />
 	<property name="developer" value="${developer}" />
-	<property name="srv1" value="${ServiceName}FcdWs" />
-	<property name="srvname" value="${ServiceName}FcdWs" />
+	<property name="srvname" value="${ServiceName}" />
 	<property name="OperationName" value="${OperationName}" />
 	<property name="org" value="${Org}" />
 	<property name="bussinessName" value="${BusinessServiceName}" />
-	<property name="projectName" value="${ServiceName}FcdWs" />
-	<property name="barname" value="${ServiceName}FcdWs.bar" />
+	<property name="projectName" value="${projectName}" />
+	<property name="barname" value="${projectName}.bar" />
 	<property name="org" value="${Org}" />
 	<property name="bussinessName" value="${BusinessServiceName}" />
-	<property name="projectName" value="${ServiceName}FcdWs" />
 	<property name="wsdl" value="${wsdlName}" />
 	<property name="workspace.dir" value="${workspace}" />
 	<property name="mqtool.dir" value="C:/MsgTest" />
@@ -33,15 +31,15 @@
 	<property name="deploytool.arg.group" value="GE_BAN.CO" />
 	<property name="mqtool.arg.qmname" value="MB7QMGR" />
 	<property name="mqtool.arg.port" value="1414" />
-	<property name="mqtool.arg.queuetest" value="CNTL.700174.OUT" />
-	<property name="mqtool.arg.qmname.dev" value="ESBBRK.DEV.QM" />
-	<property name="mqtool.arg.ip.dev" value="10.85.68.79" />
-	<property name="mqtool.arg.port.dev" value="1414" />
-	<property name="mqtool.arg.channel.dev" value="ESBBRK.DEV.SVRCONN" />
+	<property name="mqtool.arg.queuetest" value="" />
+	<property name="mqtool.arg.qmname.dev" value="" />
+	<property name="mqtool.arg.ip.dev" value="" />
+	<property name="mqtool.arg.port.dev" value="" />
+	<property name="mqtool.arg.channel.dev" value="" />
 	<property name="mqtool.arg.queuetest.dev" value="PRUEBA" />
-	<property name="mqtool.arg.ip.qa" value="10.85.68.98" />
-	<property name="xmltest.response.op" value="getCustDataByProductRqRequest" />
-	<property name="xmltest.response.msg" value="getCustDataByProductRqResponse" />
+	<property name="mqtool.arg.ip.qa" value="" />
+	<property name="xmltest.response.op" value="${OperationName}Request" />
+	<property name="xmltest.response.msg" value="${OperationName}Response" />
 
 
 	<tstamp>
@@ -49,31 +47,15 @@
 	</tstamp>
 
 
-	<taskdef name="xmltask" classname="com.oopsconsultancy.xmltask.ant.XmlTask" classpath="${workspace.dir}/lib/xmltask.jar" />
+	<taskdef name="xmltask" classname="com.oopsconsultancy.xmltask.ant.XmlTask" classpath="${workspace}/lib/xmltask.jar" />
 
-	<taskdef resource="net/sf/antcontrib/antlib.xml" classpath="${workspace.dir}/lib/ant-contrib-1.0b3.jar" />
+	<taskdef resource="net/sf/antcontrib/antlib.xml" classpath="${workspace}/lib/ant-contrib-1.0b3.jar" />
 
 	<target name="run" description="Create folders and build artifacts">
 		<antcall target="clean" />
-		<antcall target="checkout-model-req" />
+
 		<antcall target="artifacts-cntl-1" />
 	</target>
-
-	<target name="clean-model-req">
-		<delete dir="${workspace.dir}/${model.requirement}" />
-	</target>
-
-	<target name="checkout-model-req">
-		<exec executable="svn" dir="${workspace.dir}">
-			<arg line=" co ${svnant.this.url} --username=${svnant.repository.user} --password=${svnant.repository.passwd}" />
-		</exec>
-	</target>
-
-	<target name="run-without-prepare" description="build artifacts">
-		<!--antcall target="build-fmgs"/-->
-		<antcall target="artifacts-cntl-1" />
-	</target>
-
 
 
 	<target name="clean" description="Clean up">
@@ -99,28 +81,17 @@
 
 
 
-	<target name="build-fmgs">
-		<subant>
-			<filelist dir=".">
-				<file name="../${fmg1}/build.xml" />
-			</filelist>
-			<target name="run-without-prepare" />
-
-		</subant>
-	</target>
-
-
-	<target name="artifacts-cntl-1" description="--> runs mqsipackagebar from an ant task">
+	<target name="artifacts-srv-1" description="--> runs mqsipackagebar from an ant task">
 
 
 		<copy todir="${workspace.dir}/${requirement}/wmb/wmq_scripts/ESBBRK.PRD.QM">
-			<fileset dir="${workspace.dir}/${srv1}">
+			<fileset dir="${workspace.dir}/${projectName}">
 				<include name="*.txt" />
 			</fileset>
 		</copy>
 
 		<copy todir="${workspace.dir}/${requirement}/db/db_scripts">
-			<fileset dir="${workspace.dir}/${srv1}">
+			<fileset dir="${workspace.dir}/${projectName}">
 				<include name="*.sql" />
 			</fileset>
 		</copy>
@@ -128,8 +99,8 @@
 
 		<java classname="com.ibm.broker.config.appdev.FlowRendererBAR" failonerror="true" fork="true">
 			<arg line="-w ${workspace.dir}/" />
-			<arg line="-a ${workspace.dir}/${requirement}/wmb/wmb_bars/ESBBRK.PRD/${execution.group.cntl}/${srv1}.bar" />
-			<arg line="-k ${srv1}" />
+			<arg line="-a ${workspace.dir}/${requirement}/wmb/wmb_bars/ESBBRK.PRD/${execution.group.cntl}/${projectName}.bar" />
+			<arg line="-k ${projectName}" />
 			<classpath>
 				<fileset dir="${MQSI_JARPATH}">
 					<include name="*.jar" />
@@ -144,8 +115,8 @@
 	<target name="deploy-bar">
 		<echo message="Deploying  - ${barname} " />
 
-		<exec executable="cmd" dir="C:\IBM\MQSI\7.0\bin">
-			<arg value="/c mqsiprofile.cmd &amp; C:\IBM\MQSI\7.0\bin\mqsideploy.bat IIB10 -e GE_BAN.CO -a C:\workspace_ath\work10\${ServiceName}FcdWs\${ServiceName}FcdWs.bar -w 600" />
+		<exec executable="cmd" dir="C:/IBM/MQSI/7.0/bin">
+			<arg value="/c mqsiprofile.cmd &amp; C:/IBM/MQSI/7.0/bin/mqsideploy.bat IIB10 -e GE_BAN.CO -a  ${workspace}${projectName}/${projectName}.bar -w 600" />
 		</exec>
 
 	</target>
@@ -153,8 +124,8 @@
 
 	<target name="create-queues">
 		<echo message="CREATE QUEUES" />
-		<exec executable="cmd" dir="C:\IBM\MQSI\7.0\bin">
-			<arg value="/c mqsiprofile.cmd &amp; runmqsc MB7QMGR &lt; ${workspace}${projectName}\Colas_MigracionBUS_${ServiceName}.mq" />
+		<exec executable="cmd" dir="C:/IBM/MQSI/7.0/bin">
+			<arg value="/c mqsiprofile.cmd &amp; runmqsc MB7QMGR &lt; ${workspace}/${projectName}/Colas_MigracionBUS_${ServiceName}.mq" />
 		</exec>
 
 	</target>
@@ -168,10 +139,10 @@
 			<sequential>
 				<echo message="RUN parallel" />
 
-				<exec executable="C:\All\SmartBear\SoapUI-5.3.0\bin\mockservicerunner.bat" dir="." timeout="35000">
+				<exec executable="C:/All/SmartBear/SoapUI-5.3.0/bin/mockservicerunner.bat" dir="." timeout="35000">
 					<arg value="-m" />
 					<arg value="MockService 1" />
-					<arg value="C:\All\Srv-AvalPay\SendOTP-soapui-project.xml" />
+					<arg value="C:/All/Srv-AvalPay/SendOTP-soapui-project.xml" />
 				</exec>
 
 				<sleep seconds="30" />
@@ -211,7 +182,7 @@
 		<loadfile property="file.request.xml" srcFile="request1.xml" />
 		<echo message="${file.request.xml}" />
 
-		<exec executable="C:\All\curl\I386\curl" dir=".">
+		<exec executable="C:/All/curl/I386/curl" dir=".">
 			<arg value="-X" />
 			<arg value="POST" />
 			<arg value="-H" />
@@ -275,10 +246,10 @@
 
 			<echo message="RUN parallel MOCKUP" />
 
-			<exec executable="C:\All\SmartBear\SoapUI-5.3.0\bin\mockservicerunner.bat" dir="." timeout="35000">
+			<exec executable="C:/All/SmartBear/SoapUI-5.3.0/bin/mockservicerunner.bat" dir="." timeout="35000">
 				<arg value="-m" />
 				<arg value="MockService 1" />
-				<arg value="C:\All\Srv-AvalPay\SendOTP-soapui-project.xml" />
+				<arg value="C:/All/Srv-AvalPay/SendOTP-soapui-project.xml" />
 			</exec>
 
 			<sequential>
@@ -293,7 +264,7 @@
 
 				<echo message="INVOCANDO PETICION!!!!!!!!!!!!!!" />
 
-				<exec executable="C:\All\curl\I386\curl" dir=".">
+				<exec executable="C:/All/curl/I386/curl" dir=".">
 					<arg value="-X" />
 					<arg value="POST" />
 					<arg value="-H" />
@@ -369,15 +340,15 @@
 
 			<echo message="RUN parallel MOCKUP" />
 
-			<exec executable="C:\All\SmartBear\SoapUI-5.3.0\bin\mockservicerunner.bat" dir="." timeout="35000">
+			<exec executable="C:/All/SmartBear/SoapUI-5.3.0/bin/mockservicerunner.bat" dir="." timeout="35000">
 				<arg value="-m" />
 				<arg value="MockService 1" />
-				<arg value="C:\All\Srv-AvalPay\SendOTP-soapui-project.xml" />
+				<arg value="C:/All/Srv-AvalPay/SendOTP-soapui-project.xml" />
 			</exec>
 
 			<sequential>
 
-				<echo message="ESPERANDO MOCKUP" />
+				<echo message="AWAITING MOCKUP" />
 
 				<waitfor maxwait="40" maxwaitunit="second">
 					<and>
@@ -387,7 +358,7 @@
 
 				<echo message="INVOCANDO PETICION!!!!!!!!!!!!!!" />
 
-				<exec executable="C:\All\curl\I386\curl" dir=".">
+				<exec executable="C:/All/curl/I386/curl" dir=".">
 					<arg value="-X" />
 					<arg value="POST" />
 					<arg value="-H" />
@@ -462,10 +433,10 @@
 
 			<echo message="RUN parallel MOCKUP" />
 
-			<exec executable="C:\All\SmartBear\SoapUI-5.3.0\bin\mockservicerunner.bat" dir="." timeout="40000">
+			<exec executable="C:/All/SmartBear/SoapUI-5.3.0/bin/mockservicerunner.bat" dir="." timeout="40000">
 				<arg value="-m" />
 				<arg value="MockService 1" />
-				<arg value="C:\All\Srv-AvalPay\SendOTP-soapui-project.xml" />
+				<arg value="C:/All/Srv-AvalPay/SendOTP-soapui-project.xml" />
 			</exec>
 
 			<sequential>
@@ -478,15 +449,15 @@
 					</and>
 				</waitfor>
 
-				<exec executable="C:\All\SmartBear\SoapUI-5.3.0\bin\mockservicerunner.bat" dir="." timeout="30000">
+				<exec executable="C:/All/SmartBear/SoapUI-5.3.0/bin/mockservicerunner.bat" dir="." timeout="30000">
 					<arg value="-m" />
-					<arg value="TokenInquiryManagementV2Binding MockService" />
-					<arg value="C:\All\Srv-AvalPay\V2-TokenInquiryManagement-soapui-project.xml" />
+					<arg value="${ServiceName}Binding MockService" />
+					<arg value="C:/All/Srv-AvalPay/${ServiceName}-soapui-project.xml" />
 				</exec>
 
 				<echo message="INVOCANDO PETICION!!!!!!!!!!!!!!" />
 
-				<exec executable="C:\All\curl\I386\curl" dir=".">
+				<exec executable="C:/All/curl/I386/curl" dir=".">
 					<arg value="-X" />
 					<arg value="POST" />
 					<arg value="-H" />
@@ -548,7 +519,7 @@
 		</exec>
 
 
-		<!--xslt in="request.xml" out="request1.xml" style="rquid.xslt" classpath="C:\workspace_ath\work10\lib\saxon9he.jar">
+		<!--xslt in="request.xml" out="request1.xml" style="rquid.xslt" classpath="C:/workspace_ath/work10/lib/saxon9he.jar">
 			<param name="rquid" expression="${rquid}" />
 		</xslt -->
 
@@ -591,7 +562,7 @@
 
 		<delete file="response.xml" />
 
-		<exec executable="C:\All\curl\I386\curl" dir=".">
+		<exec executable="C:/All/curl/I386/curl" dir=".">
 			<arg value="-o" />
 			<arg value="response.xml" />
 			<arg value="-X" />
@@ -649,7 +620,7 @@
 
 		<delete file="response.xml" />
 
-		<exec executable="C:\All\curl\I386\curl" dir=".">
+		<exec executable="C:/All/curl/I386/curl" dir=".">
 			<arg value="-o" />
 			<arg value="response.xml" />
 			<arg value="-X" />
@@ -682,11 +653,11 @@
 
 
 	<target name="put-local-mq-request">
-		<echo message="-------> Run  - ${srv1} " />
+		<echo message="-------> Run  - ${projectName} " />
 		<delete file="response1.xml" />
 		<parallel>
 			<echo message="RUN MsgTestS.exe" />
-			<exec executable="${mqtool.dir.bin}/MsgTestS.exe" dir="${workspace.dir}/${srv1}" spawn="false">
+			<exec executable="${mqtool.dir.bin}/MsgTestS.exe" dir="${workspace.dir}/${projectName}" spawn="false">
 				<arg value="test-trn.xml" />
 				<arg value="request1.xml" />
 				<arg value="${mqtool.arg.qmname}" />
@@ -695,9 +666,9 @@
 				<arg value="" />
 				<arg value="${mqtool.arg.queuetest}" />
 			</exec>
-			<echo message="RUN TAIL ${srvname}.log" />
+			<echo message="RUN TAIL ${projectName}.log" />
 			<java classname="co.com.bancodebogota.util.Logger3" timeout="35000">
-				<arg value="${srvname}.log" />
+				<arg value="${projectName}.log" />
 				<arg value="C:/all/logBroker/Instancia1/" />
 				<arg value="35000" />
 				<classpath>
@@ -710,40 +681,13 @@
 		<echo message="---------Completed Test---------" />
 	</target>
 
-	<target name="test-qa-datapower">
-		<echo message="-------> Run Selenium Test On QA" />
-		<parallel>
-			<java classname="org.testng.TestNG">
-				<arg value="testng.xml" />
-				<classpath>
-					<pathelement location="${workspace.dir}/lib/testng-6.8.jar" />
-					<fileset dir="${workspace.dir}/lib">
-						<include name="*.jar" />
-					</fileset>
-				</classpath>
-			</java>
-
-			<echo message="RUN TAIL ${mqtool.arg.ip.qa} ${svnant.repository.user} ${svnant.repository.user} ${srvname}.log" />
-			<java classname="co.com.bancodebogota.util.Logger2" timeout="50000">
-				<arg value="${mqtool.arg.ip.qa}" />
-				<arg value="${svnant.repository.user}" />
-				<arg value="${svnant.repository.user}" />
-				<arg value="${srvname}.log" />
-				<classpath>
-					<pathelement location="${workspace.dir}/lib/viewerlogger.jar" />
-					<pathelement path="${java.class.path}" />
-				</classpath>
-			</java>
-		</parallel>
-		<echo message="---------Completed Selenium Test---------" />
-	</target>
 
 	<target name="put-dev-mq-request">
-		<echo message="-------> Run  - ${srv1} " />
+		<echo message="-------> Run  - ${projectName} " />
 		<delete file="response1.xml" />
 		<parallel>
 			<echo message="RUN MsgTest.exe" />
-			<exec executable="${mqtool.dir.bin}/MsgTest.exe" dir="${workspace.dir}/${srv1}" spawn="false">
+			<exec executable="${mqtool.dir.bin}/MsgTest.exe" dir="${workspace.dir}/${projectName}" spawn="false">
 				<arg value="test-dev.xml" />
 				<arg value="request1.xml" />
 				<arg value="${mqtool.arg.qmname.dev}" />
@@ -752,12 +696,12 @@
 				<arg value="${mqtool.arg.channel.dev}" />
 				<arg value="${mqtool.arg.queuetest.dev}" />
 			</exec>
-			<echo message="RUN TAIL ${mqtool.arg.ip.dev} ${svnant.repository.user} ${svnant.repository.user} ${srvname}.log" />
+			<echo message="RUN TAIL ${mqtool.arg.ip.dev} ${svnant.repository.user} ${svnant.repository.user} ${projectName}.log" />
 			<java classname="co.com.bancodebogota.util.Logger2" timeout="10000">
 				<arg value="${mqtool.arg.ip.dev}" />
 				<arg value="${svnant.repository.user}" />
 				<arg value="${svnant.repository.user}" />
-				<arg value="${srvname}.log" />
+				<arg value="${projectName}.log" />
 				<classpath>
 					<pathelement location="${workspace.dir}/lib/viewerlogger.jar" />
 					<pathelement path="${java.class.path}" />
@@ -769,90 +713,38 @@
 	</target>
 
 
-	<target name="process-log">
-		<echo message="-------> Process log - ${srvname}.log " />
+	<target name="extract-overrides">
 
-		<mkdir dir="C:/all/pruebas/${srvname}/${TODAY_MY}/1" />
+		<echo message="-------> Run - Extract Overrides " />
 
-		<copy todir="C:/all/pruebas/${srvname}/${TODAY_MY}">
-			<fileset dir="${workspace.dir}/${srv1}">
-				<include name="${srvname}.log" />
-			</fileset>
-		</copy>
-
-		<exec dir="C:/all/pruebas/" executable="cmd">
-			<arg value="/c" />
-			<arg value="mil-splitter.bat" />
-			<arg value="C:/all/pruebas/${srvname}/${TODAY_MY}/1" />
-			<arg value="C:/all/pruebas/${srvname}/${TODAY_MY}/${srvname}.log" />
-		</exec>
-
-		<exec dir="C:/all/pruebas/" executable="cmd">
-			<arg value="/c" />
-			<arg value="iterar.bat" />
-			<arg value="C:/all/pruebas/${srvname}/${TODAY_MY}/1" />
-		</exec>
-
-
-	</target>
-
-	<target name="get-log-from-dev">
-		<echo message="-------> GetLog - DEV - ${srvname}.log " />
-		<exec executable="pscp" dir="${workspace.dir}/${srv1}" spawn="false">
-			<arg value="-pw" />
-			<arg value="mvega" />
-			<arg value="mvega@10.85.68.79:/logBroker/Instancia1/${srvname}.log" />
-			<arg value="${workspace.dir}/${srv1}" />
-		</exec>
-		<echo message="---------Completed Download---------" />
-		<echo message="--------- decode ${srvname}.log" />
-		<java classname="co.com.bancodebogota.util.Logger4" timeout="25000">
-			<arg value="${srvname}.log" />
-			<arg value="${workspace.dir}/${srv1}" />
-			<arg value="2000" />
+		<java classname="com.ath.esqltool.application.BARUtil" append="no" failonerror="false" logerror="off" timeout="15000">
+			<arg value="${workspace}/GeneratedBarFiles/${projectName}project.generated.bar" />
 			<classpath>
-				<pathelement location="${workspace.dir}/lib/viewerlogger.jar" />
+				<pathelement location="${workspace}/lib/generator.jar" />
 				<pathelement path="${java.class.path}" />
 			</classpath>
 		</java>
+		<echo message="END Extract Overrides" />
 	</target>
 
-	<target name="get-log-from-qa">
-		<echo message="-------> GetLog - QA - ${srvname}.log " />
-		<exec executable="pscp" dir="${workspace.dir}/${srv1}" spawn="false">
-			<arg value="-pw" />
-			<arg value="mvega" />
-			<arg value="mvega@10.85.68.98:/logBroker/Instancia1/${srvname}.log" />
-			<arg value="${workspace.dir}/${srv1}" />
+
+	<target name="create-overrides-bar">
+		<echo message="Create Override BAR" />
+
+		<exec executable="mqsiapplybaroverride.bat" dir=".">
+			<arg value="-b" />
+			<arg value="${workspace}/GeneratedBarFiles/${projectName}project.generated.bar" />
+			<arg value="-p" />
+			<arg value="${workspace}/${projectName}/config_AVV.properties" />
+			<arg value="-r" />
+			<arg value="-o" />
+			<arg value="${workspace}/${projectName}/${projectName}_AVV.bar" />
 		</exec>
-		<echo message="---------Completed Download---------" />
-		<echo message="--------- decode ${srvname}.log" />
-		<java classname="co.com.bancodebogota.util.Logger4" timeout="25000">
-			<arg value="${srvname}.log" />
-			<arg value="${workspace.dir}/${srv1}" />
-			<arg value="2000" />
-			<classpath>
-				<pathelement location="${workspace.dir}/lib/viewerlogger.jar" />
-				<pathelement path="${java.class.path}" />
-			</classpath>
-		</java>
-	</target>
-
-
-	<target name="show-log-qa">
-		<echo message="RUN TAIL ${mqtool.arg.ip.qa} ${svnant.repository.user} ${svnant.repository.user} ${srvname}.log" />
-		<java classname="co.com.bancodebogota.util.Logger2">
-			<arg value="${mqtool.arg.ip.qa}" />
-			<arg value="${svnant.repository.user}" />
-			<arg value="${svnant.repository.user}" />
-			<arg value="${srvname}.log" />
-			<classpath>
-				<pathelement location="${workspace.dir}/lib/viewerlogger.jar" />
-				<pathelement path="${java.class.path}" />
-			</classpath>
-		</java>
 
 	</target>
+
+
+
 
 	<target name="review-new-response" depends="check-response" if="response.present">
 

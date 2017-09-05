@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?><Broker>
+<CompiledApplication>
+<ConfigurableProperty uri="startMode"/>
+<ConfigurableProperty uri="javaIsolation"/>
+</CompiledApplication>
+<CompiledMessageFlow name="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES">
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#additionalInstances"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#notificationThresholdMsgsPerSec"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#maximumRateMsgsPerSec"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#processingTimeoutSec"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#processingTimeoutAction"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#wlmPolicy"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#commitCount"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#commitInterval"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#coordinatedTransaction"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#consumerPolicySet"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#providerPolicySet"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#consumerPolicySetBindings"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#providerPolicySetBindings"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#securityProfileName"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#monitoringProfile"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#startMode"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#startInstancesWhenFlowStarts"/>
+<ConfigurableProperty override="EXCEPTION.REGISTER.REQ" uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#MQOUT.EXCEPTION.REGISTER.REQ.queueName"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#MQOUT.EXCEPTION.REGISTER.REQ.connection"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#MQOUT.EXCEPTION.REGISTER.REQ.destinationQueueManagerName"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#MQOUT.EXCEPTION.REGISTER.REQ.queueManagerHostname"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#MQOUT.EXCEPTION.REGISTER.REQ.listenerPortNumber"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#MQOUT.EXCEPTION.REGISTER.REQ.channelName"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#MQOUT.EXCEPTION.REGISTER.REQ.securityIdentity"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#MQOUT.EXCEPTION.REGISTER.REQ.useSSL"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#MQOUT.EXCEPTION.REGISTER.REQ.SSLPeerName"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#MQOUT.EXCEPTION.REGISTER.REQ.SSLCipherSpec"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#MQOUT.EXCEPTION.REGISTER.REQ.queueManagerName"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#MQOUT.EXCEPTION.REGISTER.REQ.replyToQMgr"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#MQOUT.EXCEPTION.REGISTER.REQ.replyToQ"/>
+<ConfigurableProperty override="none" uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#MQOUT.EXCEPTION.REGISTER.REQ.validateMaster"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#MQOUT.EXCEPTION.REGISTER.REQ.securityProfileName"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#MQOUT.EXCEPTION.REGISTER.REQ.policyUrl"/>
+<ConfigurableProperty override="ESBDATA" uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#GetReplyIdentifierLog_WS.dataSource"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#GetReplyIdentifierLog_WS.connectDatasourceBeforeFlowStarts"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#GetReplyIdentifierLog_WS.validateMaster"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#CardPswdAssignmentSvc_SOAPReply.allowMTOM"/>
+<ConfigurableProperty override="none" uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#CardPswdAssignmentSvc_SOAPReply.validateMaster"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#CardPswdAssignmentSvc_SOAPReply.securityProfileName"/>
+<ConfigurableProperty override="ESBDATA" uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#CmpCreateMsgError.dataSource"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#CmpCreateMsgError.connectDatasourceBeforeFlowStarts"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#CmpCreateMsgError.validateMaster"/>
+<ConfigurableProperty override="LOG.REGISTER.REQ" uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#MQOUT.LOG.REGISTER.REQ.queueName"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#MQOUT.LOG.REGISTER.REQ.connection"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#MQOUT.LOG.REGISTER.REQ.destinationQueueManagerName"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#MQOUT.LOG.REGISTER.REQ.queueManagerHostname"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#MQOUT.LOG.REGISTER.REQ.listenerPortNumber"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#MQOUT.LOG.REGISTER.REQ.channelName"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#MQOUT.LOG.REGISTER.REQ.securityIdentity"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#MQOUT.LOG.REGISTER.REQ.useSSL"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#MQOUT.LOG.REGISTER.REQ.SSLPeerName"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#MQOUT.LOG.REGISTER.REQ.SSLCipherSpec"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#MQOUT.LOG.REGISTER.REQ.queueManagerName"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#MQOUT.LOG.REGISTER.REQ.replyToQMgr"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#MQOUT.LOG.REGISTER.REQ.replyToQ"/>
+<ConfigurableProperty override="none" uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#MQOUT.LOG.REGISTER.REQ.validateMaster"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#MQOUT.LOG.REGISTER.REQ.securityProfileName"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#MQOUT.LOG.REGISTER.REQ.policyUrl"/>
+<ConfigurableProperty override="CardPswdAssignmentSvc_AVV_BABN.FCD.RES" uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#CardPswdAssignmentSvc.FCD.RES.queueName"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#CardPswdAssignmentSvc.FCD.RES.connection"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#CardPswdAssignmentSvc.FCD.RES.destinationQueueManagerName"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#CardPswdAssignmentSvc.FCD.RES.queueManagerHostname"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#CardPswdAssignmentSvc.FCD.RES.listenerPortNumber"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#CardPswdAssignmentSvc.FCD.RES.channelName"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#CardPswdAssignmentSvc.FCD.RES.securityIdentity"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#CardPswdAssignmentSvc.FCD.RES.useSSL"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#CardPswdAssignmentSvc.FCD.RES.SSLPeerName"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#CardPswdAssignmentSvc.FCD.RES.SSLCipherSpec"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#CardPswdAssignmentSvc.FCD.RES.serializationToken"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#CardPswdAssignmentSvc.FCD.RES.topicProperty"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#CardPswdAssignmentSvc.FCD.RES.resetBrowseTimeout"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#CardPswdAssignmentSvc.FCD.RES.validateMaster"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#CardPswdAssignmentSvc.FCD.RES.securityProfileName"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#CardPswdAssignmentSvc.FCD.RES.componentLevel"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#CardPswdAssignmentSvc.FCD.RES.additionalInstances"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#CardPswdAssignmentSvc.FCD.RES.policyUrl"/>
+</CompiledMessageFlow>
+<CompiledMessageFlow name="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ">
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#additionalInstances"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#notificationThresholdMsgsPerSec"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#maximumRateMsgsPerSec"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#processingTimeoutSec"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#processingTimeoutAction"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#wlmPolicy"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#commitCount"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#commitInterval"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#coordinatedTransaction"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#consumerPolicySet"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#providerPolicySet"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#consumerPolicySetBindings"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#providerPolicySetBindings"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#securityProfileName"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#monitoringProfile"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#startMode"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#startInstancesWhenFlowStarts"/>
+<ConfigurableProperty override="CardPswdAssignmentSvc.xml" uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#name"/>
+<ConfigurableProperty override="BABN" uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#UDP_Channel"/>
+<ConfigurableProperty override="CardPswdAssignmentSvc" uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#UDP_Application"/>
+<ConfigurableProperty override="00010524" uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#UDP_BankId"/>
+<ConfigurableProperty override="ESBDATA" uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#GetInfoError_WS.dataSource"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#GetInfoError_WS.connectDatasourceBeforeFlowStarts"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#GetInfoError_WS.validateMaster"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#CardPswdAssignmentSvc_SOAPReply.allowMTOM"/>
+<ConfigurableProperty override="none" uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#CardPswdAssignmentSvc_SOAPReply.validateMaster"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#CardPswdAssignmentSvc_SOAPReply.securityProfileName"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#RLGetConfigParams.namespace"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#RLGetConfigParams.serviceVersion"/>
+<ConfigurableProperty override="ESBDATA" uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#CreateDBErrorRespWS.dataSource"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#CreateDBErrorRespWS.connectDatasourceBeforeFlowStarts"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#CreateDBErrorRespWS.validateMaster"/>
+<ConfigurableProperty override="ESBDATA" uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#CreateErrorRespWS.dataSource"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#CreateErrorRespWS.connectDatasourceBeforeFlowStarts"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#CreateErrorRespWS.validateMaster"/>
+<ConfigurableProperty override="EXCEPTION.REGISTER.REQ" uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.EXCEPTION.REGISTER.REQ.queueName"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.EXCEPTION.REGISTER.REQ.connection"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.EXCEPTION.REGISTER.REQ.destinationQueueManagerName"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.EXCEPTION.REGISTER.REQ.queueManagerHostname"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.EXCEPTION.REGISTER.REQ.listenerPortNumber"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.EXCEPTION.REGISTER.REQ.channelName"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.EXCEPTION.REGISTER.REQ.securityIdentity"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.EXCEPTION.REGISTER.REQ.useSSL"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.EXCEPTION.REGISTER.REQ.SSLPeerName"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.EXCEPTION.REGISTER.REQ.SSLCipherSpec"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.EXCEPTION.REGISTER.REQ.queueManagerName"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.EXCEPTION.REGISTER.REQ.replyToQMgr"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.EXCEPTION.REGISTER.REQ.replyToQ"/>
+<ConfigurableProperty override="none" uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.EXCEPTION.REGISTER.REQ.validateMaster"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.EXCEPTION.REGISTER.REQ.securityProfileName"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.EXCEPTION.REGISTER.REQ.policyUrl"/>
+<ConfigurableProperty override="LOG.REGISTER.REQ" uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.LOG.REGISTER.REQ.queueName"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.LOG.REGISTER.REQ.connection"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.LOG.REGISTER.REQ.destinationQueueManagerName"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.LOG.REGISTER.REQ.queueManagerHostname"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.LOG.REGISTER.REQ.listenerPortNumber"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.LOG.REGISTER.REQ.channelName"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.LOG.REGISTER.REQ.securityIdentity"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.LOG.REGISTER.REQ.useSSL"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.LOG.REGISTER.REQ.SSLPeerName"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.LOG.REGISTER.REQ.SSLCipherSpec"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.LOG.REGISTER.REQ.queueManagerName"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.LOG.REGISTER.REQ.replyToQMgr"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.LOG.REGISTER.REQ.replyToQ"/>
+<ConfigurableProperty override="none" uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.LOG.REGISTER.REQ.validateMaster"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.LOG.REGISTER.REQ.securityProfileName"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.LOG.REGISTER.REQ.policyUrl"/>
+<ConfigurableProperty override="ESBDATA" uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#CmpRouteMsg.dataSource"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#CmpRouteMsg.connectDatasourceBeforeFlowStarts"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#CmpRouteMsg.validateMaster"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.GENERIC.SRV.REQ.queueName"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.GENERIC.SRV.REQ.connection"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.GENERIC.SRV.REQ.destinationQueueManagerName"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.GENERIC.SRV.REQ.queueManagerHostname"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.GENERIC.SRV.REQ.listenerPortNumber"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.GENERIC.SRV.REQ.channelName"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.GENERIC.SRV.REQ.securityIdentity"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.GENERIC.SRV.REQ.useSSL"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.GENERIC.SRV.REQ.SSLPeerName"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.GENERIC.SRV.REQ.SSLCipherSpec"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.GENERIC.SRV.REQ.queueManagerName"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.GENERIC.SRV.REQ.replyToQMgr"/>
+<ConfigurableProperty override="CardPswdAssignmentSvc_AVV_BABN.FCD.RES" uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.GENERIC.SRV.REQ.replyToQ"/>
+<ConfigurableProperty override="none" uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.GENERIC.SRV.REQ.validateMaster"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.GENERIC.SRV.REQ.securityProfileName"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.GENERIC.SRV.REQ.policyUrl"/>
+<ConfigurableProperty override="/Customers/Services/CardPswdAssignmentSvc" uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#SOAP Input.urlSelector"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#SOAP Input.useHTTPS"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#SOAP Input.maxClientWaitTime"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#SOAP Input.allowQueryWSDL"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#SOAP Input.initialContextFactory"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#SOAP Input.locationJndiBindings"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#SOAP Input.connectionFactoryName"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#SOAP Input.backoutDestination"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#SOAP Input.backoutThreshold"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#SOAP Input.propertySelector"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#SOAP Input.timeStampSelector"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#SOAP Input.messageDeliveryModeSelector"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#SOAP Input.messagePrioritySelector"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#SOAP Input.messageIDSelector"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#SOAP Input.messageRedeliveredSelector"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#SOAP Input.messageCorrelationIDSelector"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#SOAP Input.targetService"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#SOAP Input.securityProfileName"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#SOAP Input.policySet"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#SOAP Input.policySetBindings"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#SOAP Input.sendProcessingFaultsToFailure"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#SOAP Input.validateMaster"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#SOAP Input.validateFailureAction"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#SOAP Input.componentLevel"/>
+<ConfigurableProperty uri="com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#SOAP Input.additionalInstances"/>
+</CompiledMessageFlow>
+</Broker>

@@ -70,6 +70,9 @@ public class BAthGenerator {
 //			vc.put("prefixns", facade.getPrefixns());
 			String prefix = BUtil.getPrefix(facade.getNamespace(), null);
 			vc.put("prefixns", prefix);
+			
+//			C:/Users/milton.vega/eclipse-workspace/generatorCardPswdAssignmentSvcFcdWs
+//			${workspace}${projectName}/
 
 			
 			

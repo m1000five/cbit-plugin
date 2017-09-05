@@ -14,6 +14,7 @@
 /application.descriptor
 /athparticular.xml
 /athproject.xml
+/broker.xml
 /build-fmg.xml
 /build.xml
 /com/
@@ -28,8 +29,3 @@
 /request1.xml
 /service.log
 /test.xml
-/tpl_Create.txt
-/tpl_Delete.txt
-/tpl_List.txt
-/tpl_Read.txt
-/tpl_Update.txt
