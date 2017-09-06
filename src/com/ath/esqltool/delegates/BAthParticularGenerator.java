@@ -68,6 +68,7 @@ public class BAthParticularGenerator {
 			vc.put("projectName", particularProject.getName());
 			vc.put("workspace", particularProject.getCurrentDir());
 			vc.put("BusinessServiceName", particularProject.getSrvName());
+			vc.put("facadeName", particularProject.getFacadeName());
 			
 			String prefix = BUtil.getPrefix(particularProject.getNamespace(), null);
 			vc.put("prefixns", prefix);
@@ -160,6 +161,15 @@ public class BAthParticularGenerator {
 			PrintWriter out1 = new PrintWriter(particularProject.getPathPrepareRq());
 			out1.println(sw1.toString());
 			out1.close();
+			
+			
+			tpl = ve.getTemplate(BAthTemplates.TEMPLATE_ANT_SPECIFIC_BUILD);
+			sw = new StringWriter();
+			tpl.merge(vc, sw);
+
+			out = new PrintWriter(particularProject.getProjectPath() + BAthTemplates.TEMPLATE_ANT_BUILD);
+			out.println(sw.toString());
+			out.close();
 
 
 		} catch (Exception ex) {

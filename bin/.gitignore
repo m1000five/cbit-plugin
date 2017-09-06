@@ -16,6 +16,7 @@
 /athproject.xml
 /broker.xml
 /build-fmg.xml
+/build-specific.xml
 /build.xml
 /com/
 /fmg_project.xml

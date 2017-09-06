@@ -5,7 +5,7 @@
 	<!-- Se requiere un directorio workspace en el que esten directamente los distintos proyectos -->
 
 	<!-- Ruta del broker, directorio classes -->
-	<property name="MQSI_JARPATH" value="C:/Program Files/IBM/IIB/10.0.0.8/server/classes" />
+	<property name="MQSI_JARPATH" value="C:/Program Files/IBM/IIB/10.0.0.8/common/classes" />
 	<property name="mqsi.home" value="C:/Program Files/IBM/IIB/10.0.0.8/server/bin" />
 	<property name="requirement" value="${ideRequirement}" />
 	<property name="model.requirement" value="00001" />
@@ -47,14 +47,29 @@
 	</tstamp>
 
 
-	<taskdef name="xmltask" classname="com.oopsconsultancy.xmltask.ant.XmlTask" classpath="${workspace}/lib/xmltask.jar" />
+	<!--taskdef name="xmltask" classname="com.oopsconsultancy.xmltask.ant.XmlTask" classpath="${workspace}/lib/xmltask.jar" /-->
 
-	<taskdef resource="net/sf/antcontrib/antlib.xml" classpath="${workspace}/lib/ant-contrib-1.0b3.jar" />
+	<!--taskdef resource="net/sf/antcontrib/antlib.xml" classpath="${workspace}/lib/ant-contrib-1.0b3.jar" /-->
+
+
+	<target name="create-lib-download-deps" description="Create lib in Workspace and download libraries">
+
+		<echo>Creating lib folder...</echo>
+
+		<mkdir dir="${workspace.dir}/lib" />
+
+		<echo>Download jar files...</echo>
+
+		<get src="https://github.com/m1000five/com.ath.wmb.genflows/raw/master/lib/generator.jar" dest="${workspace.dir}/lib/generator.jar">
+		</get>
+
+		<get src="https://bintray.com/hagzag/maven/download_file?file_path=com%2Foopsconsultancy%2Fxmltask%2F1.16.1%2Fxmltask.jar" dest="${workspace.dir}/lib/xmltask.jar">
+		</get>
+
+	</target>
 
 	<target name="run" description="Create folders and build artifacts">
 		<antcall target="clean" />
-
-		<antcall target="artifacts-cntl-1" />
 	</target>
 
 
@@ -81,25 +96,11 @@
 
 
 
-	<target name="artifacts-srv-1" description="--> runs mqsipackagebar from an ant task">
-
-
-		<copy todir="${workspace.dir}/${requirement}/wmb/wmq_scripts/ESBBRK.PRD.QM">
-			<fileset dir="${workspace.dir}/${projectName}">
-				<include name="*.txt" />
-			</fileset>
-		</copy>
-
-		<copy todir="${workspace.dir}/${requirement}/db/db_scripts">
-			<fileset dir="${workspace.dir}/${projectName}">
-				<include name="*.sql" />
-			</fileset>
-		</copy>
-
+	<target name="create-bar" description="--> create BAR ">
 
 		<java classname="com.ibm.broker.config.appdev.FlowRendererBAR" failonerror="true" fork="true">
 			<arg line="-w ${workspace.dir}/" />
-			<arg line="-a ${workspace.dir}/${requirement}/wmb/wmb_bars/ESBBRK.PRD/${execution.group.cntl}/${projectName}.bar" />
+			<arg line="-a ${workspace.dir}/${projectName}/${projectName}.bar" />
 			<arg line="-k ${projectName}" />
 			<classpath>
 				<fileset dir="${MQSI_JARPATH}">
@@ -715,10 +716,16 @@
 
 	<target name="extract-overrides">
 
+		<copy todir="${workspace.dir}/GeneratedBarFiles/">
+			<fileset dir="${workspace.dir}/${projectName}">
+				<include name="*.bar" />
+			</fileset>
+		</copy>
+
 		<echo message="-------> Run - Extract Overrides " />
 
 		<java classname="com.ath.esqltool.application.BARUtil" append="no" failonerror="false" logerror="off" timeout="15000">
-			<arg value="${workspace}/GeneratedBarFiles/${projectName}project.generated.bar" />
+			<arg value="${workspace}/GeneratedBarFiles/${projectName}.bar" />
 			<classpath>
 				<pathelement location="${workspace}/lib/generator.jar" />
 				<pathelement path="${java.class.path}" />

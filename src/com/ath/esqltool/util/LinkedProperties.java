@@ -131,7 +131,7 @@ public class LinkedProperties extends Properties {
 				outBuffer.append('f');
 				break;
 			case '=': // Fall through
-			case ':': // Fall through
+//			case ':': // Fall through
 //			case '#': // Fall through
 			case '!':
 				outBuffer.append('\\');

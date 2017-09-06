@@ -101,7 +101,7 @@
 		<java classname="com.ibm.broker.config.appdev.FlowRendererBAR" failonerror="true" fork="true">
 			<arg line="-w ${workspace.dir}/" />
 			<arg line="-a ${workspace.dir}/${projectName}/${projectName}.bar" />
-			<arg line="-k ${projectName}" />
+			<arg line="-k ${projectName} ${facadeName}" />
 			<classpath>
 				<fileset dir="${MQSI_JARPATH}">
 					<include name="*.jar" />

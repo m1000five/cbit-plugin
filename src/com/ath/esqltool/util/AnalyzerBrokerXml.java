@@ -1,11 +1,10 @@
 package com.ath.esqltool.util;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.Properties;
+import java.util.HashMap;
 import java.util.StringTokenizer;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -27,6 +26,7 @@ public class AnalyzerBrokerXml {
 	private Document document;
 	private DocumentBuilderFactory dbf;
 	private XPath xpath;
+	private HashMap<String, String> mapOverrideProperties = new HashMap<String, String>();
 
 	public AnalyzerBrokerXml() {
 		super();
@@ -36,21 +36,18 @@ public class AnalyzerBrokerXml {
 		xpath = XPathFactory.newInstance().newXPath();
 	}
 
-	public void init(File inputSource) throws ParserConfigurationException, SAXException, IOException {
+	public void init(File fileInput) throws ParserConfigurationException, SAXException, IOException {
 		dbf.setNamespaceAware(true); // This is really important, without it that XPath does not work
+
 		DocumentBuilder db = dbf.newDocumentBuilder();
-		document = (db.parse(inputSource)); // inputSource, inputStream or file which contains your XML.
+		document = (db.parse(fileInput)); // inputSource, inputStream or file which contains your XML.
 	}
 
-	public void extractOverrides(String destinationProperties) throws XPathExpressionException, IOException {
+	public void extractOverrides(String appName) throws XPathExpressionException, IOException {
 
 		NodeList nodeList = (NodeList) xpath.evaluate("/Broker/CompiledMessageFlow/ConfigurableProperty[@override]",
 				document, XPathConstants.NODESET);
 
-		LinkedProperties prop = new LinkedProperties();
-		OutputStream output = null;
-
-		output = new FileOutputStream(destinationProperties);
 
 		for (int i = 0; i < nodeList.getLength(); i++) {
 			Node currentNode = nodeList.item(i);
@@ -60,94 +57,45 @@ public class AnalyzerBrokerXml {
 				for (int j = 0; j < attributes.getLength(); j++) {
 					Node item = attributes.item(j);
 
-					// ConfigurableProperty->attr->override -> EXCEPTION.REGISTER.REQ
-					// ConfigurableProperty->attr->uri ->
-					// com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#MQOUT.EXCEPTION.REGISTER.REQ.queueName
-					// ConfigurableProperty->attr->override -> none
-					// ConfigurableProperty->attr->uri ->
-					// com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#MQOUT.EXCEPTION.REGISTER.REQ.validateMaster
-					// ConfigurableProperty->attr->override -> ESBDATA
-					// ConfigurableProperty->attr->uri ->
-					// com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#GetReplyIdentifierLog_WS.dataSource
-					// ConfigurableProperty->attr->override -> none
-					// ConfigurableProperty->attr->uri ->
-					// com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#CardPswdAssignmentSvc_SOAPReply.validateMaster
-					// ConfigurableProperty->attr->override -> ESBDATA
-					// ConfigurableProperty->attr->uri ->
-					// com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#CmpCreateMsgError.dataSource
-					// ConfigurableProperty->attr->override -> LOG.REGISTER.REQ
-					// ConfigurableProperty->attr->uri ->
-					// com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#MQOUT.LOG.REGISTER.REQ.queueName
-					// ConfigurableProperty->attr->override -> none
-					// ConfigurableProperty->attr->uri ->
-					// com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#MQOUT.LOG.REGISTER.REQ.validateMaster
-					// ConfigurableProperty->attr->override -> CardPswdAssignmentSvc__BABN.FCD.RES
-					// ConfigurableProperty->attr->uri ->
-					// com.ath.services.customers.CardPswdAssignmentSvcFcdWs_RES#CardPswdAssignmentSvc.FCD.RES.queueName
-					// ConfigurableProperty->attr->override -> CardPswdAssignmentSvc.xml
-					// ConfigurableProperty->attr->uri ->
-					// com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#name
-					// ConfigurableProperty->attr->override -> BABN
-					// ConfigurableProperty->attr->uri ->
-					// com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#UDP_Channel
-					// ConfigurableProperty->attr->override -> CardPswdAssignmentSvc
-					// ConfigurableProperty->attr->uri ->
-					// com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#UDP_Application
-					// ConfigurableProperty->attr->override ->
-					// ConfigurableProperty->attr->uri ->
-					// com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#UDP_BankId
-					// ConfigurableProperty->attr->override -> ESBDATA
-					// ConfigurableProperty->attr->uri ->
-					// com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#GetInfoError_WS.dataSource
-					// ConfigurableProperty->attr->override -> none
-					// ConfigurableProperty->attr->uri ->
-					// com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#CardPswdAssignmentSvc_SOAPReply.validateMaster
-					// ConfigurableProperty->attr->override -> ESBDATA
-					// ConfigurableProperty->attr->uri ->
-					// com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#CreateDBErrorRespWS.dataSource
-					// ConfigurableProperty->attr->override -> ESBDATA
-					// ConfigurableProperty->attr->uri ->
-					// com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#CreateErrorRespWS.dataSource
-					// ConfigurableProperty->attr->override -> EXCEPTION.REGISTER.REQ
-					// ConfigurableProperty->attr->uri ->
-					// com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.EXCEPTION.REGISTER.REQ.queueName
-					// ConfigurableProperty->attr->override -> none
-					// ConfigurableProperty->attr->uri ->
-					// com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.EXCEPTION.REGISTER.REQ.validateMaster
-					// ConfigurableProperty->attr->override -> LOG.REGISTER.REQ
-					// ConfigurableProperty->attr->uri ->
-					// com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.LOG.REGISTER.REQ.queueName
-					// ConfigurableProperty->attr->override -> none
-					// ConfigurableProperty->attr->uri ->
-					// com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.LOG.REGISTER.REQ.validateMaster
-					// ConfigurableProperty->attr->override -> ESBDATA
-					// ConfigurableProperty->attr->uri ->
-					// com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#CmpRouteMsg.dataSource
-					// ConfigurableProperty->attr->override -> CardPswdAssignmentSvc__BABN.FCD.RES
-					// ConfigurableProperty->attr->uri ->
-					// com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.GENERIC.SRV.REQ.replyToQ
-					// ConfigurableProperty->attr->override -> none
-					// ConfigurableProperty->attr->uri ->
-					// com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#MQOUT.GENERIC.SRV.REQ.validateMaster
-					// ConfigurableProperty->attr->override ->
-					// /Customers/Services/CardPswdAssignmentSvc
-					// ConfigurableProperty->attr->uri ->
-					// com.ath.services.customers.CardPswdAssignmentSvcFcdWs_REQ#SOAP
-					// Input.urlSelector
-
-					// sampleFlow#MQ Input.queueName=NEW_INPUT_QUEUE
-					// sampleFlow#sampleSubflow1.queueName
-					// sampleSubflow1#queueName
-					// SUBOUT=NEW_SUBOUT
-
-					System.out.println(
-							"ConfigurableProperty->attr->" + item.getNodeName() + " -> " + item.getNodeValue());
 					if (item.getNodeName().equalsIgnoreCase("override")) {
 						Node nextItem = attributes.item(j + 1);
 						if (nextItem.getNodeName().equalsIgnoreCase("uri")) {
-							// StringTokenizer tokenizer = new StringTokenizer(nextItem.getNodeValue(),
-							// "#");
-							prop.setProperty(nextItem.getNodeValue(), item.getNodeValue());
+							StringTokenizer tokenizerAll = new StringTokenizer(nextItem.getNodeValue(), "#");
+							String absoluteFlow = tokenizerAll.nextToken();
+							String nodeAndProperty = tokenizerAll.nextToken();
+							StringTokenizer tokenizerFlow = new StringTokenizer(absoluteFlow, ".");
+							String flowName = null;
+							while (tokenizerFlow.hasMoreTokens()) {
+								flowName = (String) tokenizerFlow.nextToken();
+							}
+							StringTokenizer tokenizerNode = new StringTokenizer(nodeAndProperty, ".");
+							String propName = null;
+							StringBuffer nodeNameBuf = new StringBuffer();
+							int countTokens = tokenizerNode.countTokens();
+							int x = 1;
+							while (tokenizerNode.hasMoreTokens()) {
+
+								propName = (String) tokenizerNode.nextToken();
+
+								if (tokenizerNode.hasMoreTokens()) {
+									nodeNameBuf.append(propName);
+
+									if (x < countTokens - 1) {
+										nodeNameBuf.append(".");
+									}
+
+									x++;
+								}
+
+							}
+							if (!item.getNodeValue().equalsIgnoreCase("none") && !item.getNodeValue().equalsIgnoreCase("ESBDATA")) {
+								System.out.println(
+										appName + "\t" + flowName + ".msgflow" + "\t" + absoluteFlow.replace('.', '/')
+												+ "\t" + nodeNameBuf + "\t" + propName + "\t" + item.getNodeValue());
+							}
+
+							
+							mapOverrideProperties.put(nextItem.getNodeValue(), item.getNodeValue());
 						}
 
 					}
@@ -158,7 +106,15 @@ public class AnalyzerBrokerXml {
 
 		}
 
-		prop.store(output, null);
+		
+	}
+
+	public HashMap<String, String> getMapOverrideProperties() {
+		return mapOverrideProperties;
+	}
+
+	public void setMapOverrideProperties(HashMap<String, String> mapOverrideProperties) {
+		this.mapOverrideProperties = mapOverrideProperties;
 	}
 
 }

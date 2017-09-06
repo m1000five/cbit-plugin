@@ -21,12 +21,10 @@ public class BAthTemplates {
 	public static final String TEMPLATE_PROJECT = "athproject.xml";
 	
 	public static final String TEMPLATE_ANT_BUILD = "build.xml";
+	public static final String TEMPLATE_ANT_SPECIFIC_BUILD = "build-specific.xml";
 	
-	//generator/src/ServiceNameSvcOperationName_REQ.esql
 	public static final String TEMPLATE_ESQL_PARTICULAR_RQ = "ServiceNameSvcOperationName_REQ.esql";
-	//generator/src/ServiceNameSvcOperationName_REQ.msgflow
 	public static final String TEMPLATE_MSGFLOW_PARTICULAR = "ServiceNameSvcOperationName_REQ.msgflow";
-	//generator/src/athparticular.xml
 	public static final String TEMPLATE_PARTICULAR_PROJECT = "athparticular.xml"; 
 	
 	

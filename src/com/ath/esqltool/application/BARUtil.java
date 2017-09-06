@@ -5,7 +5,12 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
+import java.util.StringTokenizer;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
@@ -16,8 +21,11 @@ import javax.xml.xpath.XPathExpressionException;
 import org.xml.sax.SAXException;
 
 import com.ath.esqltool.util.AnalyzerBrokerXml;
+import com.ath.esqltool.util.LinkedProperties;
 
 public class BARUtil {
+
+	private LinkedProperties properties = new LinkedProperties();
 
 	public static void main(String[] args) {
 		//
@@ -25,17 +33,48 @@ public class BARUtil {
 
 		String barPath = null;
 		if (args == null || args.length == 0) {
-			barPath = "C:\\workspace_ath\\work108\\GeneratedBarFiles\\CardPswdAssignmentSvcFcdWsproject.generated.bar";
+			barPath = "C:\\Users\\milton.vega\\eclipse-workspace\\tmp\\CardPswdAssignmentSvcFcdWs.bar";
 		} else {
 			barPath = args[0];
-		} 
+		}
 		try {
-			String brokerFile = extractBarAndGetBroker(barPath);
-			//URL url = barUtil.getClass().getResource("/broker.xml");
-			System.out.println("BROKER-FILE------------>" + brokerFile);
-			File file = new File(brokerFile);
-			barUtil.extractOverrides(file);
+			File fileBAR = new File(barPath);
+
+			String csvOfBrokerFiles = extractBarAndGetBrokers(barPath);
+			// URL url = barUtil.getClass().getResource("/broker.xml");
+			System.out.println("BROKER-FILE------------>" + csvOfBrokerFiles);
+
+			StringTokenizer tokenizer = new StringTokenizer(csvOfBrokerFiles, ";");
+
+			while (tokenizer.hasMoreTokens()) {
+				String brokerFile = (String) tokenizer.nextToken();
+				if (brokerFile.length() > 0) {
+					File fileXml = new File(brokerFile);
+
+					String fileNameBar = fileBAR.getName();
+					if (fileNameBar.indexOf(".bar") != -1) {
+						fileNameBar = fileNameBar.substring(0, fileNameBar.indexOf(".bar"));
+						if (fileNameBar.indexOf("project.generated") != -1) {
+							fileNameBar = fileNameBar.substring(0, fileNameBar.indexOf("project.generated"));
+						}
+					}
+
+					barUtil.extractAndPopulateOverrides(fileXml, fileNameBar);
+
+				}
+
+			}
 			
+			LinkedProperties propertiesFile = barUtil.getProperties();
+
+			OutputStream output = null;
+
+			String current = new java.io.File(".").getCanonicalPath();
+
+			output = new FileOutputStream(current + "/config.properties");
+
+			propertiesFile.store(output, null);
+
 		} catch (ZipException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -44,16 +83,26 @@ public class BARUtil {
 
 	}
 
-	private void extractOverrides(File file) {
+	private void extractAndPopulateOverrides(File file, String appName) {
 		AnalyzerBrokerXml analyzer = new AnalyzerBrokerXml();
-		String current;
+
 		try {
 
-			current = new java.io.File(".").getCanonicalPath();
-			System.out.println("Current dir:" + current);
-
 			analyzer.init(file);
-			analyzer.extractOverrides(current + "/config.properties");
+			analyzer.extractOverrides(appName);
+
+			HashMap<String, String> mapOverrideProperties = analyzer.getMapOverrideProperties();
+
+			if (!mapOverrideProperties.isEmpty()) {
+				Set<String> keySet = mapOverrideProperties.keySet();
+				Iterator<String> iterator = keySet.iterator();
+				while (iterator.hasNext()) {
+					String keyProp = (String) iterator.next();
+					properties.setProperty(keyProp, mapOverrideProperties.get(keyProp));
+
+				}
+
+			}
 
 		} catch (ParserConfigurationException e) {
 			e.printStackTrace();
@@ -67,14 +116,17 @@ public class BARUtil {
 
 	}
 
-	static public String extractBarAndGetBroker(String zipFile) throws ZipException, IOException {
-		
+	static public String extractBarAndGetBrokers(String zipFile) throws ZipException, IOException {
+
 		System.out.println(zipFile);
-		
+
 		int BUFFER = 2048;
 		File file = new File(zipFile);
 
 		ZipFile zip = new ZipFile(file);
+
+		StringBuffer buffer2 = new StringBuffer();
+
 		String nameOfZipFile = zipFile.substring(0, zipFile.length() - 4);
 		if (zipFile.endsWith("appzip")) {
 			nameOfZipFile = zipFile.substring(0, zipFile.length() - 7);
@@ -82,7 +134,7 @@ public class BARUtil {
 
 		new File(nameOfZipFile).mkdir();
 		Enumeration zipFileEntries = zip.entries();
-		
+
 		String lastExtracted = nameOfZipFile;
 
 		// Process each entry
@@ -117,15 +169,30 @@ public class BARUtil {
 			}
 
 			if (currentEntry.endsWith("broker.xml")) {
+
 				return nameOfZipFile + "/" + currentEntry;
 			}
 
 			if (currentEntry.endsWith(".zip") || currentEntry.endsWith(".appzip")) {
 				// found a zip file, try to open
-				lastExtracted = extractBarAndGetBroker(destFile.getAbsolutePath());
+				lastExtracted = extractBarAndGetBrokers(destFile.getAbsolutePath());
+
+				if (lastExtracted.endsWith("broker.xml")) {
+					buffer2.append(lastExtracted);
+					buffer2.append(";");
+				}
+
 			}
 		}
-		return lastExtracted;
+		return buffer2.toString();
+	}
+
+	public LinkedProperties getProperties() {
+		return properties;
+	}
+
+	public void setProperties(LinkedProperties properties) {
+		this.properties = properties;
 	}
 
 }

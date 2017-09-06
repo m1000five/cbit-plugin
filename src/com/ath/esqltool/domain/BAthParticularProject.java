@@ -26,6 +26,7 @@ public class BAthParticularProject extends BAthProject {
 	private String nameStepRs;
 	private String nameOpDestRs;
 	private String namespace;
+	private String facadeName;
 	
 	private String datasource;
 	
@@ -47,11 +48,13 @@ public class BAthParticularProject extends BAthProject {
 
 	public BAthParticularProject() {
 		setIdeRequirement("00001");
+		setFacadeName("");
 	}
 
 	public BAthParticularProject(String current) {
 		setCurrentDir(current);
 		setIdeRequirement("00001");
+		setFacadeName("");
 	}
 
 	public boolean validate() {
@@ -477,6 +480,14 @@ public class BAthParticularProject extends BAthProject {
 
 	public void setPassthrough(Boolean passthrough) {
 		this.passthrough = passthrough;
+	}
+
+	public String getFacadeName() {
+		return facadeName;
+	}
+
+	public void setFacadeName(String facadeName) {
+		this.facadeName = facadeName;
 	}
 	
 	

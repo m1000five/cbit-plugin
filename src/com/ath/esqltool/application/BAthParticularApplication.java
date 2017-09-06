@@ -29,6 +29,9 @@ public class BAthParticularApplication {
 			
 			particular.setIdeRequirement("28496");
 			particular.setDomain("customers");
+			
+			particular.setFacadeName("CardPswdAssignmentSvcFcdWs");
+			
 			particular.setSrvName("CardPswAssignment");
 			particular.setOprName("modCardPsw");
 			particular.setOrgName("AVV");
