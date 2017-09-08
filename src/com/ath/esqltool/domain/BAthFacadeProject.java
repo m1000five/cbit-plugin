@@ -22,6 +22,8 @@ public class BAthFacadeProject extends BAthProject {
 	private String msgReq;
 	private String msgRes;
 	
+	private String srvDescription;
+	
 
 	private HashMap<String, String> mapOthersNamespaces = new HashMap<String, String>();
 	
@@ -343,6 +345,14 @@ public class BAthFacadeProject extends BAthProject {
 
 	public void setMapOthersNamespaces(HashMap<String, String> mapOthersNamespaces) {
 		this.mapOthersNamespaces = mapOthersNamespaces;
+	}
+
+	public String getSrvDescription() {
+		return srvDescription;
+	}
+
+	public void setSrvDescription(String srvDescription) {
+		this.srvDescription = srvDescription;
 	}
 
 

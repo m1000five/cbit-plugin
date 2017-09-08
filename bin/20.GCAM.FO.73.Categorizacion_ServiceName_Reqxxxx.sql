@@ -32,8 +32,8 @@
 --SELECT SUBSTR(HOST_NAME,1,20) SERVIDOR,	sys_context('USERENV', 'DB_NAME') as Base_Datos, SUBSTR(SYS_CONTEXT('USERENV', 'CURRENT_SCHEMA'),1,20) esquema, SUBSTR(SYS_CONTEXT('USERENV', 'HOST'), 1,20) Nombre_PC, SUBSTR(SYS_CONTEXT('USERENV', 'OS_USER'),1,30) Usuario_SO, SUBSTR(SYS_CONTEXT('USERENV', 'SESSION_USER'),1,20) Usuario_BD, TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') FECHA	FROM V$INSTANCE;
 
 --*** TRANCODE
-INSERT INTO TRANCODE (ID, IDENTIFIER, CODEVALUE, DESCRIPTION) VALUES ((SELECT MAX(ID) FROM TRANCODE) + 1, '${ServiceName}', 'C_${ServiceNameUpper}', 'Aplicacion de BAN.CO para la gestion de claves de TD y TC');
-INSERT INTO TRANCODE (ID, IDENTIFIER, CODEVALUE, DESCRIPTION) VALUES ((SELECT MAX(ID) FROM TRANCODE) + 1, '${ServiceName}${OperationName}', 'C_${ServiceNameAcron}${OperationNameUpper}', 'Aplicacion de BAN.CO modificacion claves de TD y TC');
+INSERT INTO TRANCODE (ID, IDENTIFIER, CODEVALUE, DESCRIPTION) VALUES ((SELECT MAX(ID) FROM TRANCODE) + 1, '${ServiceName}', 'C_${ServiceNameUpper}', '${ServiceNameDesc}');
+INSERT INTO TRANCODE (ID, IDENTIFIER, CODEVALUE, DESCRIPTION) VALUES ((SELECT MAX(ID) FROM TRANCODE) + 1, '${ServiceName}${OperationName}', 'C_${ServiceNameAcron}${OperationNameUpper}', '${ServiceNameDesc}');
 
 -- Codigos de error
 INSERT INTO MAPPING_CODE(ID, BANKID, IFXCODE, HOSTCODE, TRANCODE, ACCTTYPEHOSTID, ERROR, DESC_ERROR_HOM) VALUES((SELECT MAX(ID) FROM MAPPING_CODE) + 1, '00010524', '300', '5', 'C_${ServiceNameUpper}', NULL, '1', 'Error de conexion con el cliente - TimeOut');

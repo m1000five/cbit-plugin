@@ -66,6 +66,10 @@ public class BAthGenerator {
 			vc.put("Channel", facade.getChannel());
 			vc.put("ideRequirement", facade.getIdeRequirement());
 			vc.put("projectName", facade.getName());
+			vc.put("ServiceNameDesc", facade.getSrvDescription());
+			
+			
+			
 			vc.put("workspace", facade.getCurrentDir());
 //			vc.put("prefixns", facade.getPrefixns());
 			String prefix = BUtil.getPrefix(facade.getNamespace(), null);

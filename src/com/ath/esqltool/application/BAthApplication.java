@@ -43,6 +43,7 @@ public class BAthApplication {
 			facade.setWsdlPort("CardPswdAssignmentSvc");
 			facade.setWsdlBinding("CardPswdAssignmentSvcBinding");
 			facade.setWsdlSvcPort("CardPswdAssignmentSvcPort");
+			facade.setSrvDescription("Servicio de prueba generador de codigo");
 			
 			LinkedHashSet<String> setOthersNamespaces = new LinkedHashSet<String>();
 
