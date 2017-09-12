@@ -33,7 +33,7 @@
 
 ------------------------------------------------------ 
 
-DELETE MAPPING_CODE WHERE TRANCODE IN ('C_${ServiceNameUpper}','C_${ServiceNameAcron}${OperationNameUpper}') AND BANKID IN ('00010524', '0052');
+DELETE MAPPING_CODE WHERE TRANCODE IN ('C_${ServiceNameUpper}','C_${ServiceNameAcron}${OperationNameUpper}') AND BANKID IN ('${BankId}');
 DELETE TRANCODE WHERE CODEVALUE IN('C_${ServiceNameUpper}','C_${ServiceNameAcron}${OperationNameUpper}');
 
 COMMIT;
