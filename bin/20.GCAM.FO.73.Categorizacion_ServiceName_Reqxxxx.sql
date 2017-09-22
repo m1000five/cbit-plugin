@@ -13,9 +13,9 @@
 -----------------------------------------------------------------------------------------------------
   TABLAS AFECTADAS: TRANCODE - MAPPING_CODE
 -----------------------------------------------------------------------------------------------------
-  ESQUEMA PRUEBAS PT: PENDIENTE
+  ESQUEMA PRUEBAS PT: ORA12IIB10
 -----------------------------------------------------------------------------------------------------
-  ESQUEMA PRUEBAS QA: PENDIENTE 
+  ESQUEMA PRUEBAS QA: ORA12IIB10 
 -----------------------------------------------------------------------------------------------------
   ESQUEMA PRODUCCION: PENDIENTE  
  -----------------------------------------------------------------------------------------------------
@@ -26,7 +26,7 @@
 ===================================================================================================*/
 
 -- ****PRUEBAS TECNICA (PT) Y CALIDAD (QA)****
---ALTER SESSION SET CURRENT_SCHEMA=DB2ESBI1;
+--ALTER SESSION SET CURRENT_SCHEMA=ORA12IIB10;
 -- ****PRODUCCIoN (PROD)****
 ---ALTER SESSION SET CURRENT_SCHEMA=ESBCATALOGS;
 --SELECT SUBSTR(HOST_NAME,1,20) SERVIDOR,	sys_context('USERENV', 'DB_NAME') as Base_Datos, SUBSTR(SYS_CONTEXT('USERENV', 'CURRENT_SCHEMA'),1,20) esquema, SUBSTR(SYS_CONTEXT('USERENV', 'HOST'), 1,20) Nombre_PC, SUBSTR(SYS_CONTEXT('USERENV', 'OS_USER'),1,30) Usuario_SO, SUBSTR(SYS_CONTEXT('USERENV', 'SESSION_USER'),1,20) Usuario_BD, TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') FECHA	FROM V$INSTANCE;

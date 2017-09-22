@@ -13,9 +13,9 @@
 -----------------------------------------------------------------------------------------------------
   TABLAS AFECTADAS: MAPPING_CODE - TRANCODE
 -----------------------------------------------------------------------------------------------------
-  ESQUEMA PRUEBAS PT: PENDIENTE
+  ESQUEMA PRUEBAS PT: ORA12IIB10
 -----------------------------------------------------------------------------------------------------
-  ESQUEMA PRUEBAS QA: PENDIENTE 
+  ESQUEMA PRUEBAS QA: ORA12IIB10 
 -----------------------------------------------------------------------------------------------------
   ESQUEMA PRODUCCION: PENDIENTE  
  -----------------------------------------------------------------------------------------------------
@@ -25,7 +25,7 @@
   CODIGO FUENTE
 ===================================================================================================*/
 -- ****PRUEBAS TECNICA (PT) Y CALIDAD (QA)****
---ALTER SESSION SET CURRENT_SCHEMA=DB2ESBI1;
+--ALTER SESSION SET CURRENT_SCHEMA=ORA12IIB10;
 -- ****PRODUCCIÓN (PROD)****
 --ALTER SESSION SET CURRENT_SCHEMA=ESBCATALOGS;
 

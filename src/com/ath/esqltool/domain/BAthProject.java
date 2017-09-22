@@ -1,5 +1,7 @@
 package com.ath.esqltool.domain;
 
+import java.util.StringTokenizer;
+
 import com.ath.esqltool.util.BUtil;
 
 public abstract class BAthProject {
@@ -35,6 +37,11 @@ public abstract class BAthProject {
 	protected String wsdlBinding;
 	
 	protected String wsdlSvcPort;
+	
+	private String srvDescription;
+	
+	private String msgReq = "operationNameRequest";
+	private String msgRes = "operationNameResponse";
 	
 	
 	public abstract boolean validate();
@@ -191,6 +198,46 @@ public abstract class BAthProject {
 		this.wsdlRelativePathName = wsdlRelativePathName;
 	}
 	
+	
+	public String getSrvDescription() {
+		return srvDescription;
+	}
+
+	public void setSrvDescription(String srvDescription) {
+		this.srvDescription = srvDescription;
+	}
+	
+	public String getMsgReq() {
+		return msgReq;
+	}
+
+	public void setMsgReq(String msgReq) {
+		this.msgReq = msgReq;
+	}
+
+	public String getMsgRes() {
+		return msgRes;
+	}
+
+	public void setMsgRes(String msgRes) {
+		this.msgRes = msgRes;
+	}
+	
+	public String getBusinessServiceName() {
+		if (srvDescription != null && srvDescription.length() > 1) {
+			StringTokenizer tokenizer = new StringTokenizer(srvDescription, " ");
+			StringBuffer buf = new StringBuffer();
+			while (tokenizer.hasMoreElements()) {
+				String token = (String) tokenizer.nextToken();
+				if (token.length() > 3) {
+					buf.append(BUtil.capitalizeFirstLetterOfEachWord(token));
+				}
+			}
+			return buf.toString();
+			
+		}
+		return "";
+	}
 	
 
 }

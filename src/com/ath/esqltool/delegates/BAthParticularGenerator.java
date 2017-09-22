@@ -49,7 +49,7 @@ public class BAthParticularGenerator {
 			vc.put("namespace", particularProject.getNamespace());
 			vc.put("workspace", particularProject.getCurrentDir());
 			vc.put("ServiceName", particularProject.getSrvName());
-			vc.put("BusinessServiceName", particularProject.getSrvName());
+			vc.put("BusinessServiceName", particularProject.getBusinessServiceName());
 			vc.put("domain", particularProject.getDomain());
 			vc.put("OperationName", particularProject.getOprName());
 			vc.put("ServiceNameUpper", particularProject.getSrvName().toUpperCase());
@@ -69,6 +69,11 @@ public class BAthParticularGenerator {
 			vc.put("workspace", particularProject.getCurrentDir());
 			vc.put("BusinessServiceName", particularProject.getSrvName());
 			vc.put("facadeName", particularProject.getFacadeName());
+			vc.put("msgReq", particularProject.getMsgReq());
+			vc.put("msgRes", particularProject.getMsgRes());
+			vc.put("msgFirstReq", particularProject.getFirstMsgReqElement());
+			vc.put("msgFirstRes", particularProject.getFirstMsgResElement());
+			
 			
 			String prefix = BUtil.getPrefix(particularProject.getNamespace(), null);
 			vc.put("prefixns", prefix);

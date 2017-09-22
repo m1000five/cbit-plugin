@@ -16,7 +16,7 @@
     <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/${ServiceName}_${Org}/icons/full/obj16/${ServiceName}${OperationNameCapital}_REQ.gif"/>
     <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/${ServiceName}_${Org}/icons/full/obj30/${ServiceName}${OperationNameCapital}_REQ.gif"/>
     <composition>
-      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="49,158" queueName="CPAS${OperationNameCapital}_${Org}_${Channel}.REQ" messageDomainProperty="XMLNSC" transactionMode="no">
+      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="49,158" queueName="${ServiceNameAcron}${OperationNameCapital}${SuffixOrg}${SuffixChannel}.REQ" messageDomainProperty="XMLNSC" transactionMode="no">
         <translation xmi:type="utility:ConstantString" string="${OperationNameCapital}_${Org}.REQ"/>
       </nodes>
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="653,10" dataSource="ESBDATA" computeExpression="esql://routine/com.ath.services.${domain}#${ServiceName}${OperationNameCapital}_REQ_CreateDBErrorRespWS.Main" computeMode="destinationAndMessage">

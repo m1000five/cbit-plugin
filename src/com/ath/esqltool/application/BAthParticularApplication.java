@@ -3,9 +3,7 @@ package com.ath.esqltool.application;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedHashSet;
-import java.util.Map;
 
 import com.ath.esqltool.delegates.BAthParticularGenerator;
 import com.ath.esqltool.domain.BAthParticularProject;
@@ -32,7 +30,7 @@ public class BAthParticularApplication {
 			
 			particular.setFacadeName("CardPswdAssignmentSvcFcdWs");
 			
-			particular.setSrvName("CardPswAssignment");
+			particular.setSrvName("CardPswAssignmentSvc");
 			particular.setOprName("modCardPsw");
 			particular.setOrgName("AVV");
 			particular.setChannel("BABN"); 

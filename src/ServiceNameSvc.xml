@@ -8,7 +8,7 @@
 				<name>${OperationName}</name>
 				<nameProvider>${Org}</nameProvider>
 				<protocol>WS</protocol>
-				<queueName>${ServiceNameAcron}${OperationNameCapital}${SuffixOrg}_BABN.REQ</queueName>
+				<queueName>${ServiceNameAcron}${OperationNameCapital}${SuffixOrg}${SuffixChannel}.REQ</queueName>
 			</service>
 		</serviceListATM>
 		<notificationEmail>

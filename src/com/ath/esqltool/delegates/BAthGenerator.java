@@ -50,7 +50,7 @@ public class BAthGenerator {
 			
 			//TODO establecer valores por defecto si vienen los valores vacios?
 			vc.put("ServiceName", facade.getSrvName());
-			vc.put("BusinessServiceName", facade.getSrvName());
+			vc.put("BusinessServiceName", facade.getBusinessServiceName());
 			vc.put("namespace", facade.getNamespace());
 			vc.put("domain", facade.getDomain());
 			vc.put("domainCapital", BUtil.capitalizeFirstLetterOfEachWord(facade.getDomain()));
@@ -67,23 +67,12 @@ public class BAthGenerator {
 			vc.put("ideRequirement", facade.getIdeRequirement());
 			vc.put("projectName", facade.getName());
 			vc.put("ServiceNameDesc", facade.getSrvDescription());
-			
-			
-			
 			vc.put("workspace", facade.getCurrentDir());
-//			vc.put("prefixns", facade.getPrefixns());
+			vc.put("msgReq", facade.getMsgReq());
+			vc.put("msgRes", facade.getMsgRes());
+
 			String prefix = BUtil.getPrefix(facade.getNamespace(), null);
 			vc.put("prefixns", prefix);
-			
-//			C:/Users/milton.vega/eclipse-workspace/generatorCardPswdAssignmentSvcFcdWs
-//			${workspace}${projectName}/
-
-			
-			
-//			facade.setWsdlName("CardPswdAssignmentSvc.wsdl");
-//			facade.setWsdlPort("CardPswdAssignmentSvc");
-//			facade.setWsdlBinding("CardPswdAssignmentBinding");
-//			facade.setWsdlSvcPort("CardPswdAssignmentPort");
 			
 			vc.put("wsdlRelativePathName", facade.getWsdlRelativePathName() != null?facade.getWsdlRelativePathName():"WsdlName.wsdl");
 			vc.put("wsdlName", facade.getWsdlName() != null?facade.getWsdlName():"WsdlName.wsdl");

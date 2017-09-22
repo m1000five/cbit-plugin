@@ -19,10 +19,9 @@ public class BAthFacadeProject extends BAthProject {
 	private String oprWsdlReqName;
 	private String oprWsdlResName;
 	
-	private String msgReq;
-	private String msgRes;
 	
-	private String srvDescription;
+	
+	
 	
 
 	private HashMap<String, String> mapOthersNamespaces = new HashMap<String, String>();
@@ -121,19 +120,19 @@ public class BAthFacadeProject extends BAthProject {
 	}
 
 	public String getSqlPath() {
-		return getProjectPath() + IBAthConstants.PREFIX_SQL + getSrvName() + IBAthConstants.SUFFIX_SQL;
+		return getProjectPath() + IBAthConstants.PREFIX_SQL + getSrvName() + "_" + "REQ" + getIdeRequirement() + IBAthConstants.SUFFIX_SQL;
 	}
 	
 	public String getSqlRevPath() {
-		return getProjectPath() + IBAthConstants.PREFIX_SQL_REVERSE + getSrvName() + IBAthConstants.SUFFIX_SQL;
+		return getProjectPath() + IBAthConstants.PREFIX_SQL_REVERSE + getSrvName() + "_" + "REQ" + getIdeRequirement() + IBAthConstants.SUFFIX_SQL;
 	}
 
 	public String getMqPath() {
-		return getProjectPath() + IBAthConstants.PREFIX_MQ + getSrvName() + IBAthConstants.SUFFIX_MQ;
+		return getProjectPath() + IBAthConstants.PREFIX_MQ + getSrvName() + "_" + "REQ" + getIdeRequirement() + IBAthConstants.SUFFIX_MQ;
 	}
 	
 	public String getMqRevPath() {
-		return getProjectPath() + IBAthConstants.PREFIX_MQ_REVERSE + getSrvName() + IBAthConstants.SUFFIX_MQ;
+		return getProjectPath() + IBAthConstants.PREFIX_MQ_REVERSE + getSrvName() + "_" + "REQ" + getIdeRequirement() + IBAthConstants.SUFFIX_MQ;
 	}
 	
 	public String getXmlPath() {
@@ -205,21 +204,7 @@ public class BAthFacadeProject extends BAthProject {
 		this.oprWsdlResName = oprWsdlResName;
 	}
 
-	public String getMsgReq() {
-		return msgReq;
-	}
-
-	public void setMsgReq(String msgReq) {
-		this.msgReq = msgReq;
-	}
-
-	public String getMsgRes() {
-		return msgRes;
-	}
-
-	public void setMsgRes(String msgRes) {
-		this.msgRes = msgRes;
-	}
+	
 
 	public String getOprNameLower() {
 		return getOprName().toLowerCase();
@@ -347,13 +332,7 @@ public class BAthFacadeProject extends BAthProject {
 		this.mapOthersNamespaces = mapOthersNamespaces;
 	}
 
-	public String getSrvDescription() {
-		return srvDescription;
-	}
 
-	public void setSrvDescription(String srvDescription) {
-		this.srvDescription = srvDescription;
-	}
 
 
 	

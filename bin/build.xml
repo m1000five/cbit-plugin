@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project name="${ServiceName}FcdWs" default="run">
+<project name="${projectName}" default="run">
 	<!-- generated with Toolkit Plugin -->
 	<!-- ====== ANT Build File ======= -->
 	<!-- Se requiere un directorio workspace en el que esten directamente los distintos proyectos -->
@@ -18,8 +18,6 @@
 	<property name="bussinessName" value="${BusinessServiceName}" />
 	<property name="projectName" value="${projectName}" />
 	<property name="barname" value="${projectName}.bar" />
-	<property name="org" value="${Org}" />
-	<property name="bussinessName" value="${BusinessServiceName}" />
 	<property name="wsdl" value="${wsdlName}" />
 	<property name="workspace.dir" value="${workspace}" />
 	<property name="mqtool.dir" value="C:/MsgTest" />
@@ -126,7 +124,7 @@
 	<target name="create-queues">
 		<echo message="CREATE QUEUES" />
 		<exec executable="cmd" dir="C:/IBM/MQSI/7.0/bin">
-			<arg value="/c mqsiprofile.cmd &amp; runmqsc MB7QMGR &lt; ${workspace}/${projectName}/Colas_MigracionBUS_${ServiceName}.mq" />
+			<arg value="/c mqsiprofile.cmd &amp; runmqsc MB7QMGR &lt; ${workspace}/${projectName}/Colas_MigracionBUS_${ServiceName}_RQ${ideRequirement}.mq" />
 		</exec>
 
 	</target>
