@@ -76,7 +76,7 @@ CREATE COMPUTE MODULE ${ServiceName}${OperationNameCapital}_REQ_CmpMappingResp
 		SET OutputRoot.MQMD.Expiry = -1;
 		SET OutputRoot.MQRFH2 = Environment.Variables.headers.MQRFH2;
 	
-		DECLARE inMsg REFERENCE TO InputRoot.XMLNSC.${prefixns}:${OperationName}Response.${prefixns}:${msgFirstRes};
+		DECLARE inMsg REFERENCE TO InputRoot.XMLNSC.${prefixns}:${msgRes}.${prefixns}:${msgFirstRes};
 		DECLARE refMQRFH2 REFERENCE TO OutputRoot.MQRFH2;
 		DECLARE data ROW;
 		DECLARE value REFERENCE TO data.value;
@@ -109,11 +109,11 @@ CREATE COMPUTE MODULE ${ServiceName}${OperationNameCapital}_REQ_CmpMappingResp
 			PROPAGATE TO TERMINAL 'out1' DELETE NONE;
 			SET OutputRoot.XMLNSC   = NULL;
 			
-			CREATE FIELD OutputRoot.XMLNSC.${prefixns}:${OperationName}Response.${prefixns}:${msgFirstRes};
-			SET OutputRoot.XMLNSC.${prefixns}:${OperationName}Response.(XMLNSC.NamespaceDecl)xmlns:${prefixns} = ${prefixns};
-			SET OutputRoot.XMLNSC.${prefixns}:${OperationName}Response.(XMLNSC.NamespaceDecl)xmlns:${prefixauxns} = ${prefixauxns};
+			CREATE FIELD OutputRoot.XMLNSC.${prefixns}:${msgRes}.${prefixns}:${msgFirstRes};
+			SET OutputRoot.XMLNSC.${prefixns}:${msgRes}.(XMLNSC.NamespaceDecl)xmlns:${prefixns} = ${prefixns};
+			SET OutputRoot.XMLNSC.${prefixns}:${msgRes}.(XMLNSC.NamespaceDecl)xmlns:${prefixauxns} = ${prefixauxns};
 			
-			DECLARE outMsg REFERENCE TO OutputRoot.XMLNSC.${prefixns}:${OperationName}Response.${prefixns}:${msgFirstRes};
+			DECLARE outMsg REFERENCE TO OutputRoot.XMLNSC.${prefixns}:${msgRes}.${prefixns}:${msgFirstRes};
 			
 			SET outMsg.${prefixauxns}:Status.${prefixauxns}:StatusCode = value.codeError;
 			SET outMsg.${prefixauxns}:Status.${prefixauxns}:ServerStatusCode = serverStatusCode;
@@ -142,11 +142,11 @@ CREATE COMPUTE MODULE ${ServiceName}${OperationNameCapital}_REQ_CreateErrorRespW
 		DECLARE numeroError CHARACTER;
 		CALL com.ath.common.util.searchErrorNumber(InputExceptionList, numeroError);
 	
-		CREATE FIELD OutputRoot.XMLNSC.${prefixns}:${OperationName}Response.${prefixns}:${msgFirstRes};
-		SET OutputRoot.XMLNSC.${prefixns}:${OperationName}Response.(XMLNSC.NamespaceDecl)xmlns:${prefixns} = ${prefixns};
-		SET OutputRoot.XMLNSC.${prefixns}:${OperationName}Response.(XMLNSC.NamespaceDecl)xmlns:${prefixauxns} = ${prefixauxns};
+		CREATE FIELD OutputRoot.XMLNSC.${prefixns}:${msgRes}.${prefixns}:${msgFirstRes};
+		SET OutputRoot.XMLNSC.${prefixns}:${msgRes}.(XMLNSC.NamespaceDecl)xmlns:${prefixns} = ${prefixns};
+		SET OutputRoot.XMLNSC.${prefixns}:${msgRes}.(XMLNSC.NamespaceDecl)xmlns:${prefixauxns} = ${prefixauxns};
 		
-		DECLARE outMsg REFERENCE TO OutputRoot.XMLNSC.${prefixns}:${OperationName}Response.${prefixns}:${msgFirstRes};
+		DECLARE outMsg REFERENCE TO OutputRoot.XMLNSC.${prefixns}:${msgRes}.${prefixns}:${msgFirstRes};
 		DECLARE data ROW;
 		DECLARE value REFERENCE TO data.value;
 
@@ -192,11 +192,11 @@ CREATE COMPUTE MODULE ${ServiceName}${OperationNameCapital}_REQ_CreateDBErrorRes
 		DECLARE refExceptionList REFERENCE TO InputExceptionList;
 		CALL common.procedures.general.getDescriptionExceptionList(refExceptionList, codeError, nameError, descError);
 
-		CREATE FIELD OutputRoot.XMLNSC.${prefixns}:${OperationName}Response.${prefixns}:${msgFirstRes};
-		SET OutputRoot.XMLNSC.${prefixns}:${OperationName}Response.(XMLNSC.NamespaceDecl)xmlns:${prefixns} = ${prefixns};
-		SET OutputRoot.XMLNSC.${prefixns}:${OperationName}Response.(XMLNSC.NamespaceDecl)xmlns:${prefixauxns} = ${prefixauxns};
+		CREATE FIELD OutputRoot.XMLNSC.${prefixns}:${msgRes}.${prefixns}:${msgFirstRes};
+		SET OutputRoot.XMLNSC.${prefixns}:${msgRes}.(XMLNSC.NamespaceDecl)xmlns:${prefixns} = ${prefixns};
+		SET OutputRoot.XMLNSC.${prefixns}:${msgRes}.(XMLNSC.NamespaceDecl)xmlns:${prefixauxns} = ${prefixauxns};
 		
-		DECLARE outMsg REFERENCE TO OutputRoot.XMLNSC.${prefixns}:${OperationName}Response.${prefixns}:${msgFirstRes};
+		DECLARE outMsg REFERENCE TO OutputRoot.XMLNSC.${prefixns}:${msgRes}.${prefixns}:${msgFirstRes};
 		
 		SET outMsg.${prefixauxns}:Status.${prefixauxns}:StatusCode = '1001';
 		SET outMsg.${prefixauxns}:Status.${prefixauxns}:ServerStatusCode = codeError;

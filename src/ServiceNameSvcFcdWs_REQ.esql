@@ -25,21 +25,21 @@ CREATE COMPUTE MODULE ${ServiceName}FcdWs_REQ_CmpRouteMsg
 		SET refMQRFH2.usr.log.transactionDate = CURRENT_TIMESTAMP;
 		SET refMQRFH2.usr.infoConfig = TRIM(REPLACE(InputLocalEnvironment.ServiceRegistry.Entity.content, '\r\n',''));
 
-		--> Validar información de la configuración del servicio, tomada desde WSRR
+		--> Validar informacion de la configuracion del servicio, tomada desde WSRR
 		CALL common.procedures.fcd.getValuesConfigService(refMQRFH2, 'serviceStatus', value);
 		
 		IF value = '1' THEN
-			DECLARE inMsg REFERENCE TO InputRoot.XMLNSC.${prefixns}:${msgReq}.${prefixns}:${ServiceName}Rq;
+			DECLARE inMsg REFERENCE TO InputRoot.XMLNSC.${prefixns}:${msgReq}.${prefixns}:${msgFirstReq};
 			DECLARE bankId CHARACTER inMsg.${prefixauxns}:MsgRqHdr.${prefixauxns}:BankInfo.${prefixauxns}:BankId;
-			DECLARE channel CHARACTER inMsg.${prefixauxns}:MsgRqHdr.v2:Channel;
+			DECLARE channel CHARACTER inMsg.${prefixauxns}:MsgRqHdr.${prefixauxns}:Channel;
 			DECLARE rqUID CHARACTER inMsg.${prefixauxns}:RqUID;
 			DECLARE custIdNum CHARACTER inMsg.${prefixauxns}:CustId.${prefixauxns}:GovIssueIdent.${prefixauxns}:IdentSerialNum;
 			DECLARE accType CHARACTER inMsg.${prefixauxns}:DepAcctId.${prefixauxns}:AcctType;
 			
-			--> Tomar el nombre del servicio desde el archivo xml de configuración
+			--> Tomar el nombre del servicio desde el archivo xml de configuracion
 			CALL common.procedures.fcd.getValuesConfigService(refMQRFH2, 'name', value);
 			
-			--> Guardar datos en cabecera para auditoría
+			--> Guardar datos en cabecera para auditoria
 			SET OutputRoot.MQRFH2.usr.log.transactionDate = CURRENT_TIMESTAMP;
 			SET OutputRoot.MQRFH2.usr.log.nameApplication = UDP_Application;
 			SET OutputRoot.MQRFH2.usr.log.nameSrv = UDP_Application;
@@ -62,7 +62,7 @@ CREATE COMPUTE MODULE ${ServiceName}FcdWs_REQ_CmpRouteMsg
 				SET OutputRoot.MQMD.Priority = CAST(value AS INTEGER);
 			END IF;
 			
-			--> Envio a servicio específico basado en xml de configuración
+			--> Envio a servicio específico basado en xml de configuracion
 			CALL common.procedures.fcd.getValuesConfigService(refMQRFH2, 'serviceListATM', value);
 			DECLARE service REFERENCE TO value.service;
 			SET OutputLocalEnvironment.Destination.MQ.DestinationData[1].queueName = service.queueName;
@@ -78,7 +78,7 @@ CREATE COMPUTE MODULE ${ServiceName}FcdWs_REQ_CmpRouteMsg
 			
 			RETURN TRUE;
 		ELSE
-			THROW USER EXCEPTION CATALOG 'FCD' MESSAGE 004 VALUES ('Servicio Inactivo.', 'Configuración de archivo.');
+			THROW USER EXCEPTION CATALOG 'FCD' MESSAGE 004 VALUES ('Servicio Inactivo.', 'Configuracion de archivo.');
 			RETURN FALSE;
 		END IF;
 	END;
@@ -89,11 +89,11 @@ CREATE COMPUTE MODULE ${ServiceName}FcdWs_REQ_CreateErrorRespWS
 	BEGIN
 		CALL copyMessageHeaders();
 		
-		CREATE FIELD OutputRoot.XMLNSC.${prefixns}:${msgRes}.${prefixns}:${ServiceName}Rs;
+		CREATE FIELD OutputRoot.XMLNSC.${prefixns}:${msgRes}.${prefixns}:${msgFirstRes};
 		SET OutputRoot.XMLNSC.${prefixns}:${msgRes}.(XMLNSC.NamespaceDecl)xmlns:${prefixns} = ${prefixns};
 		SET OutputRoot.XMLNSC.${prefixns}:${msgRes}.(XMLNSC.NamespaceDecl)xmlns:${prefixauxns} = ${prefixauxns};
 		
-		DECLARE outMsg REFERENCE TO OutputRoot.XMLNSC.${prefixns}:${msgRes}.${prefixns}:${ServiceName}Rs;
+		DECLARE outMsg REFERENCE TO OutputRoot.XMLNSC.${prefixns}:${msgRes}.${prefixns}:${msgFirstRes};
 		DECLARE data ROW;
 		DECLARE value REFERENCE TO data.value;
 

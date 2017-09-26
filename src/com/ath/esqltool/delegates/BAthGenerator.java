@@ -4,10 +4,8 @@ import java.io.File;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Iterator;
-import java.util.LinkedHashSet;
 import java.util.Map;
 
-import org.apache.commons.lang.ObjectUtils.Null;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
@@ -70,6 +68,8 @@ public class BAthGenerator {
 			vc.put("workspace", facade.getCurrentDir());
 			vc.put("msgReq", facade.getMsgReq());
 			vc.put("msgRes", facade.getMsgRes());
+			vc.put("msgFirstReq", facade.getFirstMsgReqElement());
+			vc.put("msgFirstRes", facade.getFirstMsgResElement());
 
 			String prefix = BUtil.getPrefix(facade.getNamespace(), null);
 			vc.put("prefixns", prefix);
@@ -135,7 +135,7 @@ public class BAthGenerator {
 					
 					System.out.println(pair.getKey() + " = " + pair.getValue());
 
-					it.remove(); // avoids a ConcurrentModificationException
+					//it.remove(); // avoids a ConcurrentModificationException
 				}
 
 			}

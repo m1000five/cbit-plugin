@@ -27,8 +27,7 @@ public class BAthParticularProject extends BAthProject {
 	private String nameOpDestRs;
 	private String namespace;
 	private String facadeName;
-	private String firstMsgReqElement = "ElementRq";
-	private String firstMsgResElement = "ElementRs";
+	
 	
 	private String datasource;
 	
@@ -492,21 +491,7 @@ public class BAthParticularProject extends BAthProject {
 		this.facadeName = facadeName;
 	}
 
-	public String getFirstMsgReqElement() {
-		return firstMsgReqElement;
-	}
-
-	public void setFirstMsgReqElement(String firstMsgReqElement) {
-		this.firstMsgReqElement = firstMsgReqElement;
-	}
-
-	public String getFirstMsgResElement() {
-		return firstMsgResElement;
-	}
-
-	public void setFirstMsgResElement(String firstMsgResElement) {
-		this.firstMsgResElement = firstMsgResElement;
-	}
+	
 	
 	
 	

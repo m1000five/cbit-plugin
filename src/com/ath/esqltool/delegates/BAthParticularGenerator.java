@@ -126,7 +126,7 @@ public class BAthParticularGenerator {
 						particularProject.setPrefixauxns(pair.getKey().toString());
 					}
 
-					it.remove(); // avoids a ConcurrentModificationException
+					//it.remove(); // avoids a ConcurrentModificationException
 				}
 
 			}
@@ -147,7 +147,7 @@ public class BAthParticularGenerator {
 					bufSpecificNamespaces.append(pair.getValue());
 					bufSpecificNamespaces.append("';\n");
 
-					it.remove(); // avoids a ConcurrentModificationException
+					//it.remove(); // avoids a ConcurrentModificationException
 				}
 
 			}

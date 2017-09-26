@@ -27,6 +27,7 @@ public class AnalyzerWsdl {
 	private LinkedHashSet<String> setOperations = new LinkedHashSet<String>();
 
 	private HashMap<String, String> mapOpMsgs = new HashMap<String, String>();
+	private HashMap<String, String> mapMsgElements = new HashMap<String, String>();
 
 	private String namespace;
 	private String oprname;
@@ -177,6 +178,44 @@ public class AnalyzerWsdl {
 			}
 
 		}
+		
+		
+		nodeList = (NodeList) xpath.evaluate("//wsdl:message", getDocument(), XPathConstants.NODESET);
+
+		for (int i = 0; i < nodeList.getLength(); i++) {
+			Node currentNode = nodeList.item(i);
+
+			String key = null;
+			String valueMsg = "";
+
+			if (currentNode.getAttributes() != null) {
+				NamedNodeMap attributes = currentNode.getAttributes();
+				Node item = attributes.item(0);
+				key = item.getNodeValue();
+			}
+			NodeList nodeMsgList = (NodeList) currentNode.getChildNodes();
+			if (nodeMsgList != null) {
+				for (int x = 0; x < nodeMsgList.getLength(); x++) {
+					Node currentMsgNode = nodeMsgList.item(x);
+					if (currentMsgNode.getAttributes() != null) {
+						NamedNodeMap listAttrs = currentMsgNode.getAttributes();
+						for (int j = 0; j < listAttrs.getLength(); j++) {
+							Node item = listAttrs.item(j);
+							if (item.getNodeName().equalsIgnoreCase("name")) {
+								valueMsg = item.getNodeValue();
+								break;
+							}
+						}
+					}
+				}
+			}
+			if (key != null && valueMsg.length() > 0) {
+				mapMsgElements.put(key, valueMsg.toString());
+			}
+		}
+		
+		
+		
 
 		// <wsdl:portType name="CardPswdAssignmentSvc">
 		nodeList = (NodeList) xpath.evaluate("//wsdl:portType/@name", getDocument(), XPathConstants.NODESET);
@@ -305,6 +344,14 @@ public class AnalyzerWsdl {
 
 	public void setMapOpMsgs(HashMap<String, String> mapOpMsgs) {
 		this.mapOpMsgs = mapOpMsgs;
+	}
+
+	public HashMap<String, String> getMapMsgElements() {
+		return mapMsgElements;
+	}
+
+	public void setMapMsgElements(HashMap<String, String> mapMsgElements) {
+		this.mapMsgElements = mapMsgElements;
 	}
 
 }

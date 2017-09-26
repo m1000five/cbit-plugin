@@ -43,6 +43,9 @@ public abstract class BAthProject {
 	private String msgReq = "operationNameRequest";
 	private String msgRes = "operationNameResponse";
 	
+	private String firstMsgReqElement = "ElementRq";
+	private String firstMsgResElement = "ElementRs";
+	
 	
 	public abstract boolean validate();
 
@@ -237,6 +240,22 @@ public abstract class BAthProject {
 			
 		}
 		return "";
+	}
+	
+	public String getFirstMsgReqElement() {
+		return firstMsgReqElement;
+	}
+
+	public void setFirstMsgReqElement(String firstMsgReqElement) {
+		this.firstMsgReqElement = firstMsgReqElement;
+	}
+
+	public String getFirstMsgResElement() {
+		return firstMsgResElement;
+	}
+
+	public void setFirstMsgResElement(String firstMsgResElement) {
+		this.firstMsgResElement = firstMsgResElement;
 	}
 	
 
