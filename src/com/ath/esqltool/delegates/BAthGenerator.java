@@ -71,8 +71,8 @@ public class BAthGenerator {
 			vc.put("msgFirstReq", facade.getFirstMsgReqElement());
 			vc.put("msgFirstRes", facade.getFirstMsgResElement());
 
-			String prefix = BUtil.getPrefix(facade.getNamespace(), null);
-			vc.put("prefixns", prefix);
+			String prefixPpal = BUtil.getPrefix(facade.getNamespace(), null);
+			vc.put("prefixns", prefixPpal);
 			
 			vc.put("wsdlRelativePathName", facade.getWsdlRelativePathName() != null?facade.getWsdlRelativePathName():"WsdlName.wsdl");
 			vc.put("wsdlName", facade.getWsdlName() != null?facade.getWsdlName():"WsdlName.wsdl");
@@ -120,9 +120,7 @@ public class BAthGenerator {
 				while (it.hasNext()) {
 					Map.Entry pair = (Map.Entry) it.next();
 					
-					if (pair.getKey().toString().equalsIgnoreCase(facade.getNamespace())) {
-						continue;
-					}
+
 
 					bufOtherNamespaces.append("\nDECLARE ").append(pair.getKey());
 					bufOtherNamespaces.append("		NAMESPACE '");
@@ -130,6 +128,9 @@ public class BAthGenerator {
 					bufOtherNamespaces.append("';\n");
 					
 					if (facade.getPrefixauxns() == null) {
+						if (pair.getKey().toString().equalsIgnoreCase(prefixPpal)) {
+							continue;
+						}
 						facade.setPrefixauxns(pair.getKey().toString());
 					}
 					

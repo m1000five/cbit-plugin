@@ -186,7 +186,7 @@ public class AnalyzerWsdl {
 			Node currentNode = nodeList.item(i);
 
 			String key = null;
-			String valueMsg = "";
+			StringBuffer valueMsgBuf = new StringBuffer();
 
 			if (currentNode.getAttributes() != null) {
 				NamedNodeMap attributes = currentNode.getAttributes();
@@ -199,18 +199,28 @@ public class AnalyzerWsdl {
 					Node currentMsgNode = nodeMsgList.item(x);
 					if (currentMsgNode.getAttributes() != null) {
 						NamedNodeMap listAttrs = currentMsgNode.getAttributes();
+						String name = "";
+						String element = "";
 						for (int j = 0; j < listAttrs.getLength(); j++) {
 							Node item = listAttrs.item(j);
 							if (item.getNodeName().equalsIgnoreCase("name")) {
-								valueMsg = item.getNodeValue();
-								break;
+								name = (item.getNodeValue());
+								continue;
+							}
+							if (item.getNodeName().equalsIgnoreCase("element")) {
+								element = (item.getNodeValue());
+								if (element.indexOf(":") != -1 ) { 
+									element = element.substring(element.indexOf(":") + 1);
+								}
+								continue;
 							}
 						}
+						valueMsgBuf.append(name).append(";").append(element);
 					}
 				}
 			}
-			if (key != null && valueMsg.length() > 0) {
-				mapMsgElements.put(key, valueMsg.toString());
+			if (key != null && valueMsgBuf.length() > 0) {
+				mapMsgElements.put(key, valueMsgBuf.toString());
 			}
 		}
 		

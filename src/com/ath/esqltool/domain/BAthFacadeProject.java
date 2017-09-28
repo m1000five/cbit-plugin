@@ -120,19 +120,19 @@ public class BAthFacadeProject extends BAthProject {
 	}
 
 	public String getSqlPath() {
-		return getProjectPath() + IBAthConstants.PREFIX_SQL + getSrvName() + "_" + "REQ" + getIdeRequirement() + IBAthConstants.SUFFIX_SQL;
+		return getProjectPath() + IBAthConstants.PREFIX_SQL + getSrvName() + "_" + "RQ" + getIdeRequirement() + IBAthConstants.SUFFIX_SQL;
 	}
 	
 	public String getSqlRevPath() {
-		return getProjectPath() + IBAthConstants.PREFIX_SQL_REVERSE + getSrvName() + "_" + "REQ" + getIdeRequirement() + IBAthConstants.SUFFIX_SQL;
+		return getProjectPath() + IBAthConstants.PREFIX_SQL_REVERSE + getSrvName() + "_" + "RQ" + getIdeRequirement() + IBAthConstants.SUFFIX_SQL;
 	}
 
 	public String getMqPath() {
-		return getProjectPath() + IBAthConstants.PREFIX_MQ + getSrvName() + "_" + "REQ" + getIdeRequirement() + IBAthConstants.SUFFIX_MQ;
+		return getProjectPath() + IBAthConstants.PREFIX_MQ + getSrvName() + "_" + "RQ" + getIdeRequirement() + IBAthConstants.SUFFIX_MQ;
 	}
 	
 	public String getMqRevPath() {
-		return getProjectPath() + IBAthConstants.PREFIX_MQ_REVERSE + getSrvName() + "_" + "REQ" + getIdeRequirement() + IBAthConstants.SUFFIX_MQ;
+		return getProjectPath() + IBAthConstants.PREFIX_MQ_REVERSE + getSrvName() + "_" + "RQ" + getIdeRequirement() + IBAthConstants.SUFFIX_MQ;
 	}
 	
 	public String getXmlPath() {
