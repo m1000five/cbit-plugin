@@ -1,4 +1,5 @@
 spool ON
+
 spool results.txt
 
 SET heading OFF
